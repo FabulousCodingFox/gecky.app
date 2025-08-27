@@ -5,6 +5,8 @@
   "language_en": "English",
   "theme_light": "Light theme",
   "theme_dark": "Dark theme",
-  "sidebar_main": "Main",
-  "sidebar_account": "Account"
+  "page_main_title": "Main",
+  "page_main_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse.",
+  "page_account_title": "Account",
+  "page_account_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse."
 }

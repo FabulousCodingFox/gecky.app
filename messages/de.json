@@ -5,6 +5,8 @@
   "language_en": "Englisch",
   "theme_light": "Helles Design",
   "theme_dark": "Dunkles Design",
-  "sidebar_main": "Hauptseite",
-  "sidebar_account": "Konto"
+  "page_main_title": "Hauptseite",
+  "page_main_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse.",
+  "page_account_title": "Konto",
+  "page_account_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse."
 }

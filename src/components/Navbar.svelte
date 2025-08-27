@@ -7,6 +7,7 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { Select } from 'bits-ui';
   import { getContext } from 'svelte';
+  import bgPageAccount from '$lib/img/wallpaper/nms_contemporary_10.jpg';
 
   let { children } = $props();
 
@@ -46,8 +47,8 @@
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
-                {@render sideBarTab(m.sidebar_main(), LocalStateAppPage.MAIN)}
-                {@render sideBarTab(m.sidebar_account(), LocalStateAppPage.ACCOUNT)}
+                {@render sideBarTab(m.page_main_title(), LocalStateAppPage.MAIN)}
+                {@render sideBarTab(m.page_account_title(), LocalStateAppPage.ACCOUNT)}
               </ul>
             </li>
           </ul>
@@ -108,7 +109,7 @@
                   class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500 dark:focus:text-white"
                 >
                   <div class="flex items-center">
-                    <Icon src={theme.icon} class="size-5 shrink-0 rounded-full text-white" theme="outline" size="20px" />
+                    <Icon src={theme.icon} class="size-5 shrink-0 rounded-full text-gray-900 dark:text-white" theme="outline" size="20px" />
                     <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">{theme.name}</span>
                   </div>
                   <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-indigo-400">
@@ -173,9 +174,34 @@
     </div>
   </div>
 
-  <main class="py-10">
-    <div class="px-4 sm:px-6 lg:px-8">
+  <main class="pb-10">
+    <header>
+      <div aria-hidden="true" class="relative">
+        <img src={bgPageAccount} alt="" class="h-64 w-full object-cover" />
+        <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
+      </div>
+
+      <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+            {#if localState.page === LocalStateAppPage.MAIN}
+              {m.page_main_title()}
+            {:else if localState.page === LocalStateAppPage.ACCOUNT}
+              {m.page_account_title()}
+            {/if}
+          </h2>
+          <p class="mt-4 text-gray-500 dark:text-gray-400">
+            {#if localState.page === LocalStateAppPage.MAIN}
+              {m.page_main_description()}
+            {:else if localState.page === LocalStateAppPage.ACCOUNT}
+              {m.page_account_description()}
+            {/if}
+          </p>
+        </div>
+      </div>
+    </header>
+    <main class="px-4 py-8 sm:px-6 lg:px-8">
       {@render children?.()}
-    </div>
+    </main>
   </main>
 </div>
