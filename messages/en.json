@@ -4,5 +4,7 @@
   "language_de": "German",
   "language_en": "English",
   "theme_light": "Light theme",
-  "theme_dark": "Dark theme"
+  "theme_dark": "Dark theme",
+  "sidebar_main": "Main",
+  "sidebar_account": "Account"
 }

@@ -7,7 +7,8 @@ export enum LocalStateAppState {
 }
 
 export enum LocalStateAppPage {
-  DASHBOARD = 0
+  MAIN = 0,
+  ACCOUNT = 1
 }
 
 export type LocalState = {
@@ -18,7 +19,7 @@ export type LocalState = {
 export function createLocalStateStore() {
   const localState = $state<LocalState>({
     state: LocalStateAppState.INITIAL,
-    page: LocalStateAppPage.DASHBOARD
+    page: LocalStateAppPage.MAIN
   });
 
   setContext('localState', localState);

@@ -4,5 +4,7 @@
   "language_de": "Deutsch",
   "language_en": "Englisch",
   "theme_light": "Helles Design",
-  "theme_dark": "Dunkles Design"
+  "theme_dark": "Dunkles Design",
+  "sidebar_main": "Hauptseite",
+  "sidebar_account": "Konto"
 }

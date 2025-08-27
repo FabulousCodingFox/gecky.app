@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { page } from '$app/state';
   import { languages, themes, type LocalSettingsStore } from '$lib';
-  import type { LocalState } from '$lib/localState.svelte';
+  import { LocalStateAppPage, type LocalState } from '$lib/localState.svelte';
+  import { m } from '$lib/paraglide/messages';
+  import { Home, User } from '@steeze-ui/heroicons';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { Select } from 'bits-ui';
   import { getContext } from 'svelte';
@@ -14,30 +17,19 @@
   let currentThemeObject = $derived(Object.values(themes).find((theme) => theme.id === localSettings.theme) || themes.light);
 </script>
 
-{#snippet sideBarTab(text, active)}
+{#snippet sideBarTab(text: string, page: LocalStateAppPage)}
   <li>
-    {#if active}
-      <a href="#" class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-indigo-600 dark:bg-white/5 dark:text-white">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-400 dark:group-hover:text-white">
-          <path
-            d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+    {#if localState.page === page}
+      <button onclick={() => (localState.page = page)} class="group flex w-full cursor-pointer gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-indigo-600 dark:bg-white/5 dark:text-white">
         {text}
-      </a>
+      </button>
     {:else}
-      <a href="#" class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600 dark:text-gray-400 dark:group-hover:text-white">
-          <path
-            d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+      <button
+        onclick={() => (localState.page = page)}
+        class="group flex w-full cursor-pointer gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white"
+      >
         {text}
-      </a>
+      </button>
     {/if}
   </li>
 {/snippet}
@@ -54,20 +46,8 @@
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
-                {@render sideBarTab('Dashboard', true)}
-                {@render sideBarTab('Exosuit', false)}
-                {@render sideBarTab('Multitool', false)}
-                {@render sideBarTab('Ships', false)}
-                {@render sideBarTab('Squadron', false)}
-                {@render sideBarTab('Freighter', false)}
-                {@render sideBarTab('Frigates', false)}
-                {@render sideBarTab('Vehicles', false)}
-                {@render sideBarTab('Companions', false)}
-                {@render sideBarTab('Bases & Storage', false)}
-                {@render sideBarTab('Settlements', false)}
-                {@render sideBarTab('Discovery', false)}
-                {@render sideBarTab('Milestones', false)}
-                {@render sideBarTab('Account', false)}
+                {@render sideBarTab(m.sidebar_main(), LocalStateAppPage.MAIN)}
+                {@render sideBarTab(m.sidebar_account(), LocalStateAppPage.ACCOUNT)}
               </ul>
             </li>
           </ul>
