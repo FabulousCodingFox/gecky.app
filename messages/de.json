@@ -5,8 +5,17 @@
   "language_en": "Englisch",
   "theme_light": "Helles Design",
   "theme_dark": "Dunkles Design",
-  "page_main_title": "Hauptseite",
-  "page_main_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse.",
-  "page_account_title": "Konto",
-  "page_account_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse."
+  "page_save_title": "Speicherstand-Editor",
+  "page_save_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse.",
+  "page_account_title": "Konto-Editor",
+  "page_account_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In atque, totam dolore officiis libero ex, reiciendis, adipisci similique est beatae sed aliquid esse.",
+  "page_account_draganddrop_title": "Klicke zum Hochladen oder Ziehen und Ablegen",
+  "page_account_error_uploadmultiplefiles_title": "Mehrere Dateien erkannt",
+  "page_account_error_uploadmultiplefiles_description": "Bitte lade nur eine Datei hoch.",
+  "page_account_error_invalidfile_title": "Ungültige Datei",
+  "page_account_error_invalidfile_description": "Bitte lade eine gültige .hg Datei hoch.",
+  "page_account_toast_loading_title": "Laden...",
+  "page_account_toast_loading_description": "Deine Datei wird verarbeitet.",
+  "page_account_toast_uploadsuccess_title": "Erfolgreich verarbeitet",
+  "page_account_toast_uploadsuccess_description": "Deine Datei wurde erfolgreich verarbeitet."
 }

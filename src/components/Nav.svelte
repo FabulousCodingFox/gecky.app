@@ -1,88 +1,36 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import { languages, themes, type LocalSettingsStore } from '$lib';
-  import { LocalStateAppPage, type LocalState } from '$lib/localState.svelte';
   import { m } from '$lib/paraglide/messages';
-  import { Home, User } from '@steeze-ui/heroicons';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { Select } from 'bits-ui';
   import { getContext } from 'svelte';
-  import bgPageAccount from '$lib/img/wallpaper/nms_contemporary_10.jpg';
-
-  let { children } = $props();
 
   const localSettings = getContext('localSettings') as LocalSettingsStore;
-  const localState = getContext('localState') as LocalState;
+
+  let { activeTab = null }: { activeTab?: null | 'account' | 'save' } = $props();
 
   let currentLanguageObject = $derived(Object.values(languages).find((lang) => lang.id === localSettings.language) || languages.en);
   let currentThemeObject = $derived(Object.values(themes).find((theme) => theme.id === localSettings.theme) || themes.light);
 </script>
 
-{#snippet sideBarTab(text: string, page: LocalStateAppPage)}
-  <li>
-    {#if localState.page === page}
-      <button onclick={() => (localState.page = page)} class="group flex w-full cursor-pointer gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-indigo-600 dark:bg-white/5 dark:text-white">
-        {text}
-      </button>
-    {:else}
-      <button
-        onclick={() => (localState.page = page)}
-        class="group flex w-full cursor-pointer gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white"
-      >
-        {text}
-      </button>
-    {/if}
-  </li>
+{#snippet navLink(text: string, href: string, active: boolean)}
+  {#if active}
+    <a {href} aria-current="page" class="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white">{text}</a>
+  {:else}
+    <a {href} class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white">{text}</a>
+  {/if}
 {/snippet}
 
-<div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col dark:bg-gray-900">
-  <!-- Sidebar component, swap this element with another sidebar if you like -->
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 dark:border-white/10 dark:bg-black/10">
-    <div class="flex h-16 shrink-0 items-center">
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" class="h-8 w-auto" />
-    </div>
-    <nav class="flex flex-1 flex-col">
-      <ul role="list" class="flex flex-1 flex-col gap-y-7">
-        <li>
-          <ul role="list" class="flex flex-1 flex-col gap-y-7">
-            <li>
-              <ul role="list" class="-mx-2 space-y-1">
-                {@render sideBarTab(m.page_main_title(), LocalStateAppPage.MAIN)}
-                {@render sideBarTab(m.page_account_title(), LocalStateAppPage.ACCOUNT)}
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
-
-<div class="lg:pl-72">
-  <div class="sticky top-0 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-xs sm:gap-x-6 sm:px-6 lg:px-8 dark:border-white/10 dark:bg-gray-900">
-    <button type="button" command="show-modal" commandfor="sidebar" class="-m-2.5 p-2.5 text-gray-700 hover:text-gray-900 lg:hidden dark:text-gray-400 dark:hover:text-white">
-      <span class="sr-only">Open sidebar</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </button>
-
-    <!-- Separator -->
-    <div aria-hidden="true" class="h-6 w-px bg-gray-900/10 lg:hidden dark:bg-white/10"></div>
-
-    <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-      <form action="#" method="GET" class="grid flex-1 grid-cols-1">
-        <input
-          name="search"
-          placeholder="Search"
-          aria-label="Search"
-          class="col-start-1 row-start-1 block size-full border-none bg-white pl-8 text-base text-gray-900 outline-hidden placeholder:text-gray-400 sm:text-sm/6 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500"
-        />
-        <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400">
-          <path d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" fill-rule="evenodd" />
-        </svg>
-      </form>
-      <div class="flex items-center gap-x-4 lg:gap-x-6">
+<nav class="relative bg-white dark:dark:bg-gray-800/50 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 justify-between">
+      <div class="flex">
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          {@render navLink(m.page_save_title(), '/save/', activeTab === 'save')}
+          {@render navLink(m.page_account_title(), '/account/', activeTab === 'account')}
+        </div>
+      </div>
+      <div class="hidden sm:ml-6 sm:flex sm:items-center sm:gap-x-4 lg:gap-x-6">
         <Select.Root type="single" allowDeselect={false} bind:value={localSettings.theme}>
           <Select.Trigger
             aria-haspopup="listbox"
@@ -122,9 +70,6 @@
             </Select.Content>
           </Select.Portal>
         </Select.Root>
-
-        <!-- Separator -->
-        <div aria-hidden="true" class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10 dark:lg:bg-gray-100/10"></div>
 
         <Select.Root type="single" allowDeselect={false} bind:value={localSettings.language}>
           <Select.Trigger
@@ -171,37 +116,65 @@
           </Select.Portal>
         </Select.Root>
       </div>
+      <div class="-mr-2 flex items-center sm:hidden">
+        <!-- Mobile menu button -->
+        <button
+          type="button"
+          command="--toggle"
+          commandfor="mobile-menu"
+          class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-600"
+        >
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <main class="pb-10">
-    <header>
-      <div aria-hidden="true" class="relative">
-        <img src={bgPageAccount} alt="" class="h-64 w-full object-cover" />
-        <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
-      </div>
-
-      <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
-            {#if localState.page === LocalStateAppPage.MAIN}
-              {m.page_main_title()}
-            {:else if localState.page === LocalStateAppPage.ACCOUNT}
-              {m.page_account_title()}
-            {/if}
-          </h2>
-          <p class="mt-4 text-gray-500 dark:text-gray-400">
-            {#if localState.page === LocalStateAppPage.MAIN}
-              {m.page_main_description()}
-            {:else if localState.page === LocalStateAppPage.ACCOUNT}
-              {m.page_account_description()}
-            {/if}
-          </p>
+  <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
+    <div class="space-y-1 pt-2 pb-3">
+      <!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-700", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700" -->
+      <a href="#" class="block border-l-4 border-indigo-600 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700">Dashboard</a>
+      <a href="#" class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Team</a>
+      <a href="#" class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Projects</a>
+      <a href="#" class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">Calendar</a>
+    </div>
+    <div class="border-t border-gray-200 pt-4 pb-3">
+      <div class="flex items-center px-4">
+        <div class="shrink-0">
+          <img
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+            class="size-10 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5"
+          />
         </div>
+        <div class="ml-3">
+          <div class="text-base font-medium text-gray-800">Tom Cook</div>
+          <div class="text-sm font-medium text-gray-500">tom@example.com</div>
+        </div>
+        <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600">
+          <span class="absolute -inset-1.5"></span>
+          <span class="sr-only">View notifications</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+            <path
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
       </div>
-    </header>
-    <main class="px-4 py-8 sm:px-6 lg:px-8">
-      {@render children?.()}
-    </main>
-  </main>
-</div>
+      <div class="mt-3 space-y-1">
+        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">Your profile</a>
+        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">Settings</a>
+        <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">Sign out</a>
+      </div>
+    </div>
+  </el-disclosure>
+</nav>
