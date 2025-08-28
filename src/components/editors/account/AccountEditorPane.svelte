@@ -2,6 +2,7 @@
   import { Tabs } from 'bits-ui';
   import AccountEditorPaneTable from './AccountEditorPaneTable.svelte';
   import dataRewardsSeason from '$lib/../data/rewards/season.json';
+  import dataExpeditions from '$lib/../data/expeditions.json';
 
   let { accountData }: { accountData: any } = $props();
 </script>
@@ -28,12 +29,18 @@
     </Tabs.List>
   </div>
   <Tabs.Content value="season_rewards">
-    <AccountEditorPaneTable header={['Name', 'ID', 'Expedition']} items={dataRewardsSeason.map((reward) => ({ value: reward.id, values: [reward.name, reward.id, reward.expedition] }))} />
+    <AccountEditorPaneTable
+      header={['Name', 'ID', 'Expedition']}
+      groups={Object.keys(dataExpeditions).map((expeditionID) => ({
+        label: expeditionID + ': ' + dataExpeditions[expeditionID],
+        items: dataRewardsSeason.filter((reward) => reward.expedition === parseInt(expeditionID)).map((reward) => ({ value: reward.id, values: [reward.name, reward.id, reward.expedition] }))
+      }))}
+    />
   </Tabs.Content>
   <Tabs.Content value="twitch_rewards">
-    <AccountEditorPaneTable header={['Name', 'ID']} items={[]} />
+    <AccountEditorPaneTable header={['Name', 'ID']} groups={[]} />
   </Tabs.Content>
   <Tabs.Content value="platform_rewards">
-    <AccountEditorPaneTable header={['Name', 'ID']} items={[]} />
+    <AccountEditorPaneTable header={['Name', 'ID']} groups={[]} />
   </Tabs.Content>
 </Tabs.Root>
