@@ -5,37 +5,20 @@
   import dataRewardsTwitch from '../../../data/rewards/twitch.json5';
   import dataRewardsPlatform from '../../../data/rewards/platform.json5';
   import dataExpeditions from '$lib/../data/expeditions.json';
-  import { Icon } from '@steeze-ui/svelte-icon';
-  import { DocumentArrowDown } from '@steeze-ui/heroicons';
-  import { encryptAccountFile } from '$lib/hellosave';
   import { m } from '$lib/paraglide/messages';
 
-  let { accountData }: { accountData: any } = $props();
+  let { accountData = $bindable() }: { accountData: any } = $props();
 
   let seasonRewards = $state(accountData['UserSettingsData']['UnlockedSeasonRewards']);
   let twitchRewards = $state(accountData['UserSettingsData']['UnlockedTwitchRewards']);
   let platformRewards = $state(accountData['UserSettingsData']['UnlockedPlatformRewards']);
 
-  async function download() {
-    let data = encryptAccountFile(accountData);
-    let blob = new Blob([data], { type: 'application/octet-stream' });
-    let url = URL.createObjectURL(blob);
-
-    let a = document.createElement('a');
-    a.href = url;
-    a.download = 'accountdata.hg';
-    a.click();
-  }
+  $effect(() => {
+    accountData['UserSettingsData']['UnlockedSeasonRewards'] = seasonRewards;
+    accountData['UserSettingsData']['UnlockedTwitchRewards'] = twitchRewards;
+    accountData['UserSettingsData']['UnlockedPlatformRewards'] = platformRewards;
+  });
 </script>
-
-<button
-  onclick={download}
-  type="button"
-  class="mx-auto flex items-center gap-x-2 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
->
-  <Icon src={DocumentArrowDown} aria-hidden="true" class="-ml-0.5 size-5" />
-  {m.page_account_export()}
-</button>
 
 <Tabs.Root value="season_rewards">
   <div class="mt-12 border-b border-white/10">

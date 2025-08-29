@@ -56,6 +56,13 @@
                       <input
                         checked={values.includes(item.value)}
                         type="checkbox"
+                        onchange={(e) => {
+                          if (e.currentTarget.checked) {
+                            if (!values.includes(item.value)) values.push(item.value);
+                          } else {
+                            values = values.filter((v) => v !== item.value);
+                          }
+                        }}
                         class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-gray-800/50 checked:border-indigo-600 checked:bg-indigo-500 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 dark:border-white/20 dark:checked:border-indigo-500 dark:indeterminate:border-indigo-500 dark:indeterminate:bg-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800 dark:disabled:checked:bg-gray-800 forced-colors:appearance-auto"
                       />
                       <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-white/25">

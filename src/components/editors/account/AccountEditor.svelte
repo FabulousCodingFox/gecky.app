@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { decryptAccountFile } from '$lib/hellosave';
+  import { decryptAccountFile, encryptAccountFile } from '$lib/hellosave';
   import { m } from '$lib/paraglide/messages';
   import toast from '$lib/toast/index.svelte';
-  import { DocumentArrowUp } from '@steeze-ui/heroicons';
+  import { DocumentArrowDown, DocumentArrowUp } from '@steeze-ui/heroicons';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { onMount } from 'svelte';
   import AccountEditorPane from './AccountEditorPane.svelte';
@@ -64,6 +64,17 @@
     state = 1;
   }
 
+  async function download() {
+    let data = encryptAccountFile(accountData);
+    let blob = new Blob([data], { type: 'application/octet-stream' });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = 'accountdata.hg';
+    a.click();
+  }
+
   onMount(() => {
     buttonElement.addEventListener('drop', dropHandler as never);
     buttonElement.addEventListener('dragover', (e) => e.preventDefault());
@@ -113,5 +124,14 @@
     <input id="file-upload" type="file" accept=".hg" class="hidden" bind:this={inputElement} onchange={clickHandler} />
   </form>
 {:else}
-  <AccountEditorPane {accountData} />
+  <button
+    onclick={download}
+    type="button"
+    class="mx-auto flex items-center gap-x-2 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+  >
+    <Icon src={DocumentArrowDown} aria-hidden="true" class="-ml-0.5 size-5" />
+    {m.page_account_export()}
+  </button>
+
+  <AccountEditorPane bind:accountData />
 {/if}
