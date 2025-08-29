@@ -1723,5 +1723,125 @@
         "id": "^TWITCH_345",
         "name": "The Forge of the Gek",
         "drop": 0
+    },
+    {
+        "id": "^TWITCH_346",
+        "name": "DECAL_CREPAWS"
+    },
+    {
+        "id": "^TWITCH_347",
+        "name": "DECAL_FPLANET2"
+    },
+    {
+        "id": "^TWITCH_348",
+        "name": "DECAL_TOSTARS"
+    },
+    {
+        "id": "^TWITCH_349",
+        "name": "BASE_GRASS5"
+    },
+    {
+        "id": "^TWITCH_350",
+        "name": "BASE_GRASS6"
+    },
+    {
+        "id": "^TWITCH_351",
+        "name": "TWITCH_FIREW11A"
+    },
+    {
+        "id": "^TWITCH_352",
+        "name": "TWITCH_FIREW11B"
+    },
+    {
+        "id": "^TWITCH_353",
+        "name": "TWITCH_FIREW11C"
+    },
+    {
+        "id": "^TWITCH_354",
+        "name": "TWITCH_FIREW11D"
+    },
+    {
+        "id": "^TWITCH_355",
+        "name": "TWITCH_FIREW11E"
+    },
+    {
+        "id": "^TWITCH_356",
+        "name": "BLD_COVSILOS"
+    },
+    {
+        "id": "^TWITCH_357",
+        "name": "BASE_GRASS4"
+    },
+    {
+        "id": "^TWITCH_358",
+        "name": "BASE_WPLANT6"
+    },
+    {
+        "id": "^TWITCH_359",
+        "name": "STATUE_ATLAS_I"
+    },
+    {
+        "id": "^TWITCH_360",
+        "name": "BUILDCHAIR4"
+    },
+    {
+        "id": "^TWITCH_361",
+        "name": "SPEC_EMOTE14"
+    },
+    {
+        "id": "^TWITCH_362",
+        "name": "SPEC_EMOTE15"
+    },
+    {
+        "id": "^TWITCH_363",
+        "name": "JETS_CONFETTI"
+    },
+    {
+        "id": "^TWITCH_364",
+        "name": "EXPD_CAPE07"
+    },
+    {
+        "id": "^TWITCH_365",
+        "name": "BLD_HOLOGEK"
+    },
+    {
+        "id": "^TWITCH_366",
+        "name": "TWITCH_GUN25"
+    },
+    {
+        "id": "^TWITCH_367",
+        "name": "TWITCH_GUN26"
+    },
+    {
+        "id": "^TWITCH_368",
+        "name": "TWITCH_PET23"
+    },
+    {
+        "id": "^TWITCH_369",
+        "name": "TWITCH_GUN27"
+    },
+    {
+        "id": "^TWITCH_370",
+        "name": "TWITCH_PET24"
+    },
+    {
+        "id": "^TWITCH_371",
+        "name": "TWITCH_SHIP51"
+    },
+    {
+        "id": "^TWITCH_372",
+        "name": "TWITCH_SHIP52"
+    },
+    {
+        "id": "^TWITCH_373",
+        "name": "TWITCH_SHIP53"
+    },
+    {
+        "id": "^TWITCH_374",
+        "name": "TWITCH_SHIP54"
+    },
+    {
+        "id": "^TWITCH_375",
+        "name": "TWITCH_SHIP55"
     }
 ]

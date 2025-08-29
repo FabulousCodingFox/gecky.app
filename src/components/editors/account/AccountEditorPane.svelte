@@ -59,19 +59,15 @@
       .filter((group) => group.items.length > 0)
   );
 
-  const twitchGroups = $derived<TableGroup[]>(
-    Array.from(new Set(twitchData.map((reward) => reward.drop)))
-      .sort((a, b) => (b || 0) - (a || 0))
-      .map((drop) => ({
-        label: `${m.page_account_table_drop()} ${drop}`,
-        items: twitchData
-          .filter((reward) => reward.drop === drop)
-          .map((reward) => ({
-            value: reward.id,
-            values: [reward.name, reward.id]
-          }))
+  const twitchGroups = $derived<TableGroup[]>([
+    {
+      label: m.page_account_table_drop(),
+      items: twitchData.map((reward) => ({
+        value: reward.id,
+        values: [reward.name, reward.id]
       }))
-  );
+    }
+  ]);
 
   const platformGroups = $derived<TableGroup[]>(
     Array.from(new Set(platformData.map((reward) => reward.platform)))
