@@ -9,14 +9,26 @@
 
   let { accountData = $bindable() }: { accountData: any } = $props();
 
-  let seasonRewards = $state(accountData['UserSettingsData']['UnlockedSeasonRewards']);
-  let twitchRewards = $state(accountData['UserSettingsData']['UnlockedTwitchRewards']);
-  let platformRewards = $state(accountData['UserSettingsData']['UnlockedPlatformRewards']);
+  let seasonRewards = $state([]);
+  let twitchRewards = $state([]);
+  let platformRewards = $state([]);
 
+  // Initialize reward arrays when accountData is loaded
   $effect(() => {
-    accountData['UserSettingsData']['UnlockedSeasonRewards'] = seasonRewards;
-    accountData['UserSettingsData']['UnlockedTwitchRewards'] = twitchRewards;
-    accountData['UserSettingsData']['UnlockedPlatformRewards'] = platformRewards;
+    if (accountData && accountData.UserSettingsData) {
+      seasonRewards = accountData.UserSettingsData.UnlockedSeasonRewards || [];
+      twitchRewards = accountData.UserSettingsData.UnlockedTwitchRewards || [];
+      platformRewards = accountData.UserSettingsData.UnlockedPlatformRewards || [];
+    }
+  });
+
+  // Update accountData when reward arrays change
+  $effect(() => {
+    if (accountData && accountData.UserSettingsData) {
+      accountData.UserSettingsData.UnlockedSeasonRewards = seasonRewards;
+      accountData.UserSettingsData.UnlockedTwitchRewards = twitchRewards;
+      accountData.UserSettingsData.UnlockedPlatformRewards = platformRewards;
+    }
   });
 </script>
 
