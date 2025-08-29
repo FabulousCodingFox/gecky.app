@@ -18,7 +18,7 @@
   let isProcessing = $state(false);
   let loadedFileName = $state('');
 
-  let accountData = $state({});
+  let accountData = $state(null!);
 
   // Constants
   const ACCEPTED_FILE_EXTENSION = '.hg';
@@ -164,7 +164,7 @@
   function resetEditor() {
     if (isProcessing) return;
 
-    accountData = {};
+    accountData = null!;
     editorState = 'initial';
     loadedFileName = '';
 
@@ -268,7 +268,7 @@
 
     <input id="file-upload" type="file" accept={ACCEPTED_FILE_EXTENSION} disabled={isProcessing} class="hidden" bind:this={inputElement} onchange={clickHandler} />
   </form>
-{:else}
+{:else if accountData}
   <!-- File loaded successfully - show controls and editor -->
   <div class="space-y-6">
     <!-- File info and controls -->
