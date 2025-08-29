@@ -13,6 +13,10 @@ pkgs.mkShell {
     pkgs.gnumake
     pkgs.nodejs_24
     pkgs.jq
+    pkgs.git
+    pkgs.python313
+    pkgs.python313Packages.zstandard
+    pkgs.xmlstarlet
   ];
 
   shellHook = ''
