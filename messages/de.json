@@ -17,5 +17,14 @@
   "page_account_toast_loading_title": "Laden...",
   "page_account_toast_loading_description": "Deine Datei wird verarbeitet.",
   "page_account_toast_uploadsuccess_title": "Erfolgreich verarbeitet",
-  "page_account_toast_uploadsuccess_description": "Deine Datei wurde erfolgreich verarbeitet."
+  "page_account_toast_uploadsuccess_description": "Deine Datei wurde erfolgreich verarbeitet.",
+  "page_account_export": "Exportiere Konto-Daten",
+  "page_account_tab_season_rewards": "Expeditions-Belohnungen",
+  "page_account_tab_twitch_rewards": "Twitch-Belohnungen",
+  "page_account_tab_platform_rewards": "Plattform-Belohnungen",
+  "page_account_table_name": "Name",
+  "page_account_table_id": "ID",
+  "page_account_table_platform": "Plattform",
+  "page_account_table_expedition": "Expedition",
+  "page_account_table_drop": "Drop"
 }

@@ -1,0 +1,5 @@
+[
+  { id: '^TGA_SHIP1', name: 'Starborn Phoenix', platform: 'PC' },
+  { id: '^SW_PREORDER', name: 'Horizon Vector NX', platform: 'Switch' },
+  { id: '^SW_PREORDER2', name: 'Infinite Neon Mark XXII', platform: 'Switch' }
+]

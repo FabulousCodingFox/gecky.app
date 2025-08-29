@@ -16,19 +16,6 @@
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <div class="group/table relative">
-        <div class="absolute top-0 left-14 hidden h-12 items-center space-x-3 bg-gray-900 group-has-checked/table:flex sm:left-12">
-          <button
-            type="button"
-            class="inline-flex items-center rounded-sm bg-white/10 px-2 py-1 text-sm font-semibold text-white shadow-xs inset-ring inset-ring-white/10 hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/10"
-            >Bulk edit</button
-          >
-          <button
-            type="button"
-            class="inline-flex items-center rounded-sm bg-white/10 px-2 py-1 text-sm font-semibold text-white shadow-xs inset-ring inset-ring-white/10 hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/10"
-            >Delete all</button
-          >
-        </div>
-
         <table id="users-table" class="relative min-w-full table-fixed divide-y divide-gray-300 dark:divide-white/15">
           <thead>
             <tr>
@@ -67,6 +54,7 @@
 
                     <div class="group absolute top-1/2 left-4 -mt-2 grid size-4 grid-cols-1">
                       <input
+                        checked={values.includes(item.value)}
                         type="checkbox"
                         class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-gray-800/50 checked:border-indigo-600 checked:bg-indigo-500 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 dark:border-white/20 dark:checked:border-indigo-500 dark:indeterminate:border-indigo-500 dark:indeterminate:bg-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800 dark:disabled:checked:bg-gray-800 forced-colors:appearance-auto"
                       />
