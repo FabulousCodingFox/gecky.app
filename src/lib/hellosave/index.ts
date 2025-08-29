@@ -1,4 +1,4 @@
-import jsonmapAccount from '$lib/../data/jsonmap/account.json';
+import jsonmapAccount from '$lib/../data/mapping.json';
 
 export function decryptAccountFile(data: ArrayBuffer): any {
   const stringData = new TextDecoder()
