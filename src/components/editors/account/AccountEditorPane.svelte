@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Tabs } from 'bits-ui';
   import AccountEditorPaneTable from './AccountEditorPaneTable.svelte';
-  import dataRewardsSeason from '../../../data/rewards/season.json5';
-  import dataRewardsTwitch from '../../../data/rewards/twitch.json5';
-  import dataRewardsPlatform from '../../../data/rewards/platform.json5';
+  import dataRewardsSeason from '../../../data/rewards/season.json';
+  import dataRewardsTwitch from '../../../data/rewards/twitch.json';
+  import dataRewardsPlatform from '../../../data/rewards/platform.json';
   import dataExpeditions from '$lib/../data/expeditions.json';
   import { m } from '$lib/paraglide/messages';
 
