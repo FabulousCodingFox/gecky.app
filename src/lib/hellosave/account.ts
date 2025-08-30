@@ -55,7 +55,7 @@ function writeInt(buf: Uint8Array, offset: number, value: number): void {
  */
 async function generateMfFile(slotId: number, formatId: number, payload: Uint8Array, encryptionRounds: number) {
   // Generate key
-  let seed = ((slotId + 2) ^ 0x1422cb8c) >>> 0;
+  const seed = ((slotId + 2) ^ 0x1422cb8c) >>> 0;
   const keyBytes = new Uint8Array([78, 65, 69, 83, 69, 86, 65, 68, 78, 65, 89, 82, 84, 78, 82, 71]);
   const key = bytesToWords(keyBytes);
   key[0] = (Math.imul(rotateLeft32(seed, 13), 5) + 0xe62ac1e4) >>> 0;
