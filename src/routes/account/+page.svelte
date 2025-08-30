@@ -55,7 +55,7 @@
           { name: m.page_account_tab_platform_rewards(), tab: 'platform_rewards', icon: Gift },
           { name: m.page_account_tab_json_editor(), tab: 'json_editor', icon: CodeBracket }
         ]
-      : [{ name: 'Start', tab: 'start', icon: Home }]
+      : [{ name: m.page_account_tab_start(), tab: 'start', icon: Home }]
   );
 
   const typedExpeditions = dataExpeditions as Record<string, string>;
