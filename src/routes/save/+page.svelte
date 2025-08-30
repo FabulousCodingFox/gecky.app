@@ -23,7 +23,7 @@
 {#if tab === 'start'}
   <header class="pl-72">
     <div aria-hidden="true" class="relative">
-      <enhanced:img src="$lib/assets/wallpaper/nms_legacy_15.png?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(3840px, 100vw)" fetchpriority="high" />
+      <enhanced:img src="$lib/assets/wallpaper/nms_legacy_15.png?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(1920px, 100vw)" fetchpriority="high" />
       <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
     </div>
 
