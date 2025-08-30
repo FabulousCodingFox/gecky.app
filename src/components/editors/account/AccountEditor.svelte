@@ -6,6 +6,8 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { onMount, onDestroy } from 'svelte';
   import AccountEditorPane from './AccountEditorPane.svelte';
+  import { zipSync } from 'fflate';
+  import { createMfAccountFile } from '$lib/hellosave/account';
 
   // UI state management
   type EditorState = 'initial' | 'loaded' | 'loading' | 'error';
@@ -18,7 +20,7 @@
   let isProcessing = $state(false);
   let loadedFileName = $state('');
 
-  let accountData = $state(null!);
+  let accountData: any = $state(null!);
 
   // Constants
   const ACCEPTED_FILE_EXTENSION = '.hg';
@@ -131,8 +133,17 @@
     try {
       isProcessing = true;
 
-      const encryptedData = encryptAccountFile(accountData);
-      const blob = new Blob([encryptedData], { type: 'application/octet-stream' });
+      const encryptedData = new Uint8Array(encryptAccountFile(accountData));
+      const compressedData = await createMfAccountFile(encryptedData);
+
+      const files: Record<string, Uint8Array> = {
+        'accountdata.hg': encryptedData,
+        'mf_accountdata.hg': compressedData
+      };
+
+      const zipped = zipSync(files, { level: 9 });
+
+      const blob = new Blob([zipped as never], { type: 'application/zip' });
       const url = URL.createObjectURL(blob);
 
       const downloadLink = document.createElement('a');
@@ -144,7 +155,6 @@
       downloadLink.click();
       document.body.removeChild(downloadLink);
 
-      // Clean up the object URL
       URL.revokeObjectURL(url);
 
       toast.success(m.page_account_success_download_title(), m.page_account_success_download_description());
@@ -158,7 +168,7 @@
 
   function generateDownloadFilename(): string {
     const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-    return `accountdata_${timestamp}.hg`;
+    return `accountdata_${timestamp}.zip`;
   }
 
   function resetEditor() {

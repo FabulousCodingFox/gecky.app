@@ -48,6 +48,7 @@
   "dependencies": {
     "@inlang/paraglide-js": "^2.2.0",
     "@steeze-ui/svelte-icon": "^1.6.2",
-    "bits-ui": "^2.9.4"
+    "bits-ui": "^2.9.4",
+    "fflate": "^0.8.2"
   }
 }
