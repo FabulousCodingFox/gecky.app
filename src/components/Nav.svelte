@@ -21,7 +21,7 @@
   {/if}
 {/snippet}
 
-<nav class="relative bg-white dark:dark:bg-gray-800/50 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm">
+<nav class="fixed top-0 left-0 z-10 w-full bg-white dark:bg-gray-900 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 justify-between">
       <div class="flex">
@@ -51,7 +51,7 @@
             </svg>
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content class="max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 sm:text-sm dark:bg-gray-800 dark:outline-white/10">
+            <Select.Content class="z-10 max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 sm:text-sm dark:bg-gray-800 dark:outline-white/10">
               {#each Object.values(themes) as theme (theme.id)}
                 <Select.Item
                   value={theme.id}
@@ -96,7 +96,7 @@
             </svg>
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content class="max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 sm:text-sm dark:bg-gray-800 dark:outline-white/10">
+            <Select.Content class="z-10 max-h-56 overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 sm:text-sm dark:bg-gray-800 dark:outline-white/10">
               {#each Object.values(languages) as lang (lang.id)}
                 <Select.Item
                   value={lang.id}

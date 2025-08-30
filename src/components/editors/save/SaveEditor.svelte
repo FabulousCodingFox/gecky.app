@@ -1,0 +1,42 @@
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages';
+  import { CodeBracket, Home } from '@steeze-ui/heroicons';
+  import UploadForm from '../../UploadForm.svelte';
+  import Sidebar from '../../Sidebar.svelte';
+
+  type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json-editor';
+
+  let tab: Tab = $state('start');
+
+  let sidebar: { name: string; tab: Tab; icon: any | null }[] = $state([{ name: 'Start', tab: 'start', icon: Home }]);
+
+  async function onUpload(): Promise<{ isValid: boolean; errorTitle?: string; errorMessage?: string }> {
+    return { isValid: true };
+  }
+</script>
+
+<Sidebar data={sidebar} bind:value={tab} />
+
+{#if tab === 'start'}
+  <header class="pl-72">
+    <div aria-hidden="true" class="relative">
+      <enhanced:img src="$lib/assets/wallpaper/nms_legacy_15.png?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(3840px, 100vw)" fetchpriority="high" />
+      <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
+    </div>
+
+    <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{m.page_save_title()}</h2>
+        <p class="mt-4 text-gray-500 dark:text-gray-400">{m.page_save_description()}</p>
+      </div>
+    </div>
+  </header>
+{/if}
+
+<main class="py-10 pl-72">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {#if tab === 'start'}
+      <UploadForm mode="save" callback={onUpload} />
+    {/if}
+  </div>
+</main>
