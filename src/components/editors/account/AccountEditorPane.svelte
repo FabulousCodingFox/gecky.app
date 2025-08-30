@@ -6,6 +6,7 @@
   import dataRewardsPlatform from '../../../data/rewards/platform.json';
   import dataExpeditions from '$lib/../data/expeditions.json';
   import { m } from '$lib/paraglide/messages';
+  import AccountEditorJsonEditor from './AccountEditorJsonEditor.svelte';
 
   interface AccountData {
     UserSettingsData?: {
@@ -128,18 +129,23 @@
     <Tabs.List class="-mb-px flex">
       <Tabs.Trigger
         value="season_rewards"
-        class="w-1/3 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
+        class="w-1/4 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
         >{m.page_account_tab_season_rewards()}</Tabs.Trigger
       >
       <Tabs.Trigger
         value="twitch_rewards"
-        class="w-1/3 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
+        class="w-1/4 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
         >{m.page_account_tab_twitch_rewards()}</Tabs.Trigger
       >
       <Tabs.Trigger
         value="platform_rewards"
-        class="w-1/3 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
+        class="w-1/4 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
         >{m.page_account_tab_platform_rewards()}</Tabs.Trigger
+      >
+      <Tabs.Trigger
+        value="json_editor"
+        class="w-1/4 border-b-2 border-transparent px-1 py-4 text-center text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 data-[state=active]:border-indigo-500 data-[state=active]:text-indigo-600 dark:text-gray-400 dark:hover:border-white/20 dark:hover:text-gray-300 dark:data-[state=active]:border-indigo-400 dark:data-[state=active]:text-indigo-400"
+        >{m.page_account_tab_json_editor()}</Tabs.Trigger
       >
     </Tabs.List>
   </div>
@@ -157,5 +163,9 @@
   <Tabs.Content value="platform_rewards" class="mt-6 space-y-6">
     {@render statusBar(m.page_account_tab_platform_rewards().toString(), platformRewards.length, platformData.length)}
     <AccountEditorPaneTable header={[m.page_account_table_name(), m.page_account_table_id(), m.page_account_table_platform()]} groups={platformGroups} bind:values={platformRewards} />
+  </Tabs.Content>
+
+  <Tabs.Content value="json_editor" class="mt-6 space-y-6">
+    <AccountEditorJsonEditor bind:accountData />
   </Tabs.Content>
 </Tabs.Root>
