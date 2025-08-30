@@ -97,5 +97,20 @@
   "upload_location_save_windows": "Windows:",
   "upload_location_save_linux_path": "/home/<benutzername>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/LocalLow/HelloGames/NMS/",
   "upload_location_save_windows_path": "C:/users/<benutzername>/AppData/LocalLow/HelloGames/NMS/",
-  "upload_location_save_instructions": "Dort findest du die Datei save.hg, die deine Spielstände enthält."
+  "upload_location_save_instructions": "Dort findest du die Datei save.hg, die deine Spielstände enthält.",
+  "fileinfo_loaded": "Datei geladen: {filename}",
+  "fileinfo_load_different": "Andere Datei laden",
+  "fileinfo_ready_edit": "Bereit zur Bearbeitung",
+  "fileinfo_load_different_success_title": "Andere Datei laden",
+  "fileinfo_load_different_success_description": "Der Editor wurde zurückgesetzt. Du kannst eine neue Datei hochladen.",
+  "fileinfo_load_different_failed_title": "Fehler",
+  "fileinfo_load_different_failed_description": "Der Editor konnte nicht zurückgesetzt werden.",
+  "export_button": "Herunterladen",
+  "export_button_processing": "Exportiere...",
+  "export_processing_title": "Exportiere...",
+  "export_processing_description": "Datei wird exportiert.",
+  "export_failed_title": "Download fehlgeschlagen",
+  "export_failed_description": "Export ist fehlgeschlagen.",
+  "export_success_title": "Download gestartet",
+  "export_success_description": "Datei wird heruntergeladen."
 }

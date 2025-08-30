@@ -5,7 +5,7 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { onDestroy, onMount } from 'svelte';
 
-  let { mode, callback }: { mode: 'account' | 'save'; callback: (file: ArrayBuffer) => Promise<{ isValid: boolean; errorTitle?: string; errorDescription?: string }> } = $props();
+  let { mode, callback }: { mode: 'account' | 'save'; callback: (file: ArrayBuffer, name: string) => Promise<{ isValid: boolean; errorTitle?: string; errorDescription?: string }> } = $props();
 
   let draggedOver = $state(false);
   let isProcessing = $state(false);
@@ -136,7 +136,7 @@
         return;
       }
 
-      const result = await callback(arrayBuffer);
+      const result = await callback(arrayBuffer, file?.name || '');
 
       if (!result.isValid) {
         toast.error(result.errorTitle ?? m.upload_error_file_corrupted_title(), result.errorDescription ?? m.upload_error_file_corrupted_description());

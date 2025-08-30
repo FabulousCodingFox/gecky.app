@@ -134,3 +134,7 @@ export function encryptAccountFile(data: any): ArrayBuffer {
   const encoder = new TextEncoder();
   return encoder.encode(stringData).buffer;
 }
+
+export function validateAccountData(data: any): boolean {
+  return data && typeof data === 'object' && data.UserSettingsData && typeof data.UserSettingsData === 'object';
+}

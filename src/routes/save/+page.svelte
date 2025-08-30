@@ -11,7 +11,7 @@
 
   let sidebar: { name: string; tab: Tab; icon: any | null }[] = $state([{ name: 'Start', tab: 'start', icon: Home }]);
 
-  async function onUpload(): Promise<{ isValid: boolean; errorTitle?: string; errorMessage?: string }> {
+  async function onUpload(file: ArrayBuffer, name: string): Promise<{ isValid: boolean; errorTitle?: string; errorMessage?: string }> {
     return { isValid: true };
   }
 </script>
