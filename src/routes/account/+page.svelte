@@ -7,7 +7,6 @@
   import { createMfAccountFile, decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
   import FileInfo from '../../components/FileInfo.svelte';
   import ExportButton from '../../components/ExportButton.svelte';
-
   import dataRewardsSeason from '$lib/../data/rewards/season.json';
   import dataRewardsTwitch from '$lib/../data/rewards/twitch.json';
   import dataRewardsPlatform from '$lib/../data/rewards/platform.json';
@@ -15,7 +14,6 @@
   import AccountEditorTable from '../../components/editors/account/AccountEditorTable.svelte';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
-  import toast from '$lib/toast/index.svelte';
 
   interface AccountData {
     UserSettingsData?: {
@@ -51,7 +49,7 @@
   let sidebar: { name: string; tab: Tab; icon: any | null }[] = $derived(
     accountData
       ? [
-          { name: 'Start', tab: 'start', icon: Home },
+          { name: m.page_account_tab_start(), tab: 'start', icon: Home },
           { name: m.page_account_tab_season_rewards(), tab: 'season_rewards', icon: Gift },
           { name: m.page_account_tab_twitch_rewards(), tab: 'twitch_rewards', icon: Gift },
           { name: m.page_account_tab_platform_rewards(), tab: 'platform_rewards', icon: Gift },
