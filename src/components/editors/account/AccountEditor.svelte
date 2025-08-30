@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { decryptAccountFile, encryptAccountFile } from '$lib/hellosave';
   import { m } from '$lib/paraglide/messages';
   import toast from '$lib/toast/index.svelte';
   import { DocumentArrowDown, DocumentArrowUp, ArrowPath } from '@steeze-ui/heroicons';
@@ -7,7 +6,7 @@
   import { onMount, onDestroy } from 'svelte';
   import AccountEditorPane from './AccountEditorPane.svelte';
   import { zipSync } from 'fflate';
-  import { createMfAccountFile } from '$lib/hellosave/account';
+  import { createMfAccountFile, decryptAccountFile, encryptAccountFile } from '$lib/hellosave/account';
 
   // UI state management
   type EditorState = 'initial' | 'loaded' | 'loading' | 'error';
