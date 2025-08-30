@@ -1,3 +1,4 @@
+import { applyJsonMap, reverseJsonMap } from '.';
 import { sha256, spookyHash128 } from './crypto';
 
 /**
@@ -52,7 +53,7 @@ function writeInt(buf: Uint8Array, offset: number, value: number): void {
 /**
  * Generate an MF file with header + encrypted payload.
  */
-export async function generateMfFile(slotId: number, formatId: number, payload: Uint8Array, encryptionRounds: number) {
+async function generateMfFile(slotId: number, formatId: number, payload: Uint8Array, encryptionRounds: number) {
   // Generate key
   let seed = ((slotId + 2) ^ 0x1422cb8c) >>> 0;
   const keyBytes = new Uint8Array([78, 65, 69, 83, 69, 86, 65, 68, 78, 65, 89, 82, 84, 78, 82, 71]);
@@ -117,4 +118,19 @@ export async function createMfAccountFile(payload: Uint8Array) {
   result.set(sha, 384 + 16);
 
   return result;
+}
+
+export function decryptAccountFile(data: ArrayBuffer): any {
+  const stringData = new TextDecoder()
+    .decode(data)
+    .replace(/\u0000+$/g, '') // Remove trailing nulls
+    .trim();
+  return applyJsonMap(JSON.parse(stringData));
+}
+
+export function encryptAccountFile(data: any): ArrayBuffer {
+  const reversedData = reverseJsonMap(data);
+  const stringData = JSON.stringify(reversedData) + '\u0000'; // Append null character
+  const encoder = new TextEncoder();
+  return encoder.encode(stringData).buffer;
 }

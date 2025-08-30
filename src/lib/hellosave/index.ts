@@ -1,31 +1,16 @@
 import jsonmapAccount from '$lib/../data/mapping.json';
 
-export function decryptAccountFile(data: ArrayBuffer): any {
-  const stringData = new TextDecoder()
-    .decode(data)
-    .replace(/\u0000+$/g, '') // Remove trailing nulls
-    .trim();
-  return applyJsonMap(JSON.parse(stringData), jsonmapAccount);
-}
-
-export function encryptAccountFile(data: any): ArrayBuffer {
-  const reversedData = reverseJsonMap(data, jsonmapAccount);
-  const stringData = JSON.stringify(reversedData) + '\u0000'; // Append null character
-  const encoder = new TextEncoder();
-  return encoder.encode(stringData).buffer;
-}
-
-function applyJsonMap(json: any, jsonmap: Record<string, string>): any {
+export function applyJsonMap(json: any): any {
   if (typeof json === 'string' || typeof json === 'number' || typeof json === 'boolean' || json === null) return json;
 
-  if (Array.isArray(json)) return json.map((item) => applyJsonMap(item, jsonmap));
+  if (Array.isArray(json)) return json.map((item) => applyJsonMap(item));
 
   if (typeof json === 'object') {
     const newObj: any = {};
     for (const key in json) {
-      if (!jsonmap.hasOwnProperty(key)) console.debug(`No jsonmap/account.json mapping for key: ${key}`);
-      const mappedKey = jsonmap[key] || key;
-      newObj[mappedKey] = applyJsonMap(json[key], jsonmap);
+      if (!jsonmapAccount.hasOwnProperty(key)) console.debug(`No mapping.json mapping for key: ${key}`);
+      const mappedKey = (jsonmapAccount as Record<string, string>)[key] || key;
+      newObj[mappedKey] = applyJsonMap(json[key]);
     }
     return newObj;
   }
@@ -33,16 +18,16 @@ function applyJsonMap(json: any, jsonmap: Record<string, string>): any {
   return json;
 }
 
-function reverseJsonMap(json: any, jsonmap: Record<string, string>): any {
+export function reverseJsonMap(json: any): any {
   if (typeof json === 'string' || typeof json === 'number' || typeof json === 'boolean' || json === null) return json;
 
-  if (Array.isArray(json)) return json.map((item) => reverseJsonMap(item, jsonmap));
+  if (Array.isArray(json)) return json.map((item) => reverseJsonMap(item));
 
   if (typeof json === 'object') {
     const newObj: any = {};
     for (const key in json) {
-      const originalKey = Object.keys(jsonmap).find((k) => jsonmap[k] === key) || key;
-      newObj[originalKey] = reverseJsonMap(json[key], jsonmap);
+      const originalKey = Object.keys(jsonmapAccount).find((k) => (jsonmapAccount as Record<string, string>)[k] === key) || key;
+      newObj[originalKey] = reverseJsonMap(json[key]);
     }
     return newObj;
   }
