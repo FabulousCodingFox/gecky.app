@@ -1,6 +1,5 @@
 <script lang="ts">
   import Nav from '../../components/Nav.svelte';
-  import headerBg from '$lib/assets/wallpaper/nms_contemporary_10.jpg';
   import { m } from '$lib/paraglide/messages';
   import AccountEditor from '../../components/editors/account/AccountEditor.svelte';
 </script>
@@ -10,7 +9,7 @@
 <div class="pb-10">
   <header>
     <div aria-hidden="true" class="relative">
-      <img src={headerBg} alt="" class="h-64 w-full object-cover" />
+      <enhanced:img src="$lib/assets/wallpaper/nms_contemporary_10.jpg?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(3840px, 100vw)" fetchpriority="high" />
       <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
     </div>
 
