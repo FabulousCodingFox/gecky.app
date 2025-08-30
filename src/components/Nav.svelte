@@ -7,7 +7,7 @@
 
   const localSettings = getContext('localSettings') as LocalSettingsStore;
 
-  let { activeTab = null }: { activeTab?: null | 'account' | 'save' } = $props();
+  let { activeTab = 'home' }: { activeTab: 'account' | 'save' | 'home' } = $props();
 
   let currentLanguageObject = $derived(Object.values(languages).find((lang) => lang.id === localSettings.language) || languages.en);
   let currentThemeObject = $derived(Object.values(themes).find((theme) => theme.id === localSettings.theme) || themes.light);
@@ -26,6 +26,7 @@
     <div class="flex h-16 justify-between">
       <div class="flex">
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          {@render navLink(m.page_home_title(), '/', activeTab === 'home')}
           {@render navLink(m.page_save_title(), '/save/', activeTab === 'save')}
           {@render navLink(m.page_account_title(), '/account/', activeTab === 'account')}
         </div>
