@@ -7,6 +7,8 @@
   "theme_dark": "Dunkles Design",
   "page_save_title": "Speicherstand-Editor",
   "page_save_description": "Editor für No Man's Sky Speicherstände. Lade eine save.hg Datei hoch und bearbeite sie.",
+  "page_save_warning_notimplemented_title": "Noch nicht implementiert",
+  "page_save_warning_notimplemented_description": "Der Speicherstand-Editor ist noch nicht fertiggestellt. Bitte habe noch etwas Geduld.",
   "page_account_title": "Konto-Editor",
   "page_account_description": "Verwalte deine Expeditions-Belohnungen, Twitch-Drops und Plattform-Boni. Lade deine Kontodatei hoch und schalte alle Belohnungen frei, die du haben möchtest.",
   "page_account_draganddrop_title": "Klicke zum Hochladen oder zieh die Datei einfach hier rein",
