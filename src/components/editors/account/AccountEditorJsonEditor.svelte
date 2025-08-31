@@ -91,4 +91,4 @@
   });
 </script>
 
-<div class="h-lvh w-full" bind:this={parent}></div>
+<div class="size-full" bind:this={parent}></div>
