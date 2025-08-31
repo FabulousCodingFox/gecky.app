@@ -77,25 +77,22 @@
 
 <Sidebar data={sidebar} bind:value={tab} />
 
-{#if tab === 'start'}
-  <header class="pl-72">
-    <div aria-hidden="true" class="relative">
-      <enhanced:img src="$lib/assets/wallpaper/nms_legacy_15.png?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(1920px, 100vw)" fetchpriority="high" />
-      <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
-    </div>
-
-    <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{m.page_save_title()}</h2>
-        <p class="mt-4 text-gray-500 dark:text-gray-400">{m.page_save_description()}</p>
+<main class="size-full pl-72">
+  {#if tab === 'start'}
+    <header>
+      <div aria-hidden="true" class="relative">
+        <enhanced:img src="$lib/assets/wallpaper/nms_legacy_15.png?enhanced" alt="" class="h-64 w-full object-cover" sizes="min(1920px, 100vw)" fetchpriority="high" />
+        <div class="absolute inset-0 bg-linear-to-t from-gray-50 dark:from-gray-950"></div>
       </div>
-    </div>
-  </header>
-{/if}
 
-<main class="py-10 pl-72">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    {#if tab === 'start'}
+      <div class="relative mx-auto -mt-12 max-w-7xl px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{m.page_save_title()}</h2>
+          <p class="mt-4 text-gray-500 dark:text-gray-400">{m.page_save_description()}</p>
+        </div>
+      </div>
+    </header>
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {#if !saveData}
         <UploadForm mode="save" callback={onUpload} />
       {:else}
@@ -104,8 +101,8 @@
           <ExportButton callback={onExport} />
         </div>
       {/if}
-    {:else if tab === 'json_editor'}
-      <AccountEditorJsonEditor bind:accountData={saveData} />
-    {/if}
-  </div>
+    </div>
+  {:else if tab === 'json_editor'}
+    <AccountEditorJsonEditor bind:accountData={saveData} />
+  {/if}
 </main>
