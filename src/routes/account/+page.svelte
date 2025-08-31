@@ -212,8 +212,8 @@
   </header>
 {/if}
 
-<main class="py-10 pl-72">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<main class="size-full py-10 pl-72">
+  <div class="mx-auto size-full max-w-7xl px-4 sm:px-6 lg:px-8">
     {#if tab === 'start'}
       {#if !accountData}
         <UploadForm mode="account" callback={onUpload} />
