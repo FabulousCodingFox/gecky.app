@@ -6,8 +6,10 @@
   import Sidebar from '../../components/Sidebar.svelte';
   import FileInfo from '../../components/FileInfo.svelte';
   import ExportButton from '../../components/ExportButton.svelte';
-  import { decryptSaveFile, validateSaveData } from '$lib/hellosave/save';
+  import { decryptSaveFile, encryptSaveFile, validateSaveData } from '$lib/hellosave/save';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
+  import { zipSync } from 'fflate';
+  import { createMfFile } from '$lib/hellosave/crypto';
 
   type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json_editor';
 
@@ -39,7 +41,31 @@
   }
 
   async function onExport(): Promise<void> {
-    throw new Error('Not implemented yet');
+    if (!saveData) return;
+
+    const encryptedSaveFile = encryptSaveFile(saveData);
+    const mfFile = await createMfFile(encryptedSaveFile.buffer, encryptedSaveFile.sizeCompressed, encryptedSaveFile.sizeUncompressed);
+
+    const files: Record<string, Uint8Array> = {
+      [fileName]: encryptedSaveFile.buffer,
+      ['mf_' + fileName]: mfFile
+    };
+
+    const zipped = zipSync(files, { level: 0 });
+
+    const blob = new Blob([zipped as never], { type: 'application/zip' });
+    const url = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = `${fileName}_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.zip`;
+    downloadLink.style.display = 'none';
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    URL.revokeObjectURL(url);
   }
 
   async function onReset(): Promise<void> {

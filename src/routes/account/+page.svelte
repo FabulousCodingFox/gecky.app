@@ -4,7 +4,7 @@
   import Sidebar from '../../components/Sidebar.svelte';
   import { CodeBracket, Gift, Home } from '@steeze-ui/heroicons';
   import UploadForm from '../../components/UploadForm.svelte';
-  import { createMfAccountFile, decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
+  import { decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
   import FileInfo from '../../components/FileInfo.svelte';
   import ExportButton from '../../components/ExportButton.svelte';
   import dataRewardsSeason from '$lib/../data/rewards/season.json';
@@ -14,6 +14,7 @@
   import AccountEditorTable from '../../components/editors/account/AccountEditorTable.svelte';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
+  import { createMfFile } from '$lib/hellosave/crypto';
 
   interface AccountData {
     UserSettingsData?: {
@@ -39,7 +40,7 @@
     }>;
   }
 
-  type Tab = 'start';
+  type Tab = 'start' | 'season_rewards' | 'twitch_rewards' | 'platform_rewards' | 'json_editor';
 
   let tab: Tab = $state('start');
 
@@ -140,22 +141,22 @@
   async function onExport(): Promise<void> {
     if (!accountData) return;
 
-    const encryptedData = new Uint8Array(encryptAccountFile(accountData));
-    const compressedData = await createMfAccountFile(encryptedData);
+    const encryptedData = encryptAccountFile(accountData);
+    const mfFile = await createMfFile(encryptedData.buffer, encryptedData.sizeCompressed, encryptedData.sizeUncompressed);
 
     const files: Record<string, Uint8Array> = {
-      'accountdata.hg': encryptedData,
-      'mf_accountdata.hg': compressedData
+      [fileName]: encryptedData.buffer,
+      ['mf_' + fileName]: mfFile
     };
 
-    const zipped = zipSync(files, { level: 9 });
+    const zipped = zipSync(files, { level: 0 });
 
     const blob = new Blob([zipped as never], { type: 'application/zip' });
     const url = URL.createObjectURL(blob);
 
     const downloadLink = document.createElement('a');
     downloadLink.href = url;
-    downloadLink.download = `accountdata_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.zip`;
+    downloadLink.download = `${fileName}_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.zip`;
     downloadLink.style.display = 'none';
 
     document.body.appendChild(downloadLink);

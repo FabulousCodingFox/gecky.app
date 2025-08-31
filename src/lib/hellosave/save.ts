@@ -1,4 +1,4 @@
-import { applyJsonMap } from '.';
+import { applyJsonMap, reverseJsonMap } from '.';
 import { decodeBlock } from './crypto';
 
 export function validateSaveData(data: any): boolean {
@@ -8,45 +8,66 @@ export function validateSaveData(data: any): boolean {
 }
 
 export function decryptSaveFile(data: ArrayBuffer): any {
-  const view = new DataView(data);
-  const bytes = new Uint8Array(data);
+  try {
+    const view = new DataView(data);
+    const bytes = new Uint8Array(data);
 
-  const decoder = new TextDecoder();
-  const decodedParts: string[] = [];
+    const decoder = new TextDecoder();
+    const decodedParts: string[] = [];
 
-  let offset = 0;
-  const size = data.byteLength;
+    let offset = 0;
+    const size = data.byteLength;
 
-  while (offset < size) {
-    const magic = view.getUint32(offset, true);
-    if (magic !== 0xfeeda1e5) {
-      throw new Error('Invalid magic number in save file');
+    while (offset < size) {
+      const magic = view.getUint32(offset, true);
+      if (magic !== 0xfeeda1e5) {
+        throw new Error('Invalid magic number in save file');
+      }
+
+      const compressedSize = view.getUint32(offset + 4, true);
+      const uncompressedSize = view.getUint32(offset + 8, true);
+      // skip +12 (sizes) +4 (padding)
+      const blockStart = offset + 16;
+      const blockEnd = blockStart + compressedSize;
+
+      // Prepare buffers
+      const compressedBlock = bytes.subarray(blockStart, blockEnd);
+      const uncompressedBlock = new Uint8Array(uncompressedSize);
+
+      // Decompress
+      decodeBlock(compressedBlock, uncompressedBlock);
+
+      // Decode to text & collect
+      decodedParts.push(decoder.decode(uncompressedBlock));
+
+      // Advance pointer
+      offset = blockEnd;
     }
 
-    const compressedSize = view.getUint32(offset + 4, true);
-    const uncompressedSize = view.getUint32(offset + 8, true);
-    // skip +12 (sizes) +4 (padding)
-    const blockStart = offset + 16;
-    const blockEnd = blockStart + compressedSize;
+    const jsonString = decodedParts
+      .join('')
+      .replace(/\u0000+$/g, '') // Remove trailing nulls
+      .trim();
 
-    // Prepare buffers
-    const compressedBlock = bytes.subarray(blockStart, blockEnd);
-    const uncompressedBlock = new Uint8Array(uncompressedSize);
-
-    // Decompress
-    decodeBlock(compressedBlock, uncompressedBlock);
-
-    // Decode to text & collect
-    decodedParts.push(decoder.decode(uncompressedBlock));
-
-    // Advance pointer
-    offset = blockEnd;
+    return applyJsonMap(JSON.parse(jsonString));
+  } catch (e) {
+    const stringData = new TextDecoder()
+      .decode(data)
+      .replace(/\u0000+$/g, '') // Remove trailing nulls
+      .trim();
+    return applyJsonMap(JSON.parse(stringData));
   }
+}
 
-  const jsonString = decodedParts
-    .join('')
-    .replace(/\u0000+$/g, '') // Remove trailing nulls
-    .trim();
+export function encryptSaveFile(data: any): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {
+  const reversedData = reverseJsonMap(data);
+  const stringData = JSON.stringify(reversedData) + '\u0000'; // Append null character
+  const encoder = new TextEncoder();
+  const buffer = encoder.encode(stringData);
 
-  return applyJsonMap(JSON.parse(jsonString));
+  return {
+    buffer,
+    sizeCompressed: buffer.length,
+    sizeUncompressed: buffer.length
+  };
 }
