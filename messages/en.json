@@ -57,7 +57,7 @@
   "upload_location_save_description": "No Man's Sky save games are located here:",
   "upload_location_save_linux": "Linux (Proton):",
   "upload_location_save_windows": "Windows:",
-  "upload_location_save_linux_path": "/home/<username>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/LocalLow/HelloGames/NMS/",
+  "upload_location_save_linux_path": "/home/<username>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/Roaming/HelloGames/NMS/",
   "upload_location_save_windows_path": "C:/users/<username>/AppData/LocalLow/HelloGames/NMS/",
   "upload_location_save_instructions": "Look for the save.hg file in these folders. It contains the save data.",
   "fileinfo_loaded": "File loaded: {filename}",

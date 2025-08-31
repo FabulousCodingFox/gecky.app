@@ -57,7 +57,7 @@
   "upload_location_save_description": "Die Spielstände für No Man's Sky liegen hier:",
   "upload_location_save_linux": "Linux (Proton):",
   "upload_location_save_windows": "Windows:",
-  "upload_location_save_linux_path": "/home/<benutzername>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/LocalLow/HelloGames/NMS/",
+  "upload_location_save_linux_path": "/home/<benutzername>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/Roaming/HelloGames/NMS/",
   "upload_location_save_windows_path": "C:/users/<benutzername>/AppData/LocalLow/HelloGames/NMS/",
   "upload_location_save_instructions": "Dort findest du die Datei save.hg, die deine Spielstände enthält.",
   "fileinfo_loaded": "Datei geladen: {filename}",
