@@ -1,7 +1,7 @@
 <script lang="ts">
   import Nav from '../../components/Nav.svelte';
   import { m } from '$lib/paraglide/messages';
-  import { CodeBracket, Home } from '@steeze-ui/heroicons';
+  import { CodeBracket, Home, User } from '@steeze-ui/heroicons';
   import UploadForm from '../../components/UploadForm.svelte';
   import Sidebar from '../../components/Sidebar.svelte';
   import FileInfo from '../../components/FileInfo.svelte';
@@ -10,6 +10,7 @@
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
   import { createMfFile } from '$lib/hellosave/crypto';
+  import SaveEditorExosuit from '../../components/editors/save/SaveEditorExosuit.svelte';
 
   type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json_editor';
 
@@ -22,6 +23,7 @@
     saveData
       ? [
           { name: 'Start', tab: 'start', icon: Home },
+          { name: 'Exosuit', tab: 'exosuit', icon: User },
           { name: 'JSON Editor', tab: 'json_editor', icon: CodeBracket }
         ]
       : [{ name: 'Start', tab: 'start', icon: Home }]
@@ -101,6 +103,10 @@
           <ExportButton callback={onExport} />
         </div>
       {/if}
+    </div>
+  {:else if tab === 'exosuit'}
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <SaveEditorExosuit bind:accountData={saveData} />
     </div>
   {:else if tab === 'json_editor'}
     <AccountEditorJsonEditor bind:accountData={saveData} />
