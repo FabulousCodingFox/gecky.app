@@ -136,5 +136,11 @@ export function encryptAccountFile(data: any): ArrayBuffer {
 }
 
 export function validateAccountData(data: any): boolean {
-  return data && typeof data === 'object' && data.UserSettingsData && typeof data.UserSettingsData === 'object';
+  if (!data) return false;
+  if (typeof data !== 'object') return false;
+  if (!data.UserSettingsData || typeof data.UserSettingsData !== 'object') return false;
+  if (!data.UserSettingsData.UnlockedSeasonRewards || !Array.isArray(data.UserSettingsData.UnlockedSeasonRewards)) return false;
+  if (!data.UserSettingsData.UnlockedTwitchRewards || !Array.isArray(data.UserSettingsData.UnlockedTwitchRewards)) return false;
+  if (!data.UserSettingsData.UnlockedPlatformRewards || !Array.isArray(data.UserSettingsData.UnlockedPlatformRewards)) return false;
+  return true;
 }

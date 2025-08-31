@@ -1,18 +1,49 @@
 <script lang="ts">
   import Nav from '../../components/Nav.svelte';
   import { m } from '$lib/paraglide/messages';
-  import { Home } from '@steeze-ui/heroicons';
+  import { CodeBracket, Home } from '@steeze-ui/heroicons';
   import UploadForm from '../../components/UploadForm.svelte';
   import Sidebar from '../../components/Sidebar.svelte';
+  import FileInfo from '../../components/FileInfo.svelte';
+  import ExportButton from '../../components/ExportButton.svelte';
+  import { decryptSaveFile, validateSaveData } from '$lib/hellosave/save';
+  import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
 
-  type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json-editor';
+  type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json_editor';
 
   let tab: Tab = $state('start');
 
-  let sidebar: { name: string; tab: Tab; icon: any | null }[] = $state([{ name: 'Start', tab: 'start', icon: Home }]);
+  let saveData: any = $state(null);
+  let fileName: string = $state('');
+
+  let sidebar: { name: string; tab: Tab; icon: any | null }[] = $derived(
+    saveData
+      ? [
+          { name: 'Start', tab: 'start', icon: Home },
+          { name: 'JSON Editor', tab: 'json_editor', icon: CodeBracket }
+        ]
+      : [{ name: 'Start', tab: 'start', icon: Home }]
+  );
 
   async function onUpload(file: ArrayBuffer, name: string): Promise<{ isValid: boolean; errorTitle?: string; errorMessage?: string }> {
+    const decryptedData = decryptSaveFile(file);
+
+    if (!validateSaveData(decryptedData)) {
+      return { isValid: false };
+    }
+
+    fileName = name;
+    saveData = decryptedData;
+
     return { isValid: true };
+  }
+
+  async function onExport(): Promise<void> {
+    throw new Error('Not implemented yet');
+  }
+
+  async function onReset(): Promise<void> {
+    saveData = null!;
   }
 </script>
 
@@ -39,7 +70,16 @@
 <main class="py-10 pl-72">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     {#if tab === 'start'}
-      <UploadForm mode="save" callback={onUpload} />
+      {#if !saveData}
+        <UploadForm mode="save" callback={onUpload} />
+      {:else}
+        <div class="space-y-6">
+          <FileInfo {fileName} callback={onReset} />
+          <ExportButton callback={onExport} />
+        </div>
+      {/if}
+    {:else if tab === 'json_editor'}
+      <AccountEditorJsonEditor bind:accountData={saveData} />
     {/if}
   </div>
 </main>
