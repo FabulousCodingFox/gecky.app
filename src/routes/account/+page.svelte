@@ -14,7 +14,6 @@
   import AccountEditorTable from '../../components/editors/account/AccountEditorTable.svelte';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
-  import { createMfFile } from '$lib/hellosave/crypto';
 
   interface AccountData {
     UserSettingsData?: {
@@ -142,11 +141,9 @@
     if (!accountData) return;
 
     const encryptedData = encryptAccountFile(accountData);
-    const mfFile = await createMfFile(encryptedData.buffer, encryptedData.sizeCompressed, encryptedData.sizeUncompressed);
 
     const files: Record<string, Uint8Array> = {
-      [fileName]: encryptedData.buffer,
-      ['mf_' + fileName]: mfFile
+      [fileName]: encryptedData.buffer
     };
 
     const zipped = zipSync(files, { level: 0 });

@@ -9,7 +9,6 @@
   import { decryptSaveFile, encryptSaveFile, validateSaveData } from '$lib/hellosave/save';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
-  import { createMfFile } from '$lib/hellosave/crypto';
   import SaveEditorExosuit from '../../components/editors/save/SaveEditorExosuit.svelte';
 
   type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json_editor';
@@ -46,11 +45,9 @@
     if (!saveData) return;
 
     const encryptedSaveFile = encryptSaveFile(saveData);
-    const mfFile = await createMfFile(encryptedSaveFile.buffer, encryptedSaveFile.sizeCompressed, encryptedSaveFile.sizeUncompressed);
 
     const files: Record<string, Uint8Array> = {
-      [fileName]: encryptedSaveFile.buffer,
-      ['mf_' + fileName]: mfFile
+      [fileName]: encryptedSaveFile.buffer
     };
 
     const zipped = zipSync(files, { level: 0 });
