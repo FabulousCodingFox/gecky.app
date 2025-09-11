@@ -82,6 +82,8 @@
               <!--temp fix-->
               {#if currentLanguageObject.id === 'de'}
                 <img src={languages.de.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
+              {:else if currentLanguageObject.id === 'es'}
+                <img src={languages.es.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {:else}
                 <img src={languages.en.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {/if}

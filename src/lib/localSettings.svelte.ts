@@ -12,7 +12,7 @@ function getInitialTheme(): Theme {
 function getInitialLanguage(): Language {
   if (!browser) return 'en';
   const storedLang = localStorage.getItem('language');
-  if (storedLang === 'de' || storedLang === 'en') return storedLang;
+  if (storedLang === 'de' || storedLang === 'en' || storedLang === 'es') return storedLang;
   return 'en';
 }
 
