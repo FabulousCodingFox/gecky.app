@@ -81,11 +81,11 @@
             <div class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
               <!--temp fix-->
               {#if currentLanguageObject.id === 'de'}
-                <img src={languages.de.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
+                <enhanced:img src={languages.de.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {:else if currentLanguageObject.id === 'es'}
-                <img src={languages.es.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
+                <enhanced:img src={languages.es.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {:else}
-                <img src={languages.en.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
+                <enhanced:img src={languages.en.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {/if}
               <span class="block truncate">{currentLanguageObject.name}</span>
             </div>
@@ -105,7 +105,7 @@
                   class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500 dark:focus:text-white"
                 >
                   <div class="flex items-center">
-                    <img src={lang.flag} alt="" class="size-5 shrink-0 rounded-full" />
+                    <enhanced:img src={lang.flag} alt="" class="size-5 shrink-0 rounded-full" />
                     <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">{lang.name}</span>
                   </div>
                   <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-indigo-400">

@@ -1,7 +1,7 @@
 import { m } from './paraglide/messages';
-import flag_de from '$lib/assets/flags/flag_de.png';
-import flag_en from '$lib/assets/flags/flag_en.png';
-import flag_es from '$lib/assets/flags/flag_es.png';
+import flag_de from '$lib/assets/flags/flag_de.png?enhanced&w=32';
+import flag_en from '$lib/assets/flags/flag_en.png?enhanced&w=32';
+import flag_es from '$lib/assets/flags/flag_es.png?enhanced&w=32';
 import { Moon, Sun } from '@steeze-ui/heroicons';
 import type { IconSource } from '@steeze-ui/svelte-icon';
 
