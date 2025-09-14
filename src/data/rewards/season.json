@@ -660,6 +660,11 @@
     "expedition": 9
   },
   {
+    "name": "Utopia Expedition Decal",
+    "id": "^EXPD_DECAL09",
+    "expedition": 9
+  },
+  {
     "name": "Title: 'Utopia Dignitary'",
     "id": "^EXPD_TITLE09",
     "expedition": 9
