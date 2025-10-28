@@ -27,7 +27,6 @@
     name: string;
     id: string;
     expedition?: number;
-    drop?: number;
     platform?: string;
   }
 
