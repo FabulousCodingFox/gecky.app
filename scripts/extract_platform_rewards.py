@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import json
 
-platform_rewards_xml = "./UNLOCKABLEPLATFORMREWARDS.MXML"
+platform_rewards_xml = "./unlockableplatformrewards.MXML"
 product_mapping_json = "./item_to_name_mappings.json"
 output_json = "./platform_rewards.json"
 

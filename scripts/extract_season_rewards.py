@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import json
 import re
 
-xml_path = "./UNLOCKABLESEASONREWARDS.MXML"
+xml_path = "./unlockableseasonrewards.MXML"
 mapping_path = "./item_to_name_mappings.json"
 output_path = "./season_rewards.json"
 

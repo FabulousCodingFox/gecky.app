@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import json
 
-xml_path = "./UNLOCKABLETWITCHREWARDS.MXML"
+xml_path = "./unlockabletwitchrewards.MXML"
 mapping_path = "./item_to_name_mappings.json"
 output_path = "twitch_rewards.json"
 
