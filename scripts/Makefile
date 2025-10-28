@@ -1,4 +1,4 @@
-.PHONY: clean install-deps all mapping.json rewards translations.json item_to_name_mappings.json season_rewards.json twitch_rewards.json
+.PHONY: clean install-deps all mapping.json rewards translations.json item_to_name_mappings.json season_rewards.json twitch_rewards.json platform_rewards.json
 
 VERSION := 6.12-BREACH-28.October.2025
 
@@ -47,4 +47,10 @@ twitch_rewards.json: item_to_name_mappings.json
 	cp ./twitch_rewards.json ../src/data/rewards/twitch.json
 	npx prettier --write ../src/data/rewards/twitch.json --config ../.prettierrc
 
-rewards: season_rewards.json twitch_rewards.json
+platform_rewards.json: item_to_name_mappings.json
+	curl -sSL "https://github.com/NMSCD/nms-archive/raw/refs/heads/main/$(VERSION)/METADATA/REALITY/TABLES/UNLOCKABLEPLATFORMREWARDS.MXML" -o ./UNLOCKABLEPLATFORMREWARDS.MXML
+	python ./extract_platform_rewards.py
+	cp ./platform_rewards.json ../src/data/rewards/platform.json
+	npx prettier --write ../src/data/rewards/platform.json --config ../.prettierrc
+
+rewards: season_rewards.json twitch_rewards.json platform_rewards.json
