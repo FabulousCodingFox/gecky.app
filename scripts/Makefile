@@ -32,6 +32,7 @@ translations.json:
 
 item_to_name_mappings.json: translations.json
 	curl -sSL "https://github.com/NMSCD/nms-archive/raw/refs/heads/main/$(VERSION)/METADATA/REALITY/TABLES/NMS_REALITY_GCPRODUCTTABLE.MXML" -o ./NMS_REALITY_GCPRODUCTTABLE.MXML
+	curl -sSL "https://github.com/NMSCD/nms-archive/raw/refs/heads/main/$(VERSION)/METADATA/REALITY/TABLES/NMS_BASEPARTPRODUCTS.MXML" -o ./NMS_BASEPARTPRODUCTS.MXML
 	python ./extract_item_names.py
 
 season_rewards.json: item_to_name_mappings.json
