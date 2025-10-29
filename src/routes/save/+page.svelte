@@ -1,6 +1,8 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
-  import { CodeBracket, Home, User } from '@steeze-ui/heroicons';
+  import HomeIcon from '@iconify-svelte/heroicons/home';
+  import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket';
+  import UserIcon from '@iconify-svelte/heroicons/user';
   import UploadForm from '../../components/UploadForm.svelte';
   import Sidebar from '../../components/Sidebar.svelte';
   import FileInfo from '../../components/FileInfo.svelte';
@@ -20,11 +22,11 @@
   let sidebar: { name: string; tab: Tab; icon: any | null }[] = $derived(
     saveData
       ? [
-          { name: 'Start', tab: 'start', icon: Home },
-          { name: 'Exosuit', tab: 'exosuit', icon: User },
-          { name: 'JSON Editor', tab: 'json_editor', icon: CodeBracket }
+          { name: 'Start', tab: 'start', icon: HomeIcon },
+          { name: 'Exosuit', tab: 'exosuit', icon: UserIcon },
+          { name: 'JSON Editor', tab: 'json_editor', icon: CodeBracketIcon }
         ]
-      : [{ name: 'Start', tab: 'start', icon: Home }]
+      : [{ name: 'Start', tab: 'start', icon: HomeIcon }]
   );
 
   async function onUpload(file: ArrayBuffer, name: string): Promise<{ isValid: boolean; errorTitle?: string; errorMessage?: string }> {

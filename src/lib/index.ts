@@ -2,8 +2,8 @@ import { m } from './paraglide/messages';
 import flag_de from '$lib/assets/flags/flag_de.png?enhanced&w=32';
 import flag_en from '$lib/assets/flags/flag_en.png?enhanced&w=32';
 import flag_es from '$lib/assets/flags/flag_es.png?enhanced&w=32';
-import { Moon, Sun } from '@steeze-ui/heroicons';
-import type { IconSource } from '@steeze-ui/svelte-icon';
+import MoonIcon from '@iconify-svelte/heroicons/moon';
+import SunIcon from '@iconify-svelte/heroicons/sun';
 
 export type Theme = 'light' | 'dark';
 
@@ -23,7 +23,7 @@ export type LanguageMeta = {
 export type ThemeMeta = {
   id: Theme;
   name: string;
-  icon: IconSource;
+  icon: typeof MoonIcon;
 };
 
 export const languages: Record<Language, LanguageMeta> = {
@@ -33,6 +33,6 @@ export const languages: Record<Language, LanguageMeta> = {
 };
 
 export const themes: Record<Theme, ThemeMeta> = {
-  light: { id: 'light', name: m.theme_light(), icon: Sun },
-  dark: { id: 'dark', name: m.theme_dark(), icon: Moon }
+  light: { id: 'light', name: m.theme_light(), icon: SunIcon },
+  dark: { id: 'dark', name: m.theme_dark(), icon: MoonIcon }
 };

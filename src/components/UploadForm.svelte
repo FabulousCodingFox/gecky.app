@@ -1,8 +1,9 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
   import toast from '$lib/toast/index.svelte';
-  import { ArrowPath, DocumentArrowUp } from '@steeze-ui/heroicons';
-  import { Icon } from '@steeze-ui/svelte-icon';
+  import ArrowPathIcon from '@iconify-svelte/heroicons/arrow-path';
+  import DocumentArrowUpIcon from '@iconify-svelte/heroicons/document-arrow-up';
+
   import { onDestroy, onMount } from 'svelte';
 
   let { mode, callback }: { mode: 'account' | 'save'; callback: (file: ArrayBuffer, name: string) => Promise<{ isValid: boolean; errorTitle?: string; errorDescription?: string }> } = $props();
@@ -221,13 +222,13 @@
             : 'border-dashed border-gray-300 hover:border-gray-400 dark:border-white/15 dark:hover:border-white/25')}
   >
     {#if isProcessing}
-      <Icon src={ArrowPath} theme="outline" size="24px" class="mx-auto size-12 animate-spin text-gray-400" />
+      <ArrowPathIcon width="20" height="20" class="mx-auto size-12 animate-spin text-gray-400" />
       <span class="mt-2 block text-sm font-semibold text-gray-500 dark:text-gray-400">{m.upload_input_processing()}</span>
     {:else if callbackState === 'error'}
-      <Icon src={DocumentArrowUp} theme="outline" size="24px" class="mx-auto size-12 text-red-500" />
+      <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-red-500" />
       <span class="mt-2 block text-sm font-semibold text-red-600 dark:text-red-400">{m.upload_input_error()}</span>
     {:else}
-      <Icon src={DocumentArrowUp} theme="outline" size="24px" class="mx-auto size-12 text-gray-500" />
+      <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-gray-500" />
       <span class="mt-2 block text-sm font-semibold text-gray-700 dark:text-white">{m.upload_input()}</span>
     {/if}
   </button>

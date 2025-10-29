@@ -1,8 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
   import toast from '$lib/toast/index.svelte';
-  import { DocumentArrowUp } from '@steeze-ui/heroicons';
-  import { Icon } from '@steeze-ui/svelte-icon';
+  import DocumentArrowUpIcon from '@iconify-svelte/heroicons/document-arrow-up';
 
   let { fileName, callback = async () => {} }: { fileName: string; callback: () => Promise<void> } = $props();
 
@@ -25,7 +24,7 @@
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-3">
       <div class="flex-shrink-0">
-        <Icon src={DocumentArrowUp} class="size-5 text-green-600 dark:text-green-400" />
+        <DocumentArrowUpIcon class="size-5 text-green-600 dark:text-green-400" />
       </div>
       <div class="min-w-0 flex-1">
         <p class="text-sm font-medium text-green-800 dark:text-green-200">

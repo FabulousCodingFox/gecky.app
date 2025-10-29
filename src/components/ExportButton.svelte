@@ -1,8 +1,8 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
   import toast from '$lib/toast/index.svelte';
-  import { ArrowPath, DocumentArrowDown, DocumentArrowUp } from '@steeze-ui/heroicons';
-  import { Icon } from '@steeze-ui/svelte-icon';
+  import ArrowPathIcon from '@iconify-svelte/heroicons/arrow-path';
+  import DocumentArrowDownIcon from '@iconify-svelte/heroicons/document-arrow-down';
 
   let { callback = async () => {} }: { callback: () => Promise<void> } = $props();
 
@@ -30,10 +30,10 @@
     class="flex items-center justify-center gap-x-2 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
   >
     {#if blocked}
-      <Icon src={ArrowPath} aria-hidden="true" class="-ml-0.5 size-5 animate-spin" />
+      <ArrowPathIcon aria-hidden="true" class="-ml-0.5 size-5 animate-spin" />
       {m.export_button_processing()}
     {:else}
-      <Icon src={DocumentArrowDown} aria-hidden="true" class="-ml-0.5 size-5" />
+      <DocumentArrowDownIcon aria-hidden="true" class="-ml-0.5 size-5" />
       {m.export_button()}
     {/if}
   </button>

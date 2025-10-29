@@ -1,23 +1,24 @@
 <script lang="ts">
-  import { CodeBracket, ComputerDesktop, LockClosed } from '@steeze-ui/heroicons';
-  import { Icon } from '@steeze-ui/svelte-icon';
+  import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket-20-solid';
+  import ComputerDesktopIcon from '@iconify-svelte/heroicons/computer-desktop-20-solid';
+  import LockClosedIcon from '@iconify-svelte/heroicons/lock-closed-20-solid';
   import { m } from '$lib/paraglide/messages';
 
   const features = [
     {
       name: m.page_home_feature_opensource_title(),
       description: m.page_home_feature_opensource_description(),
-      icon: CodeBracket
+      icon: CodeBracketIcon
     },
     {
       name: m.page_home_feature_local_title(),
       description: m.page_home_feature_local_description(),
-      icon: LockClosed
+      icon: LockClosedIcon
     },
     {
       name: m.page_home_feature_ui_title(),
       description: m.page_home_feature_ui_description(),
-      icon: ComputerDesktop
+      icon: ComputerDesktopIcon
     }
   ];
 </script>
@@ -33,7 +34,7 @@
             {#each features as feature}
               <div class="relative pl-9">
                 <dt class="inline font-semibold text-gray-900 dark:text-white">
-                  <Icon src={feature.icon} theme="solid" size="20px" class="absolute top-1 left-1 size-5 text-indigo-600 dark:text-indigo-400" />
+                  <feature.icon class="absolute top-1 left-1 size-5 text-indigo-600 dark:text-indigo-400" width="20" height="20" />
                   {feature.name}
                 </dt>
                 <dd class="inline">{feature.description}</dd>

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
   import Sidebar from '../../components/Sidebar.svelte';
-  import { CodeBracket, Gift, Home } from '@steeze-ui/heroicons';
+  import HomeIcon from '@iconify-svelte/heroicons/home';
+  import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket';
+  import GiftIcon from '@iconify-svelte/heroicons/gift';
   import UploadForm from '../../components/UploadForm.svelte';
   import { decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
   import FileInfo from '../../components/FileInfo.svelte';
@@ -47,13 +49,13 @@
   let sidebar: { name: string; tab: Tab; icon: any | null }[] = $derived(
     accountData
       ? [
-          { name: m.page_account_tab_start(), tab: 'start', icon: Home },
-          { name: m.page_account_tab_season_rewards(), tab: 'season_rewards', icon: Gift },
-          { name: m.page_account_tab_twitch_rewards(), tab: 'twitch_rewards', icon: Gift },
-          { name: m.page_account_tab_platform_rewards(), tab: 'platform_rewards', icon: Gift },
-          { name: m.page_account_tab_json_editor(), tab: 'json_editor', icon: CodeBracket }
+          { name: m.page_account_tab_start(), tab: 'start', icon: HomeIcon },
+          { name: m.page_account_tab_season_rewards(), tab: 'season_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_twitch_rewards(), tab: 'twitch_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_platform_rewards(), tab: 'platform_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_json_editor(), tab: 'json_editor', icon: CodeBracketIcon }
         ]
-      : [{ name: m.page_account_tab_start(), tab: 'start', icon: Home }]
+      : [{ name: m.page_account_tab_start(), tab: 'start', icon: HomeIcon }]
   );
 
   const typedExpeditions = dataExpeditions as Record<string, string>;

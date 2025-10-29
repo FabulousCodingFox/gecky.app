@@ -1,7 +1,6 @@
 <script lang="ts">
   import { languages, themes, type LocalSettingsStore } from '$lib';
   import { m } from '$lib/paraglide/messages';
-  import { Icon } from '@steeze-ui/svelte-icon';
   import { NavigationMenu, Select } from 'bits-ui';
   import { getContext } from 'svelte';
   import { page } from '$app/state';
@@ -45,7 +44,7 @@
             class="grid cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-indigo-500"
           >
             <div class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
-              <Icon src={currentThemeObject.icon} class="size-5 shrink-0 rounded-full" theme="outline" size="20px" />
+              <currentThemeObject.icon class="size-5 shrink-0 rounded-full" width="20" height="20" />
               <span class="block truncate">{currentThemeObject.name}</span>
             </div>
             <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
@@ -64,7 +63,7 @@
                   class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500 dark:focus:text-white"
                 >
                   <div class="flex items-center">
-                    <Icon src={theme.icon} class="size-5 shrink-0 rounded-full text-gray-900 dark:text-white" theme="outline" size="20px" />
+                    <theme.icon class="size-5 shrink-0 rounded-full text-gray-900 dark:text-white" width="20" height="20" />
                     <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">{theme.name}</span>
                   </div>
                   <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-indigo-400">

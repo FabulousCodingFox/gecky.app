@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { Icon } from '@steeze-ui/svelte-icon';
-
   let { data, value = $bindable() }: { data: { name: string; tab: string; icon: any | null }[]; value: string } = $props();
 </script>
 
@@ -19,7 +17,7 @@
                     (sidebarItem.tab === value ? 'bg-gray-50 text-indigo-600 dark:bg-white/5 dark:text-white' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white')}
                 >
                   {#if sidebarItem.icon}
-                    <Icon src={sidebarItem.icon} theme="outline" size="24px" class="size-6 shrink-0" />
+                    <sidebarItem.icon width="24" height="24" class="size-6 shrink-0" />
                   {/if}
                   {sidebarItem.name}
                 </button>
