@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Nav from '../../components/Nav.svelte';
   import { m } from '$lib/paraglide/messages';
   import Sidebar from '../../components/Sidebar.svelte';
   import { CodeBracket, Gift, Home } from '@steeze-ui/heroicons';
@@ -187,8 +186,6 @@
     </div>
   </div>
 {/snippet}
-
-<Nav activeTab="account" />
 
 <Sidebar data={sidebar} bind:value={tab} />
 

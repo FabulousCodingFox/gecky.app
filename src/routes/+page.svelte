@@ -1,6 +1,5 @@
 <script lang="ts">
   import { CodeBracket, ComputerDesktop, LockClosed } from '@steeze-ui/heroicons';
-  import Nav from '../components/Nav.svelte';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { m } from '$lib/paraglide/messages';
 
@@ -22,8 +21,6 @@
     }
   ];
 </script>
-
-<Nav activeTab="home" />
 
 <div class="overflow-hidden py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">

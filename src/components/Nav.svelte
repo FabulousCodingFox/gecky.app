@@ -2,34 +2,40 @@
   import { languages, themes, type LocalSettingsStore } from '$lib';
   import { m } from '$lib/paraglide/messages';
   import { Icon } from '@steeze-ui/svelte-icon';
-  import { Select } from 'bits-ui';
+  import { NavigationMenu, Select } from 'bits-ui';
   import { getContext } from 'svelte';
+  import { page } from '$app/state';
 
   const localSettings = getContext('localSettings') as LocalSettingsStore;
-
-  let { activeTab = 'home' }: { activeTab: 'account' | 'save' | 'home' } = $props();
 
   let currentLanguageObject = $derived(Object.values(languages).find((lang) => lang.id === localSettings.language) || languages.en);
   let currentThemeObject = $derived(Object.values(themes).find((theme) => theme.id === localSettings.theme) || themes.light);
 </script>
 
 {#snippet navLink(text: string, href: string, active: boolean)}
-  {#if active}
-    <a {href} aria-current="page" class="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white">{text}</a>
-  {:else}
-    <a {href} class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white">{text}</a>
-  {/if}
+  <NavigationMenu.Item class="block">
+    <NavigationMenu.Link
+      {href}
+      {active}
+      class={active
+        ? 'inline-flex h-full items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white'
+        : 'inline-flex h-full items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white'}>{text}</NavigationMenu.Link
+    >
+  </NavigationMenu.Item>
 {/snippet}
 
-<nav class="fixed top-0 left-0 z-10 w-full bg-white dark:bg-gray-900 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm">
+<NavigationMenu.Root
+  orientation="horizontal"
+  class="fixed top-0 left-0 z-10 w-full bg-white dark:bg-gray-900 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm"
+>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 justify-between">
       <div class="flex">
-        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-          {@render navLink(m.page_home_title(), '/', activeTab === 'home')}
-          {@render navLink(m.page_save_title(), '/save/', activeTab === 'save')}
-          {@render navLink(m.page_account_title(), '/account/', activeTab === 'account')}
-        </div>
+        <NavigationMenu.List class="relative hidden h-full sm:ml-6 sm:flex sm:space-x-8">
+          {@render navLink(m.page_home_title(), '/', page.url.pathname === '/')}
+          {@render navLink(m.page_save_title(), '/save/', page.url.pathname.startsWith('/save'))}
+          {@render navLink(m.page_account_title(), '/account/', page.url.pathname.startsWith('/account'))}
+        </NavigationMenu.List>
       </div>
       <div class="hidden sm:ml-6 sm:flex sm:items-center sm:gap-x-4 lg:gap-x-6">
         <Select.Root type="single" allowDeselect={false} bind:value={localSettings.theme}>
@@ -139,4 +145,4 @@
       </div>
     </div>
   </div>
-</nav>
+</NavigationMenu.Root>

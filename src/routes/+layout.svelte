@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
   import { m } from '$lib/paraglide/messages';
   import ToastContainer from '$lib/toast/ToastContainer.svelte';
+  import Nav from '../components/Nav.svelte';
 
   let { children } = $props();
 
@@ -24,6 +25,8 @@
     <script defer src="https://metrics.gecky.app/script.js" data-website-id="fe91756e-bdc6-4d5f-bf3d-ee5769b87bb8"></script>
   {/if}
 </svelte:head>
+
+<Nav />
 
 {@render children?.()}
 
