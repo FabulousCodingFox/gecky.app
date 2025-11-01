@@ -32,7 +32,7 @@
   }
 
   interface TableGroup {
-    label: string;
+    label: string | null;
     items: Array<{
       value: string;
       values: string[];
@@ -84,7 +84,7 @@
 
   const twitchGroups = $derived<TableGroup[]>([
     {
-      label: m.page_account_table_drop(),
+      label: null,
       items: twitchData.map((reward) => ({
         value: reward.id,
         values: [reward.name, reward.id]
@@ -180,7 +180,7 @@
     </div>
     <div class="flex items-center space-x-2">
       <div class="h-2 w-24 rounded-full bg-gray-200 dark:bg-gray-700">
-        <div class="h-2 rounded-full bg-indigo-600 transition-all duration-300 ease-in-out" style="width: {total > 0 ? (selected / total) * 100 : 0}%" aria-hidden="true"></div>
+        <div class="h-2 rounded-full bg-primary-600 transition-all duration-300 ease-in-out" style="width: {total > 0 ? (selected / total) * 100 : 0}%" aria-hidden="true"></div>
       </div>
       <span class="text-xs font-medium text-gray-600 dark:text-gray-400">
         {total > 0 ? Math.round((selected / total) * 100) : 0}%

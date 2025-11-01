@@ -14,7 +14,7 @@
                   type="button"
                   onclick={() => (value = sidebarItem.tab)}
                   class={'group flex w-full cursor-pointer gap-x-3 rounded-md p-2 text-sm/6 font-semibold ' +
-                    (sidebarItem.tab === value ? 'bg-gray-50 text-indigo-600 dark:bg-white/5 dark:text-white' : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white')}
+                    (sidebarItem.tab === value ? 'bg-gray-50 text-primary-600 dark:bg-white/5 dark:text-white' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white')}
                 >
                   {#if sidebarItem.icon}
                     <sidebarItem.icon width="24" height="24" class="size-6 shrink-0" />

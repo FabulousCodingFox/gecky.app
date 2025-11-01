@@ -34,7 +34,7 @@
             {#each features as feature}
               <div class="relative pl-9">
                 <dt class="inline font-semibold text-gray-900 dark:text-white">
-                  <feature.icon class="absolute top-1 left-1 size-5 text-indigo-600 dark:text-indigo-400" width="20" height="20" />
+                  <feature.icon class="absolute top-1 left-1 size-5 text-primary-600 dark:text-primary-400" width="20" height="20" />
                   {feature.name}
                 </dt>
                 <dd class="inline">{feature.description}</dd>

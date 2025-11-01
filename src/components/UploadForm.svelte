@@ -212,7 +212,7 @@
     disabled={isProcessing}
     onclick={() => inputElement.click()}
     bind:this={buttonElement}
-    class={'relative mt-16 block w-full cursor-pointer rounded-lg border-2 p-12 text-center transition-all duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 ' +
+    class={'relative mt-16 block w-full cursor-pointer rounded-lg border-2 p-12 text-center transition-all duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-primary-500 ' +
       (isProcessing
         ? 'cursor-not-allowed border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800'
         : draggedOver

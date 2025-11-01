@@ -1,7 +1,7 @@
 <script lang="ts">
   import { languages, themes, type LocalSettingsStore } from '$lib';
   import { m } from '$lib/paraglide/messages';
-  import { NavigationMenu, Select } from 'bits-ui';
+  import { Dialog, NavigationMenu, Select } from 'bits-ui';
   import { getContext } from 'svelte';
   import { page } from '$app/state';
 
@@ -17,7 +17,7 @@
       {href}
       {active}
       class={active
-        ? 'inline-flex h-full items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white'
+        ? 'inline-flex h-full items-center border-b-2 border-primary-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-primary-500 dark:text-white'
         : 'inline-flex h-full items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white'}>{text}</NavigationMenu.Link
     >
   </NavigationMenu.Item>
@@ -28,7 +28,7 @@
   class="fixed top-0 left-0 z-10 w-full bg-white dark:bg-gray-900 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-16 justify-between">
+    <div class="flex h-16 justify-end sm:justify-between">
       <div class="flex">
         <NavigationMenu.List class="relative hidden h-full sm:ml-6 sm:flex sm:space-x-8">
           {@render navLink(m.page_home_title(), '/', page.url.pathname === '/')}
@@ -36,16 +36,16 @@
           {@render navLink(m.page_account_title(), '/account/', page.url.pathname.startsWith('/account'))}
         </NavigationMenu.List>
       </div>
-      <div class="hidden sm:ml-6 sm:flex sm:items-center sm:gap-x-4 lg:gap-x-6">
+      <div class="mr-6 flex items-center gap-x-4 sm:mr-0 sm:ml-6 lg:gap-x-6">
         <Select.Root type="single" allowDeselect={false} bind:value={localSettings.theme}>
           <Select.Trigger
             aria-haspopup="listbox"
             type="button"
-            class="grid cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-indigo-500"
+            class="grid cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-primary-500"
           >
             <div class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
               <currentThemeObject.icon class="size-5 shrink-0 rounded-full" width="20" height="20" />
-              <span class="block truncate">{currentThemeObject.name}</span>
+              <span class="hidden truncate md:block">{currentThemeObject.name}</span>
             </div>
             <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
               <path
@@ -60,13 +60,13 @@
               {#each Object.values(themes) as theme (theme.id)}
                 <Select.Item
                   value={theme.id}
-                  class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500 dark:focus:text-white"
+                  class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-primary-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-primary-500 dark:focus:text-white"
                 >
                   <div class="flex items-center">
                     <theme.icon class="size-5 shrink-0 rounded-full text-gray-900 dark:text-white" width="20" height="20" />
                     <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">{theme.name}</span>
                   </div>
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-indigo-400">
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-primary-400">
                     <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
                       <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
                     </svg>
@@ -81,7 +81,7 @@
           <Select.Trigger
             aria-haspopup="listbox"
             type="button"
-            class="grid cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-indigo-500"
+            class="grid cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:focus-visible:outline-primary-500"
           >
             <div class="col-start-1 row-start-1 flex items-center gap-3 pr-6">
               <!--temp fix-->
@@ -92,7 +92,7 @@
               {:else}
                 <enhanced:img src={languages.en.flag} alt="" class="size-5 shrink-0 rounded-full bg-gray-100 dark:bg-gray-700 dark:-outline-offset-1 dark:outline-white/10" />
               {/if}
-              <span class="block truncate">{currentLanguageObject.name}</span>
+              <span class="hidden truncate md:block">{currentLanguageObject.name}</span>
             </div>
             <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4 dark:text-gray-400">
               <path
@@ -107,13 +107,13 @@
               {#each Object.values(languages) as lang (lang.id)}
                 <Select.Item
                   value={lang.id}
-                  class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-indigo-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-indigo-500 dark:focus:text-white"
+                  class="group/option relative block cursor-default py-2 pr-9 pl-3 text-gray-900 select-none focus:bg-primary-600 focus:text-white focus:outline-hidden dark:text-white dark:focus:bg-primary-500 dark:focus:text-white"
                 >
                   <div class="flex items-center">
                     <enhanced:img src={lang.flag} alt="" class="size-5 shrink-0 rounded-full" />
                     <span class="ml-3 block truncate font-normal group-aria-selected/option:font-semibold">{lang.name}</span>
                   </div>
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-indigo-400">
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 group-not-aria-selected/option:hidden group-focus/option:text-white in-[el-selectedcontent]:hidden dark:text-primary-400">
                     <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5">
                       <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
                     </svg>
@@ -125,22 +125,21 @@
         </Select.Root>
       </div>
       <div class="-mr-2 flex items-center sm:hidden">
-        <!-- Mobile menu button -->
-        <button
-          type="button"
-          command="--toggle"
-          commandfor="mobile-menu"
-          class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-600"
-        >
-          <span class="absolute -inset-0.5"></span>
-          <span class="sr-only">Open main menu</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
+        <Dialog.Root>
+          <Dialog.Trigger class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-primary-600">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay class="fixed inset-0 z-50 bg-black/80" />
+            <Dialog.Content class="fixed inset-0 z-50 overflow-auto bg-white p-4 dark:bg-gray-800">
+              <div class="space-y-1 pt-2 pb-3"></div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
     </div>
   </div>
