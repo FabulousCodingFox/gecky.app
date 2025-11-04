@@ -61,7 +61,7 @@ extract-items: extract-precache-hgpak extract-locale
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 item_to_name_mappings.json"
     @gum spin --spinner dot --title "Decoding nms_reality_gcproducttable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_reality_gcproducttable.mbin" > /dev/null;
     @gum spin --spinner dot --title "Decoding nms_basepartproducts.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_basepartproducts.mbin" > /dev/null;
-    @python ./src/extract_item_names.py
+    @gum spin --spinner dot --title "Extracting item names" -- python ./src/extract_item_names.py
     @gum style --foreground 10 "✅ item_to_name_mappings.json created."
 
 # ---------------------------------------------------------------------------
