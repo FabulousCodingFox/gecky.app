@@ -2,9 +2,9 @@ import os
 import json
 import xml.etree.ElementTree as ET
 
-LANGDIR = "./EXTRACTED/language"
+LANGDIR = "./out/EXTRACTED/language"
 PREFIX = "english"
-OUTPUT = "translations.json"
+OUTPUT = "./out/translations.json"
 
 translations = {}
 

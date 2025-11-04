@@ -10,12 +10,11 @@
 pkgs.mkShell {
   buildInputs = [
     pkgs.dotnet-runtime_6
-    pkgs.gnumake
-    pkgs.nodejs_24
+    pkgs.just
+    pkgs.gum
     pkgs.jq
-    pkgs.git
+    pkgs.curl
     pkgs.python313
-    pkgs.python313Packages.zstandard
     pkgs.xmlstarlet
   ];
 

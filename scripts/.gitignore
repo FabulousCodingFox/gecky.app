@@ -1,9 +1,3 @@
-*
-!shell.nix
-!Makefile
-!.gitignore
-!extract_translations.py
-!extract_item_names.py
-!extract_twitch_rewards.py
-!extract_season_rewards.py
-!extract_platform_rewards.py
+out/
+PCBANKS
+nms-archive/

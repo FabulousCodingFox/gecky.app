@@ -1,9 +1,9 @@
 import xml.etree.ElementTree as ET
 import json
 
-platform_rewards_xml = "./unlockableplatformrewards.MXML"
-product_mapping_json = "./item_to_name_mappings.json"
-output_json = "./platform_rewards.json"
+platform_rewards_xml = "./out/unlockableplatformrewards.MXML"
+product_mapping_json = "./out/item_to_name_mappings.json"
+output_json = "./out/platform_rewards.json"
 
 # Load ID --> translated product name mapping
 with open(product_mapping_json, "r", encoding="utf-8") as f:

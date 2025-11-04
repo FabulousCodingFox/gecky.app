@@ -1,9 +1,9 @@
 import xml.etree.ElementTree as ET
 import json
 
-xml_path = "./unlockabletwitchrewards.MXML"
-mapping_path = "./item_to_name_mappings.json"
-output_path = "twitch_rewards.json"
+xml_path = "./out/unlockabletwitchrewards.MXML"
+mapping_path = "./out/item_to_name_mappings.json"
+output_path = "./out/twitch_rewards.json"
 
 # Load product id --> localized name mapping
 with open(mapping_path, "r", encoding="utf-8") as f:

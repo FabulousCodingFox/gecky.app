@@ -2,11 +2,11 @@ import xml.etree.ElementTree as ET
 import json
 
 xml_paths = [
-    "./nms_reality_gcproducttable.MXML",
-    "./nms_basepartproducts.MXML"
+    "./out/nms_reality_gcproducttable.MXML",
+    "./out/nms_basepartproducts.MXML"
 ]
-translations_path = "./translations.json"
-output_json = "item_to_name_mappings.json"
+translations_path = "./out/translations.json"
+output_json = "./out/item_to_name_mappings.json"
 
 # Load translation strings
 with open(translations_path, "r", encoding="utf-8") as f:

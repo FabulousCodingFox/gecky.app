@@ -2,9 +2,9 @@ import xml.etree.ElementTree as ET
 import json
 import re
 
-xml_path = "./unlockableseasonrewards.MXML"
-mapping_path = "./item_to_name_mappings.json"
-output_path = "./season_rewards.json"
+xml_path = "./out/unlockableseasonrewards.MXML"
+mapping_path = "./out/item_to_name_mappings.json"
+output_path = "./out/season_rewards.json"
 
 # Load product name mapping
 with open(mapping_path, "r", encoding="utf-8") as f:
