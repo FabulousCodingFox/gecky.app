@@ -75,7 +75,7 @@
 
 <Sidebar data={sidebar} bind:value={tab} />
 
-<main class="size-full pl-72">
+<main class="size-full lg:pl-72">
   {#if tab === 'start'}
     <header>
       <div aria-hidden="true" class="relative">

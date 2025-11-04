@@ -113,25 +113,19 @@
           <tbody class="divide-y divide-gray-200 dark:divide-white/10">
             {#each groups as group, groupIndex (group.label)}
               {#if group.label}
-                <tr class="border-t border-gray-200 dark:border-white/10">
-                  <th scope="colgroup" colspan={header.length + 1} class="bg-gray-100 py-2 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 dark:bg-gray-800/50 dark:text-white">
-                    <div class="flex items-center gap-3">
-                      <div class="group grid size-4 grid-cols-1">
-                        <input
-                          type="checkbox"
-                          checked={isGroupSelected(group)}
-                          indeterminate={isGroupPartiallySelected(group)}
-                          onchange={(e) => handleGroupToggle(group, e)}
-                          class={CHECKBOX_CLASSES}
-                          aria-label={`Select all items in ${group.label} group`}
-                        />
-                        <svg viewBox="0 0 14 14" fill="none" class={SVG_CLASSES} aria-hidden="true">
-                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100" />
-                          <path d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-indeterminate:opacity-100" />
-                        </svg>
-                      </div>
-                      <span>{group.label}</span>
+                <tr class="group border-t border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-gray-800/50">
+                  <th scope="colgroup" class="relative px-7 sm:w-12 sm:px-6">
+                    <div class="absolute inset-y-0 left-0 hidden w-0.5 bg-primary-600 group-has-checked:block dark:bg-primary-500" aria-hidden="true"></div>
+                    <div class="group absolute top-1/2 left-4 -mt-2 grid size-4 grid-cols-1">
+                      <input type="checkbox" checked={isGroupSelected(group)} indeterminate={isGroupPartiallySelected(group)} onchange={(e) => handleGroupToggle(group, e)} class={CHECKBOX_CLASSES} aria-label={`Select all items in ${group.label} group`} />
+                      <svg viewBox="0 0 14 14" fill="none" class={SVG_CLASSES} aria-hidden="true">
+                        <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100" />
+                        <path d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-indeterminate:opacity-100" />
+                      </svg>
                     </div>
+                  </th>
+                  <th scope="colgroup" colspan={header.length} class="py-2 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    <span>{group.label}</span>
                   </th>
                 </tr>
               {/if}
@@ -142,8 +136,8 @@
 
                     <div class="group absolute top-1/2 left-4 -mt-2 grid size-4 grid-cols-1">
                       <input
-                        checked={values.includes(item.value)}
                         type="checkbox"
+                        checked={values.includes(item.value)}
                         onchange={() => handleItemToggle(item.value)}
                         class={CHECKBOX_CLASSES}
                         aria-label={`Select ${item.values[0] || item.value}`}
