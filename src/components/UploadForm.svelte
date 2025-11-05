@@ -13,7 +13,7 @@
   let loadedFileName = $state('');
 
   const ACCEPTED_FILE_EXTENSION = '.hg';
-  const MAX_FILE_SIZE = 100 * 1024 * 1024;
+  const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
   let buttonElement: HTMLButtonElement = $state(null!);
   let inputElement: HTMLInputElement = $state(null!);
@@ -27,7 +27,7 @@
     event.preventDefault();
 
     if (event.dataTransfer.items.length > 1) {
-      toast.error(m.upload_error_multiple_files_title(), m.upload_error_multiple_files_description());
+      toast.error(m.component_uploadform_toast_error_multiple_title(), m.component_uploadform_toast_error_multiple_desc());
       return;
     }
 
@@ -45,24 +45,24 @@
     if (!file) {
       return {
         isValid: false,
-        errorTitle: m.upload_error_no_file_title(),
-        errorDescription: m.upload_error_no_file_description()
+        errorTitle: m.component_uploadform_toast_error_none_title(),
+        errorDescription: m.component_uploadform_toast_error_none_desc()
       };
     }
 
     if (!file.name.endsWith(ACCEPTED_FILE_EXTENSION)) {
       return {
         isValid: false,
-        errorTitle: m.upload_error_invalid_file_type_title(),
-        errorDescription: m.upload_error_invalid_file_type_description()
+        errorTitle: m.component_uploadform_toast_error_invalidtype_title(),
+        errorDescription: m.component_uploadform_toast_error_invalidtype_desc()
       };
     }
 
     if (file.size > MAX_FILE_SIZE) {
       return {
         isValid: false,
-        errorTitle: m.upload_error_file_too_large_title(),
-        errorDescription: m.upload_error_file_too_large_description({ maxSize: (MAX_FILE_SIZE / (1024 * 1024)).toString() })
+        errorTitle: m.component_uploadform_toast_error_toolarge_title(),
+        errorDescription: m.component_uploadform_toast_error_toolarge_desc({ maxSize: (MAX_FILE_SIZE / (1024 * 1024)).toString() })
       };
     }
 
@@ -127,7 +127,7 @@
     isProcessing = true;
     loadedFileName = file!.name;
 
-    toast.info(m.upload_loading_title(), m.upload_loading_description());
+    toast.info(m.component_uploadform_toast_info_processing_title(), m.component_uploadform_toast_info_processing_desc());
 
     try {
       const arrayBuffer = await readFileAsArrayBuffer(file!);
@@ -140,17 +140,17 @@
       const result = await callback(arrayBuffer, file?.name || '');
 
       if (!result.isValid) {
-        toast.error(result.errorTitle ?? m.upload_error_file_corrupted_title(), result.errorDescription ?? m.upload_error_file_corrupted_description());
+        toast.error(result.errorTitle ?? m.component_uploadform_toast_error_corrupted_title(), result.errorDescription ?? m.component_uploadform_toast_error_corrupted_desc());
         callbackState = 'error';
         isProcessing = false;
         return;
       }
 
-      toast.success(m.upload_success_title(), m.upload_success_description());
+      toast.success(m.component_uploadform_toast_success_loaded_title(), m.component_uploadform_toast_success_loaded_desc());
     } catch (error) {
       console.error('File processing error:', error);
       callbackState = 'error';
-      toast.error(m.upload_error_file_corrupted_title(), m.upload_error_file_corrupted_description());
+      toast.error(m.component_uploadform_toast_error_corrupted_title(), m.component_uploadform_toast_error_corrupted_desc());
     } finally {
       isProcessing = false;
     }
@@ -158,57 +158,54 @@
 </script>
 
 <div class="bg-white outline -outline-offset-1 outline-gray-200 sm:rounded-lg dark:bg-gray-800/50 dark:outline-white/10">
-  {#if mode === 'account'}
-    <div class="px-4 py-5 sm:p-6">
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">{m.upload_location_account_title()}</h3>
+  <div class="px-4 py-5 sm:p-6">
+    {#if mode === 'account'}
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_account_title()}</h3>
       <div class="mt-2 max-w-xl text-sm text-gray-700 dark:text-gray-400">
-        <p>{m.upload_location_account_description()}</p>
+        <p>{m.component_uploadform_location_account_desc()}</p>
         <div class="mt-4 space-y-3 font-mono text-sm">
           <div>
-            <span class="font-semibold text-gray-900 dark:text-white">{m.upload_location_account_linux()}</span>
-            <pre class="break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.upload_location_account_linux_path()}</pre>
+            <span class="font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_account_linux()}</span>
+            <pre class="wrap-break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.component_uploadform_location_account_path_linux()}</pre>
           </div>
           <div>
-            <span class="font-semibold text-gray-900 dark:text-white">{m.upload_location_account_windows()}</span>
-            <pre class="break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.upload_location_account_windows_path()}</pre>
+            <span class="font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_account_windows()}</span>
+            <pre class="wrap-break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.component_uploadform_location_account_path_windows()}</pre>
           </div>
         </div>
         <div class="mt-4 text-sm text-gray-700 dark:text-gray-400">
           <p>
-            {m.upload_location_account_instructions()}
+            {m.component_uploadform_location_account_hint()}
           </p>
         </div>
       </div>
-    </div>
-  {:else}
-    <div class="px-4 py-5 sm:p-6">
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">{m.upload_location_save_title()}</h3>
+    {:else}
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_save_title()}</h3>
       <div class="mt-2 max-w-xl text-sm text-gray-700 dark:text-gray-400">
-        <p>{m.upload_location_save_description()}</p>
+        <p>{m.component_uploadform_location_save_desc()}</p>
         <div class="mt-4 space-y-3 font-mono text-sm">
           <div>
-            <span class="font-semibold text-gray-900 dark:text-white">{m.upload_location_save_linux()}</span>
-            <pre class="break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.upload_location_save_linux_path()}</pre>
+            <span class="font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_save_linux()}</span>
+            <pre class="wrap-break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.component_uploadform_location_save_path_linux()}</pre>
           </div>
           <div>
-            <span class="font-semibold text-gray-900 dark:text-white">{m.upload_location_save_windows()}</span>
-            <pre class="break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.upload_location_save_windows_path()}</pre>
+            <span class="font-semibold text-gray-900 dark:text-white">{m.component_uploadform_location_save_windows()}</span>
+            <pre class="wrap-break-words whitespace-pre-wrap text-gray-700 dark:text-gray-300">{m.component_uploadform_location_save_path_windows()}</pre>
           </div>
         </div>
         <div class="mt-4 text-sm text-gray-700 dark:text-gray-400">
           <p>
-            {m.upload_location_save_instructions()}
+            {m.component_uploadform_location_save_hint()}
           </p>
         </div>
       </div>
-    </div>
-  {/if}
+    {/if}
+  </div>
 </div>
 
 <form>
   <button
     type="button"
-    aria-label={m.upload_input()}
     disabled={isProcessing}
     onclick={() => inputElement.click()}
     bind:this={buttonElement}
@@ -223,13 +220,13 @@
   >
     {#if isProcessing}
       <ArrowPathIcon width="20" height="20" class="mx-auto size-12 animate-spin text-gray-400" />
-      <span class="mt-2 block text-sm font-semibold text-gray-500 dark:text-gray-400">{m.upload_input_processing()}</span>
+      <span class="mt-2 block text-sm font-semibold text-gray-500 dark:text-gray-400">{m.component_uploadform_form_loading_hint()}</span>
     {:else if callbackState === 'error'}
       <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-red-500" />
-      <span class="mt-2 block text-sm font-semibold text-red-600 dark:text-red-400">{m.upload_input_error()}</span>
+      <span class="mt-2 block text-sm font-semibold text-red-600 dark:text-red-400">{m.component_uploadform_form_error_hint()}</span>
     {:else}
       <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-gray-500" />
-      <span class="mt-2 block text-sm font-semibold text-gray-700 dark:text-white">{m.upload_input()}</span>
+      <span class="mt-2 block text-sm font-semibold text-gray-700 dark:text-white">{m.component_uploadform_form_hint()}</span>
     {/if}
   </button>
 

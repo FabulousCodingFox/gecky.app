@@ -18,6 +18,7 @@ export type LanguageMeta = {
   id: Language;
   name: string;
   flag: string;
+  browser_locale: Intl.LocalesArgument;
 };
 
 export type ThemeMeta = {
@@ -27,9 +28,9 @@ export type ThemeMeta = {
 };
 
 export const languages: Record<Language, LanguageMeta> = {
-  en: { id: 'en', name: m.language_en(), flag: flag_en },
-  de: { id: 'de', name: m.language_de(), flag: flag_de },
-  es: { id: 'es', name: m.language_es(), flag: flag_es }
+  en: { id: 'en', name: m.lang_en(), flag: flag_en, browser_locale: 'en-US' },
+  de: { id: 'de', name: m.lang_de(), flag: flag_de, browser_locale: 'de-DE' },
+  es: { id: 'es', name: m.lang_es(), flag: flag_es, browser_locale: 'es-ES' }
 };
 
 export const themes: Record<Theme, ThemeMeta> = {

@@ -36,7 +36,7 @@
       <p class="mt-1 text-sm text-gray-500 dark:text-zinc-400">{options.description}</p>
     </div>
     <div class="ml-4 flex shrink-0">
-      <button onclick={close} type="button" class="focus:ring-primary-500 inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-offset-2 focus:outline-hidden dark:bg-zinc-900 dark:text-zinc-500 dark:hover:text-gray-400">
+      <button onclick={close} type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:outline-hidden dark:bg-zinc-900 dark:text-zinc-500 dark:hover:text-gray-400">
         <span class="sr-only">Close</span>
         <XMarkIcon width="20" height="20" aria-hidden="true" class="size-5" />
       </button>

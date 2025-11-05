@@ -25,7 +25,7 @@
 
 <NavigationMenu.Root
   orientation="horizontal"
-  class="fixed top-0 left-0 z-10 w-full bg-white dark:bg-gray-900 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10 light:shadow-sm"
+  class="fixed top-0 left-0 z-10 w-full bg-white shadow-xs dark:bg-gray-900 dark:shadow-none dark:after:pointer-events-none dark:after:absolute dark:after:inset-0 dark:after:border-b dark:after:border-white/10 dark:after:bg-black/10"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 justify-end sm:justify-between">

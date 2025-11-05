@@ -6,18 +6,18 @@
 
   const features = [
     {
-      name: m.page_home_feature_opensource_title(),
-      description: m.page_home_feature_opensource_description(),
+      name: m.page_home_feature_open_source_title(),
+      description: m.page_home_feature_open_source_desc(),
       icon: CodeBracketIcon
     },
     {
       name: m.page_home_feature_local_title(),
-      description: m.page_home_feature_local_description(),
+      description: m.page_home_feature_local_desc(),
       icon: LockClosedIcon
     },
     {
-      name: m.page_home_feature_ui_title(),
-      description: m.page_home_feature_ui_description(),
+      name: m.page_home_feature_simple_ui_title(),
+      description: m.page_home_feature_simple_ui_desc(),
       icon: ComputerDesktopIcon
     }
   ];
@@ -29,7 +29,7 @@
       <div class="lg:pt-4 lg:pr-8">
         <div class="lg:max-w-lg">
           <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{m.page_home_hero_title()}</p>
-          <p class="mt-6 text-lg/8 text-gray-700 dark:text-gray-300">{m.page_home_hero_description()}</p>
+          <p class="mt-6 text-lg/8 text-gray-700 dark:text-gray-300">{m.page_home_hero_subtitle()}</p>
           <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
             {#each features as feature}
               <div class="relative pl-9">

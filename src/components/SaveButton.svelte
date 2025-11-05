@@ -12,11 +12,11 @@
     if (blocked) return;
     blocked = true;
     try {
-      toast.info(m.export_processing_title(), m.export_processing_description());
+      toast.info(m.component_savebutton_toast_info_processing_title(), m.component_savebutton_toast_info_processing_desc());
       await callback();
-      toast.success(m.export_success_title(), m.export_success_description());
+      toast.success(m.component_savebutton_toast_success_saved_title(), m.component_savebutton_toast_success_saved_desc());
     } catch (e) {
-      toast.error(m.export_failed_title(), m.export_failed_description());
+      toast.error(m.component_savebutton_toast_error_failed_title(), m.component_savebutton_toast_error_failed_desc());
     }
     blocked = false;
   }
@@ -27,14 +27,14 @@
     onclick={handleClick}
     disabled={blocked}
     type="button"
-    class="flex items-center justify-center gap-x-2 rounded-md bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-50"
+    class="flex cursor-pointer items-center justify-center gap-x-2 rounded-md bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-wait disabled:opacity-50"
   >
     {#if blocked}
       <ArrowPathIcon aria-hidden="true" class="-ml-0.5 size-5 animate-spin" />
-      {m.export_button_processing()}
+      {m.component_savebutton_form_button_processing()}
     {:else}
       <DocumentArrowDownIcon aria-hidden="true" class="-ml-0.5 size-5" />
-      {m.export_button()}
+      {m.component_savebutton_form_button_label()}
     {/if}
   </button>
 </div>

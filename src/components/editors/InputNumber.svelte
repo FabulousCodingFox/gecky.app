@@ -9,7 +9,7 @@
   let { value = $bindable(), label, max = null, min = null }: Props = $props();
 </script>
 
-<div>
+<div class="sm:col-span-2">
   <label class="block text-sm/6 font-medium text-gray-900 dark:text-white">{label}</label>
   <div class="mt-2">
     <input

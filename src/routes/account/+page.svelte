@@ -6,8 +6,7 @@
   import GiftIcon from '@iconify-svelte/heroicons/gift';
   import UploadForm from '../../components/UploadForm.svelte';
   import { decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
-  import FileInfo from '../../components/FileInfo.svelte';
-  import ExportButton from '../../components/ExportButton.svelte';
+  import SaveButton from '../../components/SaveButton.svelte';
   import dataRewardsSeason from '$lib/../data/rewards/season.json';
   import dataRewardsTwitch from '$lib/../data/rewards/twitch.json';
   import dataRewardsPlatform from '$lib/../data/rewards/platform.json';
@@ -15,6 +14,8 @@
   import AccountEditorTable from '../../components/editors/account/AccountEditorTable.svelte';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
+  import ResetButton from '../../components/ResetButton.svelte';
+  import FileInfo from '../../components/FileInfo.svelte';
 
   interface AccountData {
     UserSettingsData?: {
@@ -49,13 +50,13 @@
   let sidebar: { name: string; tab: Tab; icon: any | null }[] = $derived(
     accountData
       ? [
-          { name: m.page_account_tab_start(), tab: 'start', icon: HomeIcon },
-          { name: m.page_account_tab_season_rewards(), tab: 'season_rewards', icon: GiftIcon },
-          { name: m.page_account_tab_twitch_rewards(), tab: 'twitch_rewards', icon: GiftIcon },
-          { name: m.page_account_tab_platform_rewards(), tab: 'platform_rewards', icon: GiftIcon },
-          { name: m.page_account_tab_json_editor(), tab: 'json_editor', icon: CodeBracketIcon }
+          { name: m.page_account_tab_overview(), tab: 'start', icon: HomeIcon },
+          { name: m.page_account_tab_expeditions(), tab: 'season_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_twitch(), tab: 'twitch_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_platform(), tab: 'platform_rewards', icon: GiftIcon },
+          { name: m.page_account_tab_json(), tab: 'json_editor', icon: CodeBracketIcon }
         ]
-      : [{ name: m.page_account_tab_start(), tab: 'start', icon: HomeIcon }]
+      : [{ name: m.page_account_tab_overview(), tab: 'start', icon: HomeIcon }]
   );
 
   const typedExpeditions = dataExpeditions as Record<string, string>;
@@ -210,26 +211,29 @@
       {#if !accountData}
         <UploadForm mode="account" callback={onUpload} />
       {:else}
-        <div class="space-y-6">
-          <FileInfo {fileName} callback={onReset} />
-          <ExportButton callback={onExport} />
+        <div class="flex flex-col items-center space-y-6">
+          <FileInfo {fileName} mode="account" bind:saveData={accountData} />
+          <div class="inline-flex flex-row space-x-6">
+            <SaveButton callback={onExport} />
+            <ResetButton callback={onReset} />
+          </div>
         </div>
       {/if}
     </div>
   {:else if tab === 'season_rewards'}
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      {@render statusBar(m.page_account_tab_season_rewards().toString(), seasonRewards.length, seasonData.length)}
-      <AccountEditorTable header={[m.page_account_table_name(), m.page_account_table_id(), m.page_account_table_expedition()]} groups={seasonGroups} bind:values={seasonRewards} />
+      {@render statusBar(m.page_account_tab_expeditions().toString(), seasonRewards.length, seasonData.length)}
+      <AccountEditorTable header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={seasonGroups} bind:values={seasonRewards} />
     </div>
   {:else if tab === 'twitch_rewards'}
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      {@render statusBar(m.page_account_tab_twitch_rewards().toString(), twitchRewards.length, twitchData.length)}
-      <AccountEditorTable header={[m.page_account_table_name(), m.page_account_table_id()]} groups={twitchGroups} bind:values={twitchRewards} />
+      {@render statusBar(m.page_account_tab_twitch().toString(), twitchRewards.length, twitchData.length)}
+      <AccountEditorTable header={[m.table_name(), m.table_id()]} groups={twitchGroups} bind:values={twitchRewards} />
     </div>
   {:else if tab === 'platform_rewards'}
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      {@render statusBar(m.page_account_tab_platform_rewards().toString(), platformRewards.length, platformData.length)}
-      <AccountEditorTable header={[m.page_account_table_name(), m.page_account_table_id(), m.page_account_table_platform()]} groups={platformGroups} bind:values={platformRewards} />
+      {@render statusBar(m.page_account_tab_platform().toString(), platformRewards.length, platformData.length)}
+      <AccountEditorTable header={[m.table_name(), m.table_id(), m.table_platform()]} groups={platformGroups} bind:values={platformRewards} />
     </div>
   {:else if tab === 'json_editor'}
     <AccountEditorJsonEditor bind:accountData />

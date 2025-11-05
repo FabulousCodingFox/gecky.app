@@ -5,12 +5,13 @@
   import UserIcon from '@iconify-svelte/heroicons/user';
   import UploadForm from '../../components/UploadForm.svelte';
   import Sidebar from '../../components/Sidebar.svelte';
-  import FileInfo from '../../components/FileInfo.svelte';
-  import ExportButton from '../../components/ExportButton.svelte';
+  import SaveButton from '../../components/SaveButton.svelte';
   import { decryptSaveFile, encryptSaveFile, validateSaveData } from '$lib/hellosave/save';
   import AccountEditorJsonEditor from '../../components/editors/account/AccountEditorJsonEditor.svelte';
   import { zipSync } from 'fflate';
   import SaveEditorExosuit from '../../components/editors/save/SaveEditorExosuit.svelte';
+  import ResetButton from '../../components/ResetButton.svelte';
+  import FileInfo from '../../components/FileInfo.svelte';
 
   type Tab = 'start' | 'exosuit' | 'multitool' | 'ships' | 'squadron' | 'freighter' | 'frigates' | 'vehicles' | 'companions' | 'storage' | 'settlements' | 'discovery' | 'reputation' | 'json_editor';
 
@@ -94,15 +95,18 @@
       {#if !saveData}
         <UploadForm mode="save" callback={onUpload} />
       {:else}
-        <div class="space-y-6">
-          <FileInfo {fileName} callback={onReset} />
-          <ExportButton callback={onExport} />
+        <div class="flex flex-col items-center space-y-6">
+          <FileInfo {fileName} mode="save" bind:saveData />
+          <div class="inline-flex flex-row space-x-6">
+            <SaveButton callback={onExport} />
+            <ResetButton callback={onReset} />
+          </div>
         </div>
       {/if}
     </div>
   {:else if tab === 'exosuit'}
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <SaveEditorExosuit bind:accountData={saveData} />
+      <SaveEditorExosuit bind:saveData />
     </div>
   {:else if tab === 'json_editor'}
     <AccountEditorJsonEditor bind:accountData={saveData} />
