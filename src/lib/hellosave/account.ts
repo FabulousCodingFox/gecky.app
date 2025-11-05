@@ -1,6 +1,7 @@
+import type { JSONSaveData } from '$lib/json';
 import { applyJsonMap, reverseJsonMap } from '.';
 
-export function decryptAccountFile(data: ArrayBuffer): any {
+export function decryptAccountFile(data: ArrayBuffer): JSONSaveData {
   const stringData = new TextDecoder()
     .decode(data)
     .replace(/\u0000+$/g, '') // Remove trailing nulls
@@ -8,7 +9,7 @@ export function decryptAccountFile(data: ArrayBuffer): any {
   return applyJsonMap(JSON.parse(stringData));
 }
 
-export function encryptAccountFile(data: any): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {
+export function encryptAccountFile(data: JSONSaveData): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {
   const reversedData = reverseJsonMap(data);
   const stringData = JSON.stringify(reversedData) + '\u0000'; // Append null character
   const encoder = new TextEncoder();
@@ -21,7 +22,7 @@ export function encryptAccountFile(data: any): { buffer: Uint8Array; sizeCompres
   };
 }
 
-export function validateAccountData(data: any): boolean {
+export function validateAccountData(data: JSONSaveData): boolean {
   if (!data) return false;
   if (typeof data !== 'object') return false;
   if (!data.UserSettingsData || typeof data.UserSettingsData !== 'object') return false;

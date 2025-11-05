@@ -15,7 +15,7 @@
       toast.info(m.component_savebutton_toast_info_processing_title(), m.component_savebutton_toast_info_processing_desc());
       await callback();
       toast.success(m.component_savebutton_toast_success_saved_title(), m.component_savebutton_toast_success_saved_desc());
-    } catch (e) {
+    } catch {
       toast.error(m.component_savebutton_toast_error_failed_title(), m.component_savebutton_toast_error_failed_desc());
     }
     blocked = false;

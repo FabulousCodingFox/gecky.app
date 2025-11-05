@@ -10,7 +10,6 @@
 
   let draggedOver = $state(false);
   let isProcessing = $state(false);
-  let loadedFileName = $state('');
 
   const ACCEPTED_FILE_EXTENSION = '.hg';
   const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
@@ -125,7 +124,6 @@
     }
 
     isProcessing = true;
-    loadedFileName = file!.name;
 
     toast.info(m.component_uploadform_toast_info_processing_title(), m.component_uploadform_toast_info_processing_desc());
 

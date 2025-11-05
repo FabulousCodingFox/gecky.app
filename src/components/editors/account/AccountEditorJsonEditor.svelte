@@ -6,8 +6,9 @@
   import monacoThemeGithubLight from 'monaco-themes/themes/GitHub Light.json';
   import monacoThemeGithubDark from 'monaco-themes/themes/GitHub Dark.json';
   import type { LocalSettingsStore } from '$lib';
+  import type { JSONSaveData } from '$lib/json';
 
-  let { accountData = $bindable() }: { accountData: any } = $props();
+  let { data = $bindable() }: { data: JSONSaveData } = $props();
 
   let parent: HTMLElement;
   let editor: monaco.editor.IStandaloneCodeEditor;
@@ -17,9 +18,9 @@
   const localSettings = getContext('localSettings') as LocalSettingsStore;
 
   $effect(() => {
-    if (editor && accountData) {
+    if (editor && data) {
       const currentValue = editor.getValue();
-      const newValue = JSON.stringify(accountData, null, 2);
+      const newValue = JSON.stringify(data, null, 2);
       if (currentValue !== newValue) {
         editor.setValue(newValue);
       }
@@ -63,7 +64,7 @@
     });
 
     editor = Monaco.editor.create(parent, {
-      value: JSON.stringify(accountData, null, 2),
+      value: JSON.stringify(data, null, 2),
       language: 'json',
       theme: localSettings.theme === 'dark' ? 'github-dark' : 'github-light',
       automaticLayout: true
@@ -78,11 +79,11 @@
     editor.onDidChangeModelContent(() => {
       const newValue = editor.getValue();
       try {
-        accountData = JSON.parse(newValue);
+        data = JSON.parse(newValue);
       } catch (e) {
         console.error('Invalid JSON:', e);
       }
-      console.log('Account Data Updated:', accountData);
+      console.log('Account Data Updated:', data);
     });
 
     return () => {

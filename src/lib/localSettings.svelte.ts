@@ -28,7 +28,6 @@ export function createLocalSettingsStore() {
     if (!browser) return;
     localStorage.setItem('theme', localSettings.theme);
     document.documentElement.classList.toggle('dark', localSettings.theme === 'dark');
-    document.documentElement.classList.toggle('light', localSettings.theme === 'light');
   });
 
   $effect(() => {
@@ -42,6 +41,5 @@ export function apply() {
   if (!browser) return;
   const ctx = getContext<LocalSettingsStore>('localSettings');
   document.documentElement.classList.toggle('dark', ctx.theme === 'dark');
-  document.documentElement.classList.toggle('light', ctx.theme === 'light');
   setLocale(ctx.language);
 }

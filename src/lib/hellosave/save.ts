@@ -1,13 +1,14 @@
+import type { JSONSaveData } from '$lib/json';
 import { applyJsonMap, reverseJsonMap } from '.';
 import { decodeBlock } from './crypto';
 
-export function validateSaveData(data: any): boolean {
+export function validateSaveData(data: JSONSaveData): boolean {
   if (!data) return false;
   if (typeof data !== 'object') return false;
   return true;
 }
 
-export function decryptSaveFile(data: ArrayBuffer): any {
+export function decryptSaveFile(data: ArrayBuffer): JSONSaveData {
   try {
     const view = new DataView(data);
     const bytes = new Uint8Array(data);
@@ -50,7 +51,7 @@ export function decryptSaveFile(data: ArrayBuffer): any {
       .trim();
 
     return applyJsonMap(JSON.parse(jsonString));
-  } catch (e) {
+  } catch {
     const stringData = new TextDecoder()
       .decode(data)
       .replace(/\u0000+$/g, '') // Remove trailing nulls
@@ -59,7 +60,7 @@ export function decryptSaveFile(data: ArrayBuffer): any {
   }
 }
 
-export function encryptSaveFile(data: any): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {
+export function encryptSaveFile(data: JSONSaveData): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {
   const reversedData = reverseJsonMap(data);
   const stringData = JSON.stringify(reversedData) + '\u0000'; // Append null character
   const encoder = new TextEncoder();

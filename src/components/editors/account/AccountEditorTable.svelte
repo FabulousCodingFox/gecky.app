@@ -5,7 +5,7 @@
   }
 
   interface TableGroup {
-    label: string;
+    label: string | null;
     items: TableItem[];
   }
 

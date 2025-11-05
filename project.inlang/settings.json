@@ -5,5 +5,6 @@
     "pathPattern": "./messages/{locale}.json"
   },
   "baseLocale": "en",
-  "locales": ["en", "de", "es"]
+  "locales": ["en", "de", "es"],
+  "strategy": ["localStorage", "preferredLanguage", "baseLocale"]
 }

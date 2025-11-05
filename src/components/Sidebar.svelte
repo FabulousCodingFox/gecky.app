@@ -1,5 +1,7 @@
 <script lang="ts">
-  let { data, value = $bindable() }: { data: { name: string; tab: string; icon: any | null }[]; value: string } = $props();
+  import { page } from '$app/state';
+
+  let { data }: { data: { name: string; href: string; icon: any | null }[] } = $props();
 </script>
 
 <div class="hidden pt-16 lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col dark:bg-gray-900">
@@ -8,19 +10,23 @@
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
         <li>
           <ul role="list" class="-mx-2 space-y-1">
-            {#each data as sidebarItem}
+            {#each data as sidebarItem (sidebarItem.name)}
               <li>
-                <button
-                  type="button"
-                  onclick={() => (value = sidebarItem.tab)}
-                  class={'group flex w-full cursor-pointer gap-x-3 rounded-md p-2 text-sm/6 font-semibold ' +
-                    (sidebarItem.tab === value ? 'bg-gray-50 text-primary-600 dark:bg-white/5 dark:text-white' : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white')}
-                >
-                  {#if sidebarItem.icon}
-                    <sidebarItem.icon width="24" height="24" class="size-6 shrink-0" />
-                  {/if}
-                  {sidebarItem.name}
-                </button>
+                {#if page.url.pathname === sidebarItem.href}
+                  <a href={sidebarItem.href} class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm/6 font-semibold text-primary-600 dark:bg-white/5 dark:text-white">
+                    {#if sidebarItem.icon}
+                      <sidebarItem.icon width="24" height="24" class="size-6 shrink-0 text-primary-600 dark:text-white" />
+                    {/if}
+                    {sidebarItem.name}
+                  </a>
+                {:else}
+                  <a href={sidebarItem.href} class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white">
+                    {#if sidebarItem.icon}
+                      <sidebarItem.icon width="24" height="24" class="size-6 shrink-0 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-white" />
+                    {/if}
+                    {sidebarItem.name}
+                  </a>
+                {/if}
               </li>
             {/each}
           </ul>

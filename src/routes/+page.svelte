@@ -31,7 +31,7 @@
           <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{m.page_home_hero_title()}</p>
           <p class="mt-6 text-lg/8 text-gray-700 dark:text-gray-300">{m.page_home_hero_subtitle()}</p>
           <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
-            {#each features as feature}
+            {#each features as feature (feature.name)}
               <div class="relative pl-9">
                 <dt class="inline font-semibold text-gray-900 dark:text-white">
                   <feature.icon class="absolute top-1 left-1 size-5 text-primary-600 dark:text-primary-400" width="20" height="20" />

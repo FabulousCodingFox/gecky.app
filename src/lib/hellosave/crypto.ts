@@ -42,7 +42,7 @@ export function decodeBlock(input: Uint8Array, output: Uint8Array): number {
     }
     matchLength += 4; // minimum match length
 
-    let matchPos = op - offset;
+    const matchPos = op - offset;
     for (let i = 0; i < matchLength; i++) {
       output[op++] = output[matchPos + i];
     }
