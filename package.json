@@ -25,6 +25,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/vite": "^4.1.16",
     "@vitest/browser": "^4.0.7",
+    "clsx": "^2.1.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.13.0",

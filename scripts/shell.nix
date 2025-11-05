@@ -15,6 +15,7 @@ pkgs.mkShell {
     pkgs.jq
     pkgs.curl
     pkgs.python313
+    pkgs.python313Packages.pillow
     pkgs.xmlstarlet
   ];
 
