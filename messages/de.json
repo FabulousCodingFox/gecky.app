@@ -60,7 +60,7 @@
   "component_uploadform_location_save_linux": "Linux (Proton):",
   "component_uploadform_location_save_windows": "Windows:",
   "component_uploadform_location_save_path_linux": "/home/<username>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/Roaming/HelloGames/NMS/<steamid>/",
-  "component_uploadform_location_save_path_windows": "C:/users/<username>/AppData/LocalLow/HelloGames/NMS/",
+  "component_uploadform_location_save_path_windows": "C:/users/<username>/AppData/Roaming/HelloGames/NMS/",
   "component_uploadform_location_save_hint": "Suche nach der Datei save.hg in diesen Ordnern. Sie enthält deinen Spielfortschritt.",
 
   "component_savebutton_toast_info_processing_title": "Datei wird gespeichert",

@@ -4,6 +4,7 @@
   import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket';
   import UserIcon from '@iconify-svelte/heroicons/user';
   import { initContext } from './shared.svelte';
+  import { m } from '$lib/paraglide/messages';
 
   let editorData = initContext();
 
@@ -12,11 +13,11 @@
   let sidebar: { name: string; href: string; icon: any | null }[] = $derived(
     editorData.data
       ? [
-          { name: 'Start', href: '/save/', icon: HomeIcon },
-          { name: 'Exosuit', href: '/save/exosuit/', icon: UserIcon },
-          { name: 'JSON Editor', href: '/save/json/', icon: CodeBracketIcon }
+          { name: m.page_save_tab_overview(), href: '/save/', icon: HomeIcon },
+          { name: m.page_save_tab_exosuit(), href: '/save/exosuit/', icon: UserIcon },
+          { name: m.page_save_tab_json(), href: '/save/json/', icon: CodeBracketIcon }
         ]
-      : [{ name: 'Start', href: '/save/', icon: HomeIcon }]
+      : [{ name: m.page_save_tab_overview(), href: '/save/', icon: HomeIcon }]
   );
 </script>
 

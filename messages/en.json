@@ -22,6 +22,9 @@
 
   "page_save_title": "Save Editor",
   "page_save_description": "Edit your No Man’s Sky save files directly on your computer.",
+  "page_save_tab_overview": "Overview",
+  "page_save_tab_exosuit": "Exosuit",
+  "page_save_tab_json": "Raw JSON",
 
   "page_account_title": "Account Editor",
   "page_account_description": "Edit your No Man’s Sky account data such as expeditions, Twitch drops, and platform bonuses.",
@@ -60,7 +63,7 @@
   "component_uploadform_location_save_linux": "Linux (Proton):",
   "component_uploadform_location_save_windows": "Windows:",
   "component_uploadform_location_save_path_linux": "/home/<username>/.steam/steam/steamapps/compatdata/275850/pfx/drive_c/users/steamuser/AppData/Roaming/HelloGames/NMS/<steamid>/",
-  "component_uploadform_location_save_path_windows": "C:/users/<username>/AppData/LocalLow/HelloGames/NMS/",
+  "component_uploadform_location_save_path_windows": "C:/users/<username>/AppData/Roaming/HelloGames/NMS/",
   "component_uploadform_location_save_hint": "Look for the save.hg file in these folders. It contains your game progress.",
 
   "component_savebutton_toast_info_processing_title": "Saving file",
