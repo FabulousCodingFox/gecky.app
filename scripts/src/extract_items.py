@@ -20,6 +20,18 @@ with open(translations_path, "r", encoding="utf-8") as f:
 
 items = {}
 
+def remove_text_tags(text):
+    if not text:
+        return text
+    # Loop through and remove everything in <> and the <> themselves
+    while True:
+        start = text.find("<")
+        end = text.find(">")
+        if start == -1 or end == -1:
+            break
+        text = text[:start] + text[end+1:]
+    return text.strip()
+
 def process_xml(xml_path):
     tree = ET.parse(xml_path)
     root = tree.getroot()
@@ -37,6 +49,7 @@ def process_xml(xml_path):
     for product in products:
         prod_id = None
         name_lower_key = None
+        description_key = None
         texture_path = None
 
         for prop in product.findall("Property"):
@@ -46,6 +59,8 @@ def process_xml(xml_path):
                 name_lower_key = prop.get("value")
             if prop.get("name") == "NameLower":
                 name_lower_key = prop.get("value")
+            if prop.get("name") == "Description":
+                description_key = prop.get("value")
             if prop.get("name") == "Template":
                 template_value = prop.get("value")
                 if template_value in items:
@@ -73,9 +88,11 @@ def process_xml(xml_path):
 
         if prod_id and name_lower_key:
             translated_value = translations.get(name_lower_key, name_lower_key)
+            description_value = translations.get(description_key, description_key) if description_key else None
 
             items[prod_id] = {
                 "name": translated_value,
+                "description": remove_text_tags(description_value),
                 "texture": texture_path
             }
 

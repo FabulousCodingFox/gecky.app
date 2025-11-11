@@ -3,7 +3,7 @@ set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 MBIN_COMPILER_VERSION := "v6.13.0-pre1"
 HGPAK_TOOL_VERSION    := "1.0.0"
 
-default: clean setup extract-mappings extract-rewards
+default: clean setup extract-mappings extract-rewards extract-items
 
 # ---------------------------------------------------------------------------
 # 🧹  CLEANUP
