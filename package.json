@@ -48,7 +48,7 @@
     "@inlang/paraglide-js": "^2.4.0",
     "bits-ui": "^2.14.2",
     "fflate": "^0.8.2",
-    "monaco-editor": "^0.54.0",
+    "monaco-editor": "^0.55.1",
     "monaco-themes": "^0.4.7"
   }
 }
