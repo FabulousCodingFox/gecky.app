@@ -3,8 +3,8 @@
   import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
   import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
   import { getContext, onMount } from 'svelte';
-  import monacoThemeGithubLight from 'monaco-themes/themes/GitHub Light.json';
-  import monacoThemeGithubDark from 'monaco-themes/themes/GitHub Dark.json';
+  import monacoThemeGithubLight from '../../../../node_modules/monaco-themes/themes/GitHub Light.json';
+  import monacoThemeGithubDark from '../../../../node_modules/monaco-themes/themes/GitHub Dark.json';
   import type { LocalSettingsStore } from '$lib';
   import type { JSONSaveData } from '$lib/json';
 
