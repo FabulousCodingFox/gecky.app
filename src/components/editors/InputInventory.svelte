@@ -127,7 +127,7 @@
 </div>
 
 <div id={inventoryID} class="relative mt-4 grid w-full gap-px bg-gray-200 p-px dark:bg-white/10" style={`grid-template-columns: repeat(${value.Width}, minmax(0, 1fr)); grid-template-rows: repeat(${value.Height}, minmax(0, 1fr));`}>
-  {#each Array.from({ length: size }, (_, i) => i) as index}
+  {#each Array.from({ length: size }, (_, i) => i) as index (index)}
     {@const item = value.Slots.find((slot: JSONSaveData) => slot.Index.X + slot.Index.Y * value.Width === index)}
     {@const isSlotEnabled = value.ValidSlotIndices.some((slot: JSONSaveData) => slot.X + slot.Y * value.Width === index)}
     {@const isSlotSpecial = value.SpecialSlots.some((slot: JSONSaveData) => slot.Index.X + slot.Index.Y * value.Width === index && slot.Type.InventorySpecialSlotType === 'TechBonus')}

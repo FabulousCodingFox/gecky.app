@@ -6,4 +6,5 @@ export interface JSONObject {
 
 export type JSONArray = Array<JSONValue>;
 
-export type JSONSaveData = any;
+// Save data can be any valid JSON structure
+export type JSONSaveData = JSONObject;

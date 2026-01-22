@@ -1,9 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import type { Component } from 'svelte';
 
-  let { data }: { data: { name: string; href: string; icon: any | null }[] } = $props();
+  let { data }: { data: { name: string; href: string; icon: Component | null }[] } = $props();
 </script>
 
+<!-- eslint-disable svelte/no-navigation-without-resolve -->
 <div class="hidden pt-16 lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col dark:bg-gray-900">
   <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pt-5 dark:border-white/10 dark:bg-black/10">
     <nav class="flex flex-1 flex-col">

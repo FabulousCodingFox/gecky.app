@@ -5,12 +5,13 @@
   import GiftIcon from '@iconify-svelte/heroicons/gift';
   import { initContext } from './shared.svelte';
   import { m } from '$lib/paraglide/messages';
+  import type { Component } from 'svelte';
 
   let editorData = initContext();
 
   let { children } = $props();
 
-  let sidebar: { name: string; href: string; icon: any | null }[] = $derived(
+  let sidebar: { name: string; href: string; icon: Component | null }[] = $derived(
     editorData.data
       ? [
           { name: m.page_account_tab_overview(), href: '/account/', icon: HomeIcon },
