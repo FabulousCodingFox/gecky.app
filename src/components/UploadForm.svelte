@@ -4,8 +4,6 @@
   import ArrowPathIcon from '@iconify-svelte/heroicons/arrow-path';
   import DocumentArrowUpIcon from '@iconify-svelte/heroicons/document-arrow-up';
 
-  import { onDestroy, onMount } from 'svelte';
-
   let { mode, callback }: { mode: 'account' | 'save'; callback: (file: ArrayBuffer, name: string) => Promise<{ isValid: boolean; errorTitle?: string; errorDescription?: string }> } = $props();
 
   let draggedOver = $state(false);
@@ -18,8 +16,6 @@
   let inputElement: HTMLInputElement = $state(null!);
 
   let callbackState: 'initial' | 'error' = $state('initial');
-
-  let cleanupFunctions: (() => void)[] = [];
 
   function dropHandler(event: DragEvent & { dataTransfer: DataTransfer }) {
     draggedOver = false;
@@ -77,7 +73,8 @@
     });
   }
 
-  function setupDragAndDropListeners() {
+  // Setup drag and drop event listeners using Svelte 5 $effect
+  $effect(() => {
     if (!buttonElement) return;
 
     const handleDrop = dropHandler as never;
@@ -95,23 +92,13 @@
     buttonElement.addEventListener('dragenter', handleDragEnter);
     buttonElement.addEventListener('dragleave', handleDragLeave);
 
-    // Store cleanup functions
-    cleanupFunctions.push(
-      () => buttonElement?.removeEventListener('drop', handleDrop),
-      () => buttonElement?.removeEventListener('dragover', handleDragOver),
-      () => buttonElement?.removeEventListener('dragenter', handleDragEnter),
-      () => buttonElement?.removeEventListener('dragleave', handleDragLeave)
-    );
-  }
-
-  onMount(() => {
-    setupDragAndDropListeners();
-  });
-
-  onDestroy(() => {
-    // Clean up event listeners
-    cleanupFunctions.forEach((cleanup) => cleanup());
-    cleanupFunctions = [];
+    // Return cleanup function
+    return () => {
+      buttonElement?.removeEventListener('drop', handleDrop);
+      buttonElement?.removeEventListener('dragover', handleDragOver);
+      buttonElement?.removeEventListener('dragenter', handleDragEnter);
+      buttonElement?.removeEventListener('dragleave', handleDragLeave);
+    };
   });
 
   async function handleFileUpload(file: File | null) {

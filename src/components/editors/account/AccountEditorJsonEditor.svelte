@@ -13,7 +13,7 @@
   let parent: HTMLElement;
   let editor: monaco.editor.IStandaloneCodeEditor;
 
-  let Monaco: any;
+  let Monaco: typeof monaco | undefined;
 
   const localSettings = getContext('localSettings') as LocalSettingsStore;
 
@@ -28,8 +28,7 @@
   });
 
   $effect(() => {
-    localSettings.theme;
-    if (editor) {
+    if (editor && Monaco) {
       Monaco.editor.setTheme(localSettings.theme === 'dark' ? 'github-dark' : 'github-light');
     }
   });
@@ -48,8 +47,8 @@
 
     Monaco = await import('monaco-editor');
 
-    Monaco.editor.defineTheme('github-light', monacoThemeGithubLight as any);
-    Monaco.editor.defineTheme('github-dark', monacoThemeGithubDark as any);
+    Monaco.editor.defineTheme('github-light', monacoThemeGithubLight as monaco.editor.IStandaloneThemeData);
+    Monaco.editor.defineTheme('github-dark', monacoThemeGithubDark as monaco.editor.IStandaloneThemeData);
 
     function waitMonacoReady() {
       const ready = typeof Monaco !== 'undefined' && Monaco.editor && Monaco.editor.create && parent;
