@@ -18,27 +18,26 @@ const DEFAULT_OPTIONS: ToastOptions = {
   duration: 5000
 };
 
-export const toast_store: ToastInternal[] = $state([]);
+// Use Map for O(1) access instead of array for better performance
+export const toast_store: Map<number, ToastInternal> = $state(new Map());
 
 function toastFactory() {
   function push(opts: ToastOptions): number {
     const optsWithDefaults: ToastInternal = { ...DEFAULT_OPTIONS, ...opts, id: count++ };
 
-    toast_store.push(optsWithDefaults);
+    toast_store.set(optsWithDefaults.id, optsWithDefaults);
 
     return optsWithDefaults.id;
   }
 
   function set(id: number, opts: ToastOptions) {
-    const index = toast_store.findIndex((t) => t.id === id);
-    if (index === -1) return;
-    toast_store[index] = { ...toast_store[index], ...opts };
+    const existing = toast_store.get(id);
+    if (!existing) return;
+    toast_store.set(id, { ...existing, ...opts });
   }
 
   function pop(id: number) {
-    const index = toast_store.findIndex((t) => t.id === id);
-    if (index === -1) return;
-    toast_store.splice(index, 1);
+    toast_store.delete(id);
   }
 
   function info(text: string, description: string = '') {

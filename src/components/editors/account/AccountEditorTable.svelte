@@ -63,15 +63,16 @@
     }
   }
 
-  function isGroupSelected(group: TableGroup): boolean {
-    return group.items.every((item) => values.includes(item.value));
-  }
-
-  function isGroupPartiallySelected(group: TableGroup): boolean {
-    const groupValues = group.items.map((item) => item.value);
-    const selectedInGroup = groupValues.filter((gv) => values.includes(gv));
-    return selectedInGroup.length > 0 && selectedInGroup.length < groupValues.length;
-  }
+  // Memoize group selection states for better performance
+  const groupStates = $derived(
+    groups.map((group) => {
+      const groupValues = group.items.map((item) => item.value);
+      const selectedInGroup = groupValues.filter((gv) => values.includes(gv));
+      const isFullySelected = selectedInGroup.length === groupValues.length && groupValues.length > 0;
+      const isPartial = selectedInGroup.length > 0 && selectedInGroup.length < groupValues.length;
+      return { isFullySelected, isPartial };
+    })
+  );
 </script>
 
 <div class="mt-8 flow-root">
@@ -117,7 +118,7 @@
                   <th scope="colgroup" class="relative px-7 sm:w-12 sm:px-6">
                     <div class="absolute inset-y-0 left-0 hidden w-0.5 bg-primary-600 group-has-checked:block dark:bg-primary-500" aria-hidden="true"></div>
                     <div class="group absolute top-1/2 left-4 -mt-2 grid size-4 grid-cols-1">
-                      <input type="checkbox" checked={isGroupSelected(group)} indeterminate={isGroupPartiallySelected(group)} onchange={(e) => handleGroupToggle(group, e)} class={CHECKBOX_CLASSES} aria-label={`Select all items in ${group.label} group`} />
+                      <input type="checkbox" checked={groupStates[groupIndex].isFullySelected} indeterminate={groupStates[groupIndex].isPartial} onchange={(e) => handleGroupToggle(group, e)} class={CHECKBOX_CLASSES} aria-label={`Select all items in ${group.label} group`} />
                       <svg viewBox="0 0 14 14" fill="none" class={SVG_CLASSES} aria-hidden="true">
                         <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100" />
                         <path d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-indeterminate:opacity-100" />

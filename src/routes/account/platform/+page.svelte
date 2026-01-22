@@ -9,7 +9,8 @@
 
   const platformData = dataRewardsPlatform as RewardItem[];
 
-  let platformRewards = $state<string[]>([]);
+  // Initialize from editor data
+  let platformRewards = $state<string[]>(editorData.data.UserSettingsData.UnlockedPlatformRewards || []);
 
   const platformGroups = $derived<TableGroup[]>(
     Array.from(new Set(platformData.map((reward) => reward.platform)))
@@ -25,10 +26,7 @@
       }))
   );
 
-  $effect(() => {
-    platformRewards = editorData.data.UserSettingsData.UnlockedPlatformRewards || [];
-  });
-
+  // Sync changes back to editor data
   $effect(() => {
     editorData.data.UserSettingsData.UnlockedPlatformRewards = platformRewards;
   });

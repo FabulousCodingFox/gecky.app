@@ -3,11 +3,14 @@
   import { flip } from 'svelte/animate';
   import { toast_store } from './index.svelte';
   import ToastItem from './ToastItem.svelte';
+
+  // Convert Map to array for iteration
+  const toastItems = $derived(Array.from(toast_store.values()));
 </script>
 
 <div aria-live="assertive" class="pointer-events-none fixed inset-0 z-[60000] flex items-end px-4 py-6 sm:items-start sm:p-6">
   <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
-    {#each toast_store as item (item.id)}
+    {#each toastItems as item (item.id)}
       <div
         in:fly={{ x: 300 }}
         out:fade

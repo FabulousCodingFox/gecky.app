@@ -9,7 +9,8 @@
 
   const twitchData = dataRewardsTwitch as RewardItem[];
 
-  let twitchRewards = $state<string[]>([]);
+  // Initialize from editor data
+  let twitchRewards = $state<string[]>(editorData.data.UserSettingsData.UnlockedTwitchRewards || []);
 
   const twitchGroups = $derived<TableGroup[]>([
     {
@@ -21,10 +22,7 @@
     }
   ]);
 
-  $effect(() => {
-    twitchRewards = editorData.data.UserSettingsData.UnlockedTwitchRewards || [];
-  });
-
+  // Sync changes back to editor data
   $effect(() => {
     editorData.data.UserSettingsData.UnlockedTwitchRewards = twitchRewards;
   });

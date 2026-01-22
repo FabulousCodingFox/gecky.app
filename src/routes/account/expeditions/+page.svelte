@@ -11,8 +11,6 @@
   const typedExpeditions = dataExpeditions as Record<string, string>;
   const seasonData = dataRewardsSeason as RewardItem[];
 
-  let seasonRewards = $state<string[]>([]);
-
   const seasonGroups = $derived<TableGroup[]>(
     Object.keys(typedExpeditions)
       .reverse()
@@ -28,10 +26,10 @@
       .filter((group) => group.items.length > 0)
   );
 
-  $effect(() => {
-    seasonRewards = editorData.data.UserSettingsData.UnlockedSeasonRewards || [];
-  });
+  // Initialize from editor data
+  let seasonRewards = $state<string[]>(editorData.data.UserSettingsData.UnlockedSeasonRewards || []);
 
+  // Sync changes back to editor data
   $effect(() => {
     editorData.data.UserSettingsData.UnlockedSeasonRewards = seasonRewards;
   });
