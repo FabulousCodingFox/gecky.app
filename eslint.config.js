@@ -24,7 +24,7 @@ export default ts.config(
       // typescript-eslint strongly recommend that you do not use the no-undef lint rule on TypeScript projects.
       // see: https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       'no-undef': 'off',
-      // Allow control characters in regex for binary data parsing
+      // Allow control characters in regex for binary data parsing in hellosave/account.ts and hellosave/save.ts
       'no-control-regex': 'off'
     }
   },

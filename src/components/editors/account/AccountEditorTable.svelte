@@ -67,7 +67,9 @@
   const groupStates = $derived(
     groups.map((group) => {
       const groupValues = group.items.map((item) => item.value);
-      const selectedInGroup = groupValues.filter((gv) => values.includes(gv));
+      // Use Set for O(1) lookup performance
+      const valuesSet = new Set(values);
+      const selectedInGroup = groupValues.filter((gv) => valuesSet.has(gv));
       const isFullySelected = selectedInGroup.length === groupValues.length && groupValues.length > 0;
       const isPartial = selectedInGroup.length > 0 && selectedInGroup.length < groupValues.length;
       return { isFullySelected, isPartial };
