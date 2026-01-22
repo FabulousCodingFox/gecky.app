@@ -9,7 +9,7 @@
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.dotnet-runtime_6
+    pkgs.dotnetCorePackages.runtime_8_0-bin
     pkgs.just
     pkgs.gum
     pkgs.jq
@@ -20,6 +20,6 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    export DOTNET_ROOT=${pkgs.dotnet-runtime_6}/share/dotnet/
+    export DOTNET_ROOT=${pkgs.dotnetCorePackages.runtime_8_0-bin}/share/dotnet/
   '';
 }

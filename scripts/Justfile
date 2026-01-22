@@ -19,7 +19,7 @@ setup: download-tools
 download-tools:
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "⚙️ TOOL DOWNLOADS"
 
-    @gum spin --spinner dot --title "Downloading MBINCompiler ({{MBIN_COMPILER_VERSION}})..." -- curl -sSL https://github.com/monkeyman192/MBINCompiler/releases/download/{{MBIN_COMPILER_VERSION}}/MBINCompiler-linux-dotnet6 -o ./out/mbincompiler
+    @gum spin --spinner dot --title "Downloading MBINCompiler ({{MBIN_COMPILER_VERSION}})..." -- curl -sSL https://github.com/monkeyman192/MBINCompiler/releases/download/{{MBIN_COMPILER_VERSION}}/MBINCompiler-linux -o ./out/mbincompiler
     @gum style --foreground 10 "✅ Downloaded MBINCompiler ({{MBIN_COMPILER_VERSION}})."
     @chmod +x ./out/mbincompiler
 
