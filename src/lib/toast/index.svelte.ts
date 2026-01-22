@@ -1,3 +1,5 @@
+import { SvelteMap } from 'svelte/reactivity';
+
 let count = 0;
 
 export type ToastOptions = {
@@ -18,8 +20,8 @@ const DEFAULT_OPTIONS: ToastOptions = {
   duration: 5000
 };
 
-// Use Map for O(1) access instead of array for better performance
-export const toast_store: Map<number, ToastInternal> = $state(new Map());
+// Use SvelteMap for O(1) access with proper Svelte 5 reactivity
+export const toast_store: SvelteMap<number, ToastInternal> = new SvelteMap();
 
 function toastFactory() {
   function push(opts: ToastOptions): number {

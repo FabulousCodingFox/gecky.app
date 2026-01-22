@@ -118,7 +118,14 @@
                   <th scope="colgroup" class="relative px-7 sm:w-12 sm:px-6">
                     <div class="absolute inset-y-0 left-0 hidden w-0.5 bg-primary-600 group-has-checked:block dark:bg-primary-500" aria-hidden="true"></div>
                     <div class="group absolute top-1/2 left-4 -mt-2 grid size-4 grid-cols-1">
-                      <input type="checkbox" checked={groupStates[groupIndex].isFullySelected} indeterminate={groupStates[groupIndex].isPartial} onchange={(e) => handleGroupToggle(group, e)} class={CHECKBOX_CLASSES} aria-label={`Select all items in ${group.label} group`} />
+                      <input
+                        type="checkbox"
+                        checked={groupStates[groupIndex].isFullySelected}
+                        indeterminate={groupStates[groupIndex].isPartial}
+                        onchange={(e) => handleGroupToggle(group, e)}
+                        class={CHECKBOX_CLASSES}
+                        aria-label={`Select all items in ${group.label} group`}
+                      />
                       <svg viewBox="0 0 14 14" fill="none" class={SVG_CLASSES} aria-hidden="true">
                         <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-checked:opacity-100" />
                         <path d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-indeterminate:opacity-100" />
