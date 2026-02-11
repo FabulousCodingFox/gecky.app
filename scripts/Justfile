@@ -1,6 +1,9 @@
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
+# https://github.com/monkeyman192/MBINCompiler/releases
 MBIN_COMPILER_VERSION := "v6.17.0-pre3"
+
+# https://github.com/monkeyman192/HGPAKtool/releases
 HGPAK_TOOL_VERSION    := "1.1.2"
 
 default: clean setup extract-mappings extract-rewards extract-items
