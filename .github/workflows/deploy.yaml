@@ -1,0 +1,61 @@
+name: Deploy to gecky.app
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # Step 2: Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24' # Define Node.js version
+
+      # Step 3: Cache Node.js dependencies
+      - name: Cache Node.js modules and npm cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: npm-cache-${{ runner.os }}-node-24-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-node-24-
+            npm-cache-${{ runner.os }}-
+
+      # Step 4: Install dependencies and build the static site
+      - name: Building Static Site
+        run: |
+          npm ci --force
+          npm run build
+
+      # Step 5: Upload the build artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'build/'
+
+      # Step 6: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
