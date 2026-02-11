@@ -11,17 +11,12 @@
 
   createLocalSettingsStore();
 
-  onMount(() => {
-    apply();
-  });
+  onMount(apply);
 </script>
 
 <svelte:head>
   <link rel="icon" href={favicon} />
   <title>{m.title()}</title>
-  {#if import.meta.env.PROD}
-    <script defer src="https://metrics.gecky.app/script.js" data-website-id="fe91756e-bdc6-4d5f-bf3d-ee5769b87bb8"></script>
-  {/if}
 </svelte:head>
 
 <Nav />
