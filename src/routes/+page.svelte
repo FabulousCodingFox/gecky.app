@@ -3,6 +3,8 @@
   import ComputerDesktopIcon from '@iconify-svelte/heroicons/computer-desktop-20-solid';
   import LockClosedIcon from '@iconify-svelte/heroicons/lock-closed-20-solid';
   import { m } from '$lib/paraglide/messages';
+  import { afterNavigate } from '$app/navigation';
+  import { clearSidebar } from '$lib/sidebar.svelte';
 
   const features = [
     {
@@ -21,6 +23,8 @@
       icon: ComputerDesktopIcon
     }
   ];
+
+  afterNavigate(clearSidebar);
 </script>
 
 <div class="overflow-hidden py-24 sm:py-32">

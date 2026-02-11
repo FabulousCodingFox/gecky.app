@@ -1,11 +1,8 @@
 <script lang="ts">
-  import XMarkIcon from '@iconify-svelte/heroicons/x-mark-20-solid';
-  import CheckCircleIcon from '@iconify-svelte/heroicons/check-circle';
-  import InformationCircleIcon from '@iconify-svelte/heroicons/information-circle';
-  import ExclamationCircleIcon from '@iconify-svelte/heroicons/exclamation-circle';
   import type { ToastInternal } from './index.svelte';
   import toast from './index.svelte';
   import { Tween } from 'svelte/motion';
+  import { Icon } from 'iconify-static';
   let { options }: { options: ToastInternal } = $props();
 
   const progress = new Tween(0, { duration: options.duration });
@@ -24,11 +21,11 @@
   <div class="flex items-start">
     <div class="shrink-0">
       {#if options.type === 'info'}
-        <InformationCircleIcon width="24" height="24" aria-hidden="true" class="size-6 text-blue-400" />
+        <Icon icon="heroicons:information-circle" width="24" height="24" class="size-6 text-blue-400" />
       {:else if options.type === 'error'}
-        <ExclamationCircleIcon width="24" height="24" aria-hidden="true" class="size-6 text-red-400" />
+        <Icon icon="heroicons:exclamation-circle" width="24" height="24" class="size-6 text-red-400" />
       {:else if options.type === 'success'}
-        <CheckCircleIcon width="24" height="24" aria-hidden="true" class="size-6 text-green-400" />
+        <Icon icon="heroicons:check-circle" width="24" height="24" class="size-6 text-green-400" />
       {/if}
     </div>
     <div class="ml-3 w-0 flex-1 pt-0.5">
@@ -38,7 +35,7 @@
     <div class="ml-4 flex shrink-0">
       <button onclick={close} type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:outline-hidden dark:bg-zinc-900 dark:text-zinc-500 dark:hover:text-gray-400">
         <span class="sr-only">Close</span>
-        <XMarkIcon width="20" height="20" aria-hidden="true" class="size-5" />
+        <Icon icon="heroicons:x-mark-20-solid" width="20" height="20" class="size-5" />
       </button>
     </div>
   </div>

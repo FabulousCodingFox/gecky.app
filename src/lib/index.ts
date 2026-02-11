@@ -4,6 +4,7 @@ import flag_en from '$lib/assets/flags/flag_en.png?enhanced&w=32';
 import flag_es from '$lib/assets/flags/flag_es.png?enhanced&w=32';
 import MoonIcon from '@iconify-svelte/heroicons/moon';
 import SunIcon from '@iconify-svelte/heroicons/sun';
+import type { Snippet } from 'svelte';
 
 export type Theme = 'light' | 'dark';
 
