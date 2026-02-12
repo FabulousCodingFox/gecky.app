@@ -92,7 +92,7 @@ def process_xml(xml_path):
 
             items[prod_id] = {
                 "name": translated_value,
-                "description": remove_text_tags(description_value),
+                #"description": remove_text_tags(description_value),
                 "texture": texture_path
             }
 
