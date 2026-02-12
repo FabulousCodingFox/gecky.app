@@ -30,7 +30,7 @@
     event.preventDefault();
 
     if (event.dataTransfer.items.length > 1) {
-      toast.error(m.component_uploadform_toast_error_multiple_title(), m.component_uploadform_toast_error_multiple_desc());
+      toast.error(m.component_filechooser_toast_error_multiple_title(), m.component_filechooser_toast_error_multiple_desc());
       return;
     }
 
@@ -48,24 +48,24 @@
     if (!file) {
       return {
         isValid: false,
-        errorTitle: m.component_uploadform_toast_error_none_title(),
-        errorDescription: m.component_uploadform_toast_error_none_desc()
+        errorTitle: m.component_filechooser_toast_error_none_title(),
+        errorDescription: m.component_filechooser_toast_error_none_desc()
       };
     }
 
     if (!file.name.endsWith(ACCEPTED_FILE_EXTENSION)) {
       return {
         isValid: false,
-        errorTitle: m.component_uploadform_toast_error_invalidtype_title(),
-        errorDescription: m.component_uploadform_toast_error_invalidtype_desc()
+        errorTitle: m.component_filechooser_toast_error_invalidtype_title(),
+        errorDescription: m.component_filechooser_toast_error_invalidtype_desc()
       };
     }
 
     if (file.size > MAX_FILE_SIZE) {
       return {
         isValid: false,
-        errorTitle: m.component_uploadform_toast_error_toolarge_title(),
-        errorDescription: m.component_uploadform_toast_error_toolarge_desc({ maxSize: (MAX_FILE_SIZE / (1024 * 1024)).toString() })
+        errorTitle: m.component_filechooser_toast_error_toolarge_title(),
+        errorDescription: m.component_filechooser_toast_error_toolarge_desc({ maxSize: (MAX_FILE_SIZE / (1024 * 1024)).toString() })
       };
     }
 
@@ -129,7 +129,7 @@
 
     isProcessing = true;
 
-    toast.info(m.component_uploadform_toast_info_processing_title(), m.component_uploadform_toast_info_processing_desc());
+    toast.info(m.component_filechooser_toast_info_processing_title(), m.component_filechooser_toast_info_processing_desc());
 
     try {
       const arrayBuffer = await readFileAsArrayBuffer(file!);
@@ -142,17 +142,17 @@
       const result = await callback(arrayBuffer, file?.name || '');
 
       if (!result.isValid) {
-        toast.error(result.errorTitle ?? m.component_uploadform_toast_error_corrupted_title(), result.errorDescription ?? m.component_uploadform_toast_error_corrupted_desc());
+        toast.error(result.errorTitle ?? m.component_filechooser_toast_error_corrupted_title(), result.errorDescription ?? m.component_filechooser_toast_error_corrupted_desc());
         callbackState = 'error';
         isProcessing = false;
         return;
       }
 
-      toast.success(m.component_uploadform_toast_success_loaded_title(), m.component_uploadform_toast_success_loaded_desc());
+      toast.success(m.component_filechooser_toast_success_loaded_title(), m.component_filechooser_toast_success_loaded_desc());
     } catch (error) {
       console.error('File processing error:', error);
       callbackState = 'error';
-      toast.error(m.component_uploadform_toast_error_corrupted_title(), m.component_uploadform_toast_error_corrupted_desc());
+      toast.error(m.component_filechooser_toast_error_corrupted_title(), m.component_filechooser_toast_error_corrupted_desc());
     } finally {
       isProcessing = false;
     }
@@ -161,27 +161,27 @@
 
 <div class="rounded-lg border border-zinc-950/10 bg-transparent px-4 py-5 sm:p-6 dark:border-white/10 dark:bg-white/5">
   {#if mode === 'account'}
-    <Heading level={3}>{m.component_uploadform_location_account_title()}</Heading>
-    <Text>{m.component_uploadform_location_account_desc()}</Text>
+    <Heading level={3}>{m.component_filechooser_location_account_title()}</Heading>
+    <Text>{m.component_filechooser_location_account_desc()}</Text>
 
-    <Text class="mt-3"><Strong>{m.component_uploadform_location_account_linux()}</Strong></Text>
-    <Text><Code>{m.component_uploadform_location_account_path_linux()}</Code></Text>
+    <Text class="mt-3"><Strong>{m.component_filechooser_location_account_linux()}</Strong></Text>
+    <Text><Code>{m.component_filechooser_location_account_path_linux()}</Code></Text>
 
-    <Text class="mt-3"><Strong>{m.component_uploadform_location_account_windows()}</Strong></Text>
-    <Text><Code>{m.component_uploadform_location_account_path_windows()}</Code></Text>
+    <Text class="mt-3"><Strong>{m.component_filechooser_location_account_windows()}</Strong></Text>
+    <Text><Code>{m.component_filechooser_location_account_path_windows()}</Code></Text>
 
-    <Text class="mt-3">{m.component_uploadform_location_account_hint()}</Text>
+    <Text class="mt-3">{m.component_filechooser_location_account_hint()}</Text>
   {:else}
-    <Heading level={3}>{m.component_uploadform_location_save_title()}</Heading>
-    <Text>{m.component_uploadform_location_save_desc()}</Text>
+    <Heading level={3}>{m.component_filechooser_location_save_title()}</Heading>
+    <Text>{m.component_filechooser_location_save_desc()}</Text>
 
-    <Text class="mt-3"><Strong>{m.component_uploadform_location_save_linux()}</Strong></Text>
-    <Text><Code>{m.component_uploadform_location_save_path_linux()}</Code></Text>
+    <Text class="mt-3"><Strong>{m.component_filechooser_location_save_linux()}</Strong></Text>
+    <Text><Code>{m.component_filechooser_location_save_path_linux()}</Code></Text>
 
-    <Text class="mt-3"><Strong>{m.component_uploadform_location_save_windows()}</Strong></Text>
-    <Text><Code>{m.component_uploadform_location_save_path_windows()}</Code></Text>
+    <Text class="mt-3"><Strong>{m.component_filechooser_location_save_windows()}</Strong></Text>
+    <Text><Code>{m.component_filechooser_location_save_path_windows()}</Code></Text>
 
-    <Text class="mt-3">{m.component_uploadform_location_save_hint()}</Text>
+    <Text class="mt-3">{m.component_filechooser_location_save_hint()}</Text>
   {/if}
 </div>
 
@@ -202,13 +202,13 @@
   >
     {#if isProcessing}
       <ArrowPathIcon width="20" height="20" class="mx-auto size-12 animate-spin text-gray-400" />
-      <span class="mt-2 block text-sm font-semibold text-gray-500 dark:text-zinc-400">{m.component_uploadform_form_loading_hint()}</span>
+      <span class="mt-2 block text-sm font-semibold text-gray-500 dark:text-zinc-400">{m.component_filechooser_form_loading_hint()}</span>
     {:else if callbackState === 'error'}
       <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-red-500" />
-      <span class="mt-2 block text-sm font-semibold text-red-600 dark:text-red-400">{m.component_uploadform_form_error_hint()}</span>
+      <span class="mt-2 block text-sm font-semibold text-red-600 dark:text-red-400">{m.component_filechooser_form_error_hint()}</span>
     {:else}
       <DocumentArrowUpIcon width="20" height="20" class="mx-auto size-12 text-gray-500" />
-      <span class="mt-2 block text-sm font-semibold text-zinc-500 dark:text-white">{m.component_uploadform_form_hint()}</span>
+      <span class="mt-2 block text-sm font-semibold text-zinc-500 dark:text-white">{m.component_filechooser_form_hint()}</span>
     {/if}
   </button>
 
