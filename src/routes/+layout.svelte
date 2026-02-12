@@ -12,10 +12,7 @@
   import { page } from '$app/state';
   import NavbarSpacer from '../components/ui/navbar/NavbarSpacer.svelte';
   import Listbox from '../components/ui/listbox/Listbox.svelte';
-  import ListboxLabel from '../components/ui/listbox/ListboxLabel.svelte';
-  import ListboxOption from '../components/ui/listbox/ListboxOption.svelte';
   import { languages, themes, type LocalSettingsStore } from '$lib';
-  import { Icon } from 'iconify-static';
 
   let { children } = $props();
 
