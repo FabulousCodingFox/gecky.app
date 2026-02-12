@@ -1,5 +1,125 @@
 [
   {
+    "id": "^TWITCH_376",
+    "name": "Navigators Poster"
+  },
+  {
+    "id": "^TWITCH_377",
+    "name": "Anomalous Wonder Poster"
+  },
+  {
+    "id": "^TWITCH_378",
+    "name": "Open Horizons Poster"
+  },
+  {
+    "id": "^TWITCH_379",
+    "name": "Remembrance Poster"
+  },
+  {
+    "id": "^TWITCH_380",
+    "name": "Interface Poster"
+  },
+  {
+    "id": "^TWITCH_381",
+    "name": "Deluxe Firework Pack"
+  },
+  {
+    "id": "^TWITCH_382",
+    "name": "Deluxe Firework Pack"
+  },
+  {
+    "id": "^TWITCH_383",
+    "name": "Deluxe Firework Pack"
+  },
+  {
+    "id": "^TWITCH_384",
+    "name": "Deluxe Firework Pack"
+  },
+  {
+    "id": "^TWITCH_385",
+    "name": "Deluxe Firework Pack"
+  },
+  {
+    "id": "^TWITCH_386",
+    "name": "Antler Grass"
+  },
+  {
+    "id": "^TWITCH_387",
+    "name": "Data Display Unit"
+  },
+  {
+    "id": "^TWITCH_388",
+    "name": "Living Fragment A"
+  },
+  {
+    "id": "^TWITCH_389",
+    "name": "Ragged Tent"
+  },
+  {
+    "id": "^TWITCH_390",
+    "name": "Covered Crate"
+  },
+  {
+    "id": "^TWITCH_391",
+    "name": "Spawning Cowl"
+  },
+  {
+    "id": "^TWITCH_392",
+    "name": "Mechanical Paw"
+  },
+  {
+    "id": "^TWITCH_393",
+    "name": "Crimson Freighter Trail"
+  },
+  {
+    "id": "^TWITCH_394",
+    "name": "Outlaw Cape"
+  },
+  {
+    "id": "^TWITCH_395",
+    "name": "Pyrotechnic Jetpack Trail"
+  },
+  {
+    "id": "^TWITCH_396",
+    "name": "Art of Esenyov-XVI"
+  },
+  {
+    "id": "^TWITCH_397",
+    "name": "Obedience of Solemnity"
+  },
+  {
+    "id": "^TWITCH_398",
+    "name": "H. Coldvaum Egg"
+  },
+  {
+    "id": "^TWITCH_399",
+    "name": "Conceptual Vatezh Beam"
+  },
+  {
+    "id": "^TWITCH_400",
+    "name": "Robo-Warden Egg"
+  },
+  {
+    "id": "^TWITCH_401",
+    "name": "Tahikok Roamer V"
+  },
+  {
+    "id": "^TWITCH_402",
+    "name": "Reckless Prophecy HF3"
+  },
+  {
+    "id": "^TWITCH_403",
+    "name": "The Master of Sleep"
+  },
+  {
+    "id": "^TWITCH_404",
+    "name": "Oigaya's Redemption PV4"
+  },
+  {
+    "id": "^TWITCH_405",
+    "name": "DX7 Ibail"
+  },
+  {
     "id": "^TWITCH_346",
     "name": "Pawprints Decal"
   },
@@ -217,7 +337,7 @@
   },
   {
     "id": "^TWITCH_340",
-    "name": "Improvised Volodov Clarifier"
+    "name": "Improvized Volodov Clarifier"
   },
   {
     "id": "^TWITCH_341",

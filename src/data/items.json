@@ -1727,6 +1727,38 @@
     "name": "Runic Beam",
     "texture": "/nms/textures/ui/frontend/icons/robotparts/robotparts.staffpole.6.png"
   },
+  "TRUCK_BODY02": {
+    "name": "Flatbed Chassis Module",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckbody02.png"
+  },
+  "TRUCK_BODY03": {
+    "name": "Furnace Chassis Module",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckbody03.png"
+  },
+  "TRUCK_CAB02": {
+    "name": "Widescreen Cabin",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckcab02.png"
+  },
+  "TRUCK_WHEELS02": {
+    "name": "Off-Road Wheels",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckwheels02.png"
+  },
+  "TRUCK_WHEELS03": {
+    "name": "Tracked Treads",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckwheels03.png"
+  },
+  "TRUCK_WHEELS06": {
+    "name": "Caterpillar Track",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckwheels06.png"
+  },
+  "TRUCK_WHEELS07": {
+    "name": "Superelastic Wheels",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckwheels07.png"
+  },
+  "TRUCK_PAINT02": {
+    "name": "Weathered Finish",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckpaint02.png"
+  },
   "SPEC_XOHELMET": {
     "name": "X.O. Suit",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.blob_b.png"
@@ -2743,6 +2775,62 @@
     "name": "Breach Banner",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s20.banner.png"
   },
+  "EXPD_POSTER21A": {
+    "name": "Magnetism Poster",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.postera.png"
+  },
+  "EXPD_POSTER21B": {
+    "name": "Gravitino Coil Poster",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.posterb.png"
+  },
+  "EXPD_POSTER21C": {
+    "name": "Colossus Exocraft Poster",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.posterc.png"
+  },
+  "EXPD_TITLE21": {
+    "name": "Title: 'Mag-Field Expert'",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
+  },
+  "EXPD_DECAL21": {
+    "name": "Remnant Decal",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.decal.png"
+  },
+  "EXPD_BANNER21": {
+    "name": "Remnant Banner",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.banner.png"
+  },
+  "VAULT_ARMOUR": {
+    "name": "Heirloom Breastplate",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.vaultarmour.png"
+  },
+  "VAULT_TORSO": {
+    "name": "Heirloom Suit",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.vaulttorso.png"
+  },
+  "VAULT_GLOVES": {
+    "name": "Heirloom Gloves",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.vaultgloves.png"
+  },
+  "VAULT_LEGS": {
+    "name": "Heirloom Leggings",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.vaultlegs.png"
+  },
+  "VAULT_BOOTS": {
+    "name": "Heirloom Boots",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/expedition.s21.vaultboots.png"
+  },
+  "TRUCK_CAB03": {
+    "name": "Asymmetrical Cabin",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckcab03.png"
+  },
+  "TRUCK_WHEELS08": {
+    "name": "Mechanical Legs",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckwheels08.png"
+  },
+  "TRUCK_PAINT03": {
+    "name": "Camouflage Finish",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.2026.truckpaint03.png"
+  },
   "TWITCH_SHIP01": {
     "name": "Eokai's Prime Inquirer",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.twitch.ship01.png"
@@ -2963,6 +3051,26 @@
     "name": "Speedy Noichir V",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship55.png"
   },
+  "TWITCH_SHIP56": {
+    "name": "Tahikok Roamer V",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship56.png"
+  },
+  "TWITCH_SHIP57": {
+    "name": "Reckless Prophecy HF3",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship57.png"
+  },
+  "TWITCH_SHIP58": {
+    "name": "The Master of Sleep",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship58.png"
+  },
+  "TWITCH_SHIP59": {
+    "name": "Oigaya's Redemption PV4",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship59.png"
+  },
+  "TWITCH_SHIP60": {
+    "name": "DX7 Ibail",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.ship60.png"
+  },
   "TWITCH_PET01": {
     "name": "P. Sheptefalae Egg",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.twitch.pet01.png"
@@ -3059,6 +3167,10 @@
     "name": "A. Chilinjosa Egg",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.pet24.png"
   },
+  "TWITCH_PET25": {
+    "name": "H. Coldvaum Egg",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.pet25.png"
+  },
   "TWITCH_GUN01": {
     "name": "Quantum Harmoniser Mark IV",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.twitch.gun01.png"
@@ -3152,7 +3264,7 @@
     "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun23.png"
   },
   "TWITCH_GUN24": {
-    "name": "Improvised Volodov Clarifier",
+    "name": "Improvized Volodov Clarifier",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun24.png"
   },
   "TWITCH_GUN25": {
@@ -3166,6 +3278,18 @@
   "TWITCH_GUN27": {
     "name": "Gleaming Light Injector",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun27.png"
+  },
+  "TWITCH_GUN28": {
+    "name": "Art of Esenyov-XVI",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun28.png"
+  },
+  "TWITCH_GUN29": {
+    "name": "Obedience of Solemnity",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun29.png"
+  },
+  "TWITCH_GUN30": {
+    "name": "Conceptual Vatezh Beam",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/twitch.gun30.png"
   },
   "TWITCH_GUNUP01A": {
     "name": "Multi-Tool Upgrade Pack",
@@ -3407,6 +3531,26 @@
     "name": "Atlas Firework Pack",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.expedition.fireworkpack01.png"
   },
+  "TWITCH_FIREW12A": {
+    "name": "Deluxe Firework Pack",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.twitch.fireworkpack02.png"
+  },
+  "TWITCH_FIREW12B": {
+    "name": "Deluxe Firework Pack",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.twitch.fireworkpack02.png"
+  },
+  "TWITCH_FIREW12C": {
+    "name": "Deluxe Firework Pack",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.twitch.fireworkpack02.png"
+  },
+  "TWITCH_FIREW12D": {
+    "name": "Deluxe Firework Pack",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.twitch.fireworkpack02.png"
+  },
+  "TWITCH_FIREW12E": {
+    "name": "Deluxe Firework Pack",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.twitch.fireworkpack02.png"
+  },
   "STATUE_BLOB_B": {
     "name": "Bronze Blob Statue",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.blob_b.png"
@@ -3570,6 +3714,10 @@
   "SPEC_EMOTE15": {
     "name": "Hologram: System",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.emote15.png"
+  },
+  "SPEC_EMOTE16": {
+    "name": "Toot Toot!",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.emote16.png"
   },
   "SPEC_DECAL01": {
     "name": "Anomaly Decal",
@@ -4803,9 +4951,69 @@
     "name": "Carnelian Bush",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.hotplant06.png"
   },
+  "BASE_HOTPLANT07": {
+    "name": "Carbon Vine",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.hotplant07.png"
+  },
+  "BASE_HOTPLANT08": {
+    "name": "Ember Frond",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.hotplant08.png"
+  },
   "BASE_RADPLANT04": {
     "name": "Neutronic Boulder",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.radplant04.png"
+  },
+  "BASE_DUST01": {
+    "name": "Desert Star",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust01.png"
+  },
+  "BASE_DUST02": {
+    "name": "Pipe Cactus",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust02.png"
+  },
+  "BASE_DUST03": {
+    "name": "Dust Palm",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust03.png"
+  },
+  "BASE_DUST04": {
+    "name": "Leopard Tree",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust04.png"
+  },
+  "BASE_DUST05": {
+    "name": "Ornamental Tree",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust05.png"
+  },
+  "BASE_DUST06": {
+    "name": "Porcelain Flower",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust06.png"
+  },
+  "BASE_DUST07": {
+    "name": "Torque Cactus",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust07.png"
+  },
+  "BASE_DUST08": {
+    "name": "Sandstone Rock",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust08.png"
+  },
+  "BASE_DUST09": {
+    "name": "Sandstone Pillar",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust09.png"
+  },
+  "BASE_DUST10": {
+    "name": "Cavern Rock",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust10.png"
+  },
+  "BASE_DUST11": {
+    "name": "Dancer Tree",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust11.png"
+  },
+  "BASE_DUST12": {
+    "name": "Feather Palm",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust12.png"
+  },
+  "BASE_DUST13": {
+    "name": "Tine Cactus",
+    "texture": "/nms/textures/ui/frontend/icons/specialshop/special.biomeprop.dust13.png"
   },
   "U_LASER1": {
     "name": "Mining Beam Module",
@@ -8292,7 +8500,7 @@
     "texture": "/nms/textures/ui/frontend/icons/buildable/buildable.npcfrigterm.png"
   },
   "GARAGE_FREIGHT": {
-    "name": "Orbital Exocraft Materialiser",
+    "name": "Orbital Exocraft Materializer",
     "texture": "/nms/textures/ui/frontend/icons/buildable/buildable.vehiclesummoner.freighter.png"
   },
   "FRE_CORR_A": {
@@ -15211,6 +15419,18 @@
     "name": "Debt",
     "texture": "/nms/textures/ui/frontend/icons/settlement/negativeproduction.png"
   },
+  "SCRAP_RAD": {
+    "name": "Radioactive Hazard",
+    "texture": "/nms/textures/ui/frontend/icons/substances/scrap.rad.png"
+  },
+  "SCRAP_TOX": {
+    "name": "Toxic Containment",
+    "texture": "/nms/textures/ui/frontend/icons/substances/scrap.tox.png"
+  },
+  "SCRAP_EXP": {
+    "name": "Potentially Explosive",
+    "texture": "/nms/textures/ui/frontend/icons/substances/scrap.exp.png"
+  },
   "SUNGOLD": {
     "name": "Liquid Sun",
     "texture": "/nms/textures/ui/frontend/icons/u4products/sub.sungold.png"
@@ -15839,6 +16059,10 @@
     "name": "Lost Angler's Rig",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.expedition.s15fishlaser.png"
   },
+  "GRAVITYGUN": {
+    "name": "Gravitino Coil",
+    "texture": "/nms/textures/ui/frontend/icons/technology/render.gravitygun.png"
+  },
   "BOLT": {
     "name": "Boltcaster",
     "texture": "/nms/textures/ui/frontend/icons/technology/render.projectile1.png"
@@ -16059,6 +16283,10 @@
     "name": "Mineral Processing Rig",
     "texture": "/nms/textures/ui/frontend/icons/technology/vehicle/render.refiner.png"
   },
+  "EXO_PLOUGH": {
+    "name": "Excavation Blade",
+    "texture": "/nms/textures/ui/frontend/icons/technology/vehicle/render.plough.png"
+  },
   "VEHICLE_SCAN": {
     "name": "Exocraft Radar",
     "texture": "/nms/textures/ui/frontend/icons/technology/vehicle/render.scan.png"
@@ -16070,6 +16298,10 @@
   "VEHICLE_SCAN2": {
     "name": "Radar Power Resonator",
     "texture": "/nms/textures/ui/frontend/icons/technology/vehicle/render.scanu1.png"
+  },
+  "VEHICLE_SCOPE": {
+    "name": "Cyclops Scope",
+    "texture": "/nms/textures/ui/frontend/icons/technology/vehicle/render.scope.png"
   },
   "VEHICLE_BOOST": {
     "name": "Exocraft Boosters",

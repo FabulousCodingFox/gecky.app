@@ -1,5 +1,80 @@
 [
   {
+    "name": "Heirloom Breastplate",
+    "id": "^VAULT_ARMOUR",
+    "expedition": 21
+  },
+  {
+    "name": "Heirloom Suit",
+    "id": "^VAULT_TORSO",
+    "expedition": 21
+  },
+  {
+    "name": "Heirloom Gloves",
+    "id": "^VAULT_GLOVES",
+    "expedition": 21
+  },
+  {
+    "name": "Heirloom Leggings",
+    "id": "^VAULT_LEGS",
+    "expedition": 21
+  },
+  {
+    "name": "Heirloom Boots",
+    "id": "^VAULT_BOOTS",
+    "expedition": 21
+  },
+  {
+    "name": "Title: 'Mag-Field Expert'",
+    "id": "^EXPD_TITLE21",
+    "expedition": 21
+  },
+  {
+    "name": "Remnant Decal",
+    "id": "^EXPD_DECAL21",
+    "expedition": 21
+  },
+  {
+    "name": "Remnant Banner",
+    "id": "^EXPD_BANNER21",
+    "expedition": 21
+  },
+  {
+    "name": "Mechanical Legs",
+    "id": "^TRUCK_WHEELS08",
+    "expedition": 21
+  },
+  {
+    "name": "Asymmetrical Cabin",
+    "id": "^TRUCK_CAB03",
+    "expedition": 21
+  },
+  {
+    "name": "Camouflage Finish",
+    "id": "^TRUCK_PAINT03",
+    "expedition": 21
+  },
+  {
+    "name": "Toot Toot!",
+    "id": "^SPEC_EMOTE16",
+    "expedition": 21
+  },
+  {
+    "name": "Colossus Exocraft Poster",
+    "id": "^EXPD_POSTER21C",
+    "expedition": 21
+  },
+  {
+    "name": "Gravitino Coil Poster",
+    "id": "^EXPD_POSTER21B",
+    "expedition": 21
+  },
+  {
+    "name": "Magnetism Poster",
+    "id": "^EXPD_POSTER21A",
+    "expedition": 21
+  },
+  {
     "name": "Aeron Drive",
     "id": "^B_WNG_P",
     "expedition": 20
