@@ -1,9 +1,10 @@
 <script lang="ts">
   import dataRewardsTwitch from '$lib/../data/rewards/twitch.json';
   import { initContext, type RewardItem, type TableGroup } from '../shared.svelte';
-  import AccountEditorTable from '../../../components/editors/account/AccountEditorTable.svelte';
+  import TableEditor from '../../../components/editors/table/TableEditor.svelte';
   import { m } from '$lib/paraglide/messages';
-  import AccountEditorTableHeader from '../../../components/editors/account/AccountEditorTableHeader.svelte';
+  import TableEditorHeader from '../../../components/editors/table/TableEditorHeader.svelte';
+  import PageLayout from '../../../components/ui/layout/PageLayout.svelte';
 
   let editorData = initContext();
 
@@ -30,7 +31,7 @@
   });
 </script>
 
-<div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-  <AccountEditorTableHeader name={m.page_account_tab_twitch().toString()} selected={twitchRewards.length} total={twitchData.length} />
-  <AccountEditorTable header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={twitchGroups} bind:values={twitchRewards} />
-</div>
+<PageLayout>
+  <TableEditorHeader name={m.page_account_tab_twitch().toString()} selected={twitchRewards.length} total={twitchData.length} />
+  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={twitchGroups} bind:values={twitchRewards} />
+</PageLayout>
