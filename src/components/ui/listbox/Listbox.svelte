@@ -1,18 +1,21 @@
 <script lang="ts">
   import { Select, type SelectRootPropsWithoutHTML } from 'bits-ui';
   import clsx from 'clsx';
-  import type { Snippet } from 'svelte';
+  import type { Snippet, SvelteComponent } from 'svelte';
   import ListboxOption from './ListboxOption.svelte';
   import ListboxLabel from './ListboxLabel.svelte';
+  import { sharedClasses } from '.';
 
   type Props = {
     children?: Snippet;
     value: string;
     class?: string;
-    items: { value: string; label: string }[];
+    items: { value: string; label: string; icon?: SvelteComponent }[];
   } & Omit<SelectRootPropsWithoutHTML, 'class'>;
 
   let { children, items = [], class: className = '', value = $bindable(), ...props }: Props = $props();
+
+  let item = $derived(items.find((o) => o.value === value)!);
 </script>
 
 <Select.Root {...props as SelectRootPropsWithoutHTML} bind:value={value as never}>
@@ -52,8 +55,13 @@
         'group-data-invalid:border-red-500 group-data-hover:group-data-invalid:border-red-500 dark:group-data-invalid:border-red-600 dark:data-hover:group-data-invalid:border-red-600',
         // Disabled state
         'group-data-disabled:border-zinc-950/20 group-data-disabled:opacity-100 dark:group-data-disabled:border-white/15 dark:group-data-disabled:bg-white/2.5 dark:group-data-disabled:data-hover:border-white/15'
-      ])}>{items.find((o) => o.value === value)?.label}</span
+      ])}
     >
+      <div class={clsx(sharedClasses, 'gap-2')}>
+        <item.icon width="20" height="20" data-slot="icon" />
+        {item.label}
+      </div>
+    </span>
     <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
       <svg class="size-5 stroke-zinc-500 group-data-disabled:stroke-zinc-600 sm:size-4 dark:stroke-zinc-400 forced-colors:stroke-[CanvasText]" viewBox="0 0 16 16" aria-hidden="true" fill="none">
         <path d="M5.75 10.75L8 13L10.25 10.75" stroke-width={1.5} stroke-linecap="round" stroke-linejoin="round" />
@@ -81,8 +89,9 @@
         'transition-opacity duration-100 ease-in data-closed:data-leave:opacity-0 data-transition:pointer-events-none'
       )}
     >
-      {#each items as { value, label } (value)}
+      {#each items as { value, label, icon: Icon } (value)}
         <ListboxOption {value} {label}>
+          <Icon width="20" height="20" data-slot="icon" />
           <ListboxLabel>{label}</ListboxLabel>
         </ListboxOption>
       {/each}

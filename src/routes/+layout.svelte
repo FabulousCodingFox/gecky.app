@@ -38,8 +38,8 @@
       </NavbarSection>
       <NavbarSpacer />
       <NavbarSection>
-        <Listbox type="single" allowDeselect={false} bind:value={localSettings.theme} items={Object.values(themes).map((o) => ({ value: o.id, label: o.name }))} />
-        <Listbox type="single" allowDeselect={false} bind:value={localSettings.language} items={Object.values(languages).map((o) => ({ value: o.id, label: o.name }))} />
+        <Listbox type="single" allowDeselect={false} bind:value={localSettings.theme} items={Object.values(themes).map((o) => ({ value: o.id, label: o.name, icon: o.icon }))} />
+        <Listbox type="single" allowDeselect={false} bind:value={localSettings.language} items={Object.values(languages).map((o) => ({ value: o.id, label: o.name, icon: o.icon }))} />
       </NavbarSection>
     </Navbar>
   {/snippet}

@@ -2,19 +2,9 @@
   import { Select, type SelectItemProps } from 'bits-ui';
   import { clsx } from 'clsx';
   import type { Snippet } from 'svelte';
+  import { sharedClasses } from '.';
 
   let { children, class: className = '', ...props }: { children?: Snippet; class?: string } & Omit<SelectItemProps, 'class'> = $props();
-
-  const sharedClasses = clsx(
-    // Base
-    'flex min-w-0 items-center',
-    // Icons
-    '*:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 sm:*:data-[slot=icon]:size-4',
-    '*:data-[slot=icon]:text-zinc-500 group-data-highlighted/option:*:data-[slot=icon]:text-white dark:*:data-[slot=icon]:text-zinc-400',
-    'forced-colors:*:data-[slot=icon]:text-[CanvasText] forced-colors:group-data-highlighted/option:*:data-[slot=icon]:text-[Canvas]',
-    // Avatars
-    '*:data-[slot=avatar]:-mx-0.5 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:size-5'
-  );
 </script>
 
 <Select.Item
