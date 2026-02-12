@@ -1,7 +1,7 @@
 import { m } from './paraglide/messages';
-import flag_de from '$lib/assets/flags/flag_de.png?enhanced&w=32';
-import flag_en from '$lib/assets/flags/flag_en.png?enhanced&w=32';
-import flag_es from '$lib/assets/flags/flag_es.png?enhanced&w=32';
+import flag_de from '@iconify-svelte/circle-flags/de';
+import flag_en from '@iconify-svelte/circle-flags/en';
+import flag_es from '@iconify-svelte/circle-flags/es';
 import MoonIcon from '@iconify-svelte/heroicons/moon';
 import SunIcon from '@iconify-svelte/heroicons/sun';
 
@@ -17,7 +17,7 @@ export type LocalSettingsStore = {
 export type LanguageMeta = {
   id: Language;
   name: string;
-  flag: string;
+  icon: typeof flag_de;
   browser_locale: Intl.LocalesArgument;
 };
 
@@ -28,9 +28,9 @@ export type ThemeMeta = {
 };
 
 export const languages: Record<Language, LanguageMeta> = {
-  en: { id: 'en', name: m.lang_en(), flag: flag_en, browser_locale: 'en-US' },
-  de: { id: 'de', name: m.lang_de(), flag: flag_de, browser_locale: 'de-DE' },
-  es: { id: 'es', name: m.lang_es(), flag: flag_es, browser_locale: 'es-ES' }
+  en: { id: 'en', name: m.lang_en(), icon: flag_en, browser_locale: 'en-US' },
+  de: { id: 'de', name: m.lang_de(), icon: flag_de, browser_locale: 'de-DE' },
+  es: { id: 'es', name: m.lang_es(), icon: flag_es, browser_locale: 'es-ES' }
 };
 
 export const themes: Record<Theme, ThemeMeta> = {

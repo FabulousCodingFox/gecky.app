@@ -3,7 +3,7 @@
   import clsx from 'clsx';
   import itemData from '../../data/items.json';
   import { ContextMenu, DropdownMenu } from 'bits-ui';
-  import ChevronDownIcon from '@iconify-svelte/heroicons/chevron-down-20-solid';
+  import ChevrotDownIcon from '@iconify-svelte/heroicons/chevron-double-down-20-solid';
 
   type Props = {
     value: JSONSaveData;
@@ -92,7 +92,7 @@
       class="inline-flex cursor-pointer justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:inset-ring-white/5 dark:hover:bg-white/20"
     >
       Quick Actions
-      <ChevronDownIcon aria-hidden="true" class="-mr-1 size-5 text-gray-400" width="20" height="20" />
+      <ChevrotDownIcon class="-mr-1 size-5 text-gray-400" width="20" height="20" />
     </DropdownMenu.Trigger>
     <DropdownMenu.Portal>
       <DropdownMenu.Content class="mt-2 w-56 rounded-md bg-white shadow-lg outline-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10">
