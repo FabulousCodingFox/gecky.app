@@ -44,12 +44,11 @@
     "vitest-browser-svelte": "^2.0.2"
   },
   "dependencies": {
-    "@iconify-svelte/heroicons": "^1.0.0",
     "@iconify-svelte/circle-flags": "^1.0.0",
+    "@iconify-svelte/heroicons": "^1.0.0",
     "@inlang/paraglide-js": "^2.11.0",
     "bits-ui": "^2.15.5",
     "fflate": "^0.8.2",
-    "monaco-editor": "^0.55.1",
-    "monaco-themes": "^0.4.8"
+    "svelte-jsoneditor": "^3.11.0"
   }
 }
