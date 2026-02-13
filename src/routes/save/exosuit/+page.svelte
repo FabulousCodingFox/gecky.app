@@ -8,7 +8,7 @@
   import PageLayout from '../../../components/ui/layout/PageLayout.svelte';
   import Text from '../../../components/ui/text/Text.svelte';
   import { initContext } from '../shared.svelte';
-  import InventoryEditor from '../../../components/editors/InventoryEditor.svelte';
+  import InventoryEditor from '../../../components/editors/input/InventoryInput.svelte';
   import SimpleNumberInput from '../../../components/editors/input/SimpleNumberInput.svelte';
 
   let editorData = initContext();

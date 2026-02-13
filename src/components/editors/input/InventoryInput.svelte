@@ -1,27 +1,27 @@
 <script lang="ts">
   import type { JSONSaveData } from '$lib/json';
   import clsx from 'clsx';
-  import itemData from '../../data/items.json';
+  import itemData from '../../../data/items.json';
   import ChevrotDownIcon from '@iconify-svelte/heroicons/chevron-down-16-solid';
-  import Button from '../ui/button/Button.svelte';
+  import Button from '../../ui/button/Button.svelte';
   import ArrowsPointingOutIcon from '@iconify-svelte/heroicons/arrows-pointing-out-16-solid';
   import PencilIcon from '@iconify-svelte/heroicons/pencil-16-solid';
-  import Dropdown from '../ui/dropdown/Dropdown.svelte';
-  import DropdownButton from '../ui/dropdown/DropdownButton.svelte';
-  import DropdownMenu from '../ui/dropdown/DropdownMenu.svelte';
-  import DropdownItem from '../ui/dropdown/DropdownItem.svelte';
+  import Dropdown from '../../ui/dropdown/Dropdown.svelte';
+  import DropdownButton from '../../ui/dropdown/DropdownButton.svelte';
+  import DropdownMenu from '../../ui/dropdown/DropdownMenu.svelte';
+  import DropdownItem from '../../ui/dropdown/DropdownItem.svelte';
   import { ContextMenu } from 'bits-ui';
-  import ContextmenuContent from '../ui/contextmenu/ContextmenuContent.svelte';
-  import ContextmenuItem from '../ui/contextmenu/ContextmenuItem.svelte';
-  import Dialog from '../ui/dialog/Dialog.svelte';
-  import DialogTitle from '../ui/dialog/DialogTitle.svelte';
-  import DialogDescription from '../ui/dialog/DialogDescription.svelte';
-  import DialogBody from '../ui/dialog/DialogBody.svelte';
-  import DialogActions from '../ui/dialog/DialogActions.svelte';
-  import Field from '../ui/fieldset/Field.svelte';
-  import Label from '../ui/fieldset/Label.svelte';
-  import Input from '../ui/input/Input.svelte';
-  import FieldGroup from '../ui/fieldset/FieldGroup.svelte';
+  import ContextmenuContent from '../../ui/contextmenu/ContextmenuContent.svelte';
+  import ContextmenuItem from '../../ui/contextmenu/ContextmenuItem.svelte';
+  import Dialog from '../../ui/dialog/Dialog.svelte';
+  import DialogTitle from '../../ui/dialog/DialogTitle.svelte';
+  import DialogDescription from '../../ui/dialog/DialogDescription.svelte';
+  import DialogBody from '../../ui/dialog/DialogBody.svelte';
+  import DialogActions from '../../ui/dialog/DialogActions.svelte';
+  import Field from '../../ui/fieldset/Field.svelte';
+  import Label from '../../ui/fieldset/Label.svelte';
+  import Input from '../../ui/input/Input.svelte';
+  import FieldGroup from '../../ui/fieldset/FieldGroup.svelte';
 
   type Props = {
     value: JSONSaveData;
