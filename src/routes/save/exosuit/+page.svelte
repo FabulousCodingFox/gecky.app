@@ -1,44 +1,68 @@
 <script lang="ts">
   import InputInventory from '../../../components/editors/InputInventory.svelte';
-  import InputNumber from '../../../components/editors/InputNumber.svelte';
+  import Field from '../../../components/ui/fieldset/Field.svelte';
+  import FieldGroup from '../../../components/ui/fieldset/FieldGroup.svelte';
+  import Fieldset from '../../../components/ui/fieldset/Fieldset.svelte';
+  import Label from '../../../components/ui/fieldset/Label.svelte';
+  import Legend from '../../../components/ui/fieldset/Legend.svelte';
+  import Divider from '../../../components/ui/divider/Divider.svelte';
+  import Input from '../../../components/ui/input/Input.svelte';
+  import PageLayout from '../../../components/ui/layout/PageLayout.svelte';
+  import Text from '../../../components/ui/text/Text.svelte';
   import { initContext } from '../shared.svelte';
+  import InventoryEditor from '../../../components/editors/InventoryEditor.svelte';
 
   let editorData = initContext();
 </script>
 
-<div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-  <div class="space-y-12">
-    <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
-      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Stats</h2>
-      <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Modify the exosuit's core stats.</p>
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Health} label="Health" min={0} />
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Shield} label="Shield" min={0} />
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Energy} label="Energy" min={0} />
-      </div>
-    </div>
-    <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
-      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Currencies</h2>
-      <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Modify the amounts of various in-game currencies.</p>
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Units} label="Units" min={-1} />
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Nanites} label="Nanites" min={0} />
-        <InputNumber bind:value={editorData.data.BaseContext.PlayerStateData.Specials} label="Quicksilver" min={0} />
-      </div>
-    </div>
-    <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
-      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Inventory</h2>
-      <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Modify the exosuit's inventory items.</p>
-      <div class="mt-10">
-        <InputInventory bind:value={editorData.data.BaseContext.PlayerStateData.Inventory} type="cargo" />
-      </div>
-    </div>
-    <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
-      <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">Inventory_TechOnly</h2>
-      <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">Modify the exosuit's inventory items.</p>
-      <div class="mt-10">
-        <InputInventory bind:value={editorData.data.BaseContext.PlayerStateData.Inventory_TechOnly} type="tech" />
-      </div>
-    </div>
-  </div>
-</div>
+<PageLayout>
+  <Fieldset>
+    <Legend>Stats</Legend>
+    <Text>Modify the exosuit's core stats.</Text>
+    <FieldGroup>
+      <Field>
+        <Label>Health</Label>
+        <Input type="number" min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Health} />
+      </Field>
+      <Field>
+        <Label>Shield</Label>
+        <Input type="number" min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Shield} />
+      </Field>
+      <Field>
+        <Label>Energy</Label>
+        <Input type="number" min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Energy} />
+      </Field>
+    </FieldGroup>
+  </Fieldset>
+  <Divider />
+  <Fieldset>
+    <Legend>Currencies</Legend>
+    <Text>Modify the amounts of various in-game currencies.</Text>
+    <FieldGroup>
+      <Field>
+        <Label>Units</Label>
+        <Input type="number" min={-1} bind:value={editorData.data.BaseContext.PlayerStateData.Units} />
+      </Field>
+      <Field>
+        <Label>Nanites</Label>
+        <Input type="number" min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Nanites} />
+      </Field>
+      <Field>
+        <Label>Quicksilver</Label>
+        <Input type="number" min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Specials} />
+      </Field>
+    </FieldGroup>
+  </Fieldset>
+  <Divider />
+  <Fieldset>
+    <Legend>Inventory</Legend>
+    <Text>Modify the exosuit's inventory items.</Text>
+    <InventoryEditor bind:value={editorData.data.BaseContext.PlayerStateData.Inventory} type="cargo" />
+  </Fieldset>
+  <Divider />
+  <Fieldset>
+    <Legend>Technology</Legend>
+    <Text>Modify the exosuit's installed technology.</Text>
+    <InventoryEditor bind:value={editorData.data.BaseContext.PlayerStateData.Inventory_TechOnly} type="tech" />
+  </Fieldset>
+</PageLayout>

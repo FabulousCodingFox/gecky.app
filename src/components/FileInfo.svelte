@@ -3,6 +3,9 @@
   import type { JSONSaveData } from '$lib/json';
   import { m } from '$lib/paraglide/messages';
   import { getContext } from 'svelte';
+  import DescriptionList from './ui/description-list/DescriptionList.svelte';
+  import DescriptionDetails from './ui/description-list/DescriptionDetails.svelte';
+  import DescriptionTerm from './ui/description-list/DescriptionTerm.svelte';
 
   let { fileName, mode, saveData = $bindable() }: { fileName: string; saveData: JSONSaveData; mode: 'save' | 'account' } = $props();
 
@@ -53,15 +56,9 @@
   );
 </script>
 
-<div class="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800/50 dark:shadow-none dark:inset-ring dark:inset-ring-white/10">
-  <div class="border-t border-white/5">
-    <dl class="divide-y divide-white/5">
-      {#each data as d (d.key)}
-        <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-900 dark:text-gray-100">{d.key}</dt>
-          <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">{d.value}</dd>
-        </div>
-      {/each}
-    </dl>
-  </div>
-</div>
+<DescriptionList>
+  {#each data as d (d.key)}
+    <DescriptionTerm>{d.key}</DescriptionTerm>
+    <DescriptionDetails class="text-ellipsis">{d.value}</DescriptionDetails>
+  {/each}
+</DescriptionList>
