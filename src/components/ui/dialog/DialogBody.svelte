@@ -6,4 +6,4 @@
   let { children, class: className = '', ...props }: { children?: Snippet; class?: string } & Omit<SvelteHTMLElements['div'], 'class'> = $props();
 </script>
 
-<div data-slot="control" {...props} class={clsx(className, 'grid gap-8')}>{@render children?.()}</div>
+<div {...props} class={clsx('mt-6', className)}>{@render children?.()}</div>

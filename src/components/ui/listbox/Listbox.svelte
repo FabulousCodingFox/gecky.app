@@ -7,13 +7,12 @@
   import { sharedClasses } from '.';
 
   type Props = {
-    children?: Snippet;
     value: string;
     class?: string;
     items: { value: string; label: string; icon?: SvelteComponent }[];
   } & Omit<Select.RootProps, 'class'>;
 
-  let { children, items = [], class: className = '', value = $bindable(), ...props }: Props = $props();
+  let { items = [], class: className = '', value = $bindable(), ...props }: Props = $props();
 
   let item = $derived(items.find((o) => o.value === value)!);
 </script>

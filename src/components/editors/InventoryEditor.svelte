@@ -13,6 +13,15 @@
   import { ContextMenu } from 'bits-ui';
   import ContextmenuContent from '../ui/contextmenu/ContextmenuContent.svelte';
   import ContextmenuItem from '../ui/contextmenu/ContextmenuItem.svelte';
+  import Dialog from '../ui/dialog/Dialog.svelte';
+  import DialogTitle from '../ui/dialog/DialogTitle.svelte';
+  import DialogDescription from '../ui/dialog/DialogDescription.svelte';
+  import DialogBody from '../ui/dialog/DialogBody.svelte';
+  import DialogActions from '../ui/dialog/DialogActions.svelte';
+  import Field from '../ui/fieldset/Field.svelte';
+  import Label from '../ui/fieldset/Label.svelte';
+  import Input from '../ui/input/Input.svelte';
+  import FieldGroup from '../ui/fieldset/FieldGroup.svelte';
 
   type Props = {
     value: JSONSaveData;
@@ -90,9 +99,34 @@
       }
     }
   }
+
+  let isResizeDialogOpen = $state(false);
+  let reiszeDialogWidth = $state(value.Width);
+  let reiszeDialogHeight = $state(value.Height);
 </script>
 
-<Button class="mt-4">
+<Dialog bind:open={isResizeDialogOpen}>
+  <DialogTitle>Resize Inventory</DialogTitle>
+  <DialogDescription>Resize the Inventory. Max allowed size is 10x10.</DialogDescription>
+  <DialogBody>
+    <FieldGroup>
+      <Field>
+        <Label>Width</Label>
+        <Input name="width" placeholder="10" min={1} max={10} bind:value={reiszeDialogWidth} />
+      </Field>
+      <Field>
+        <Label>Height</Label>
+        <Input name="height" placeholder="10" min={1} max={10} bind:value={reiszeDialogHeight} />
+      </Field>
+    </FieldGroup>
+  </DialogBody>
+  <DialogActions>
+    <Button plain onclick={() => (isResizeDialogOpen = false)}>Cancel</Button>
+    <Button onclick={() => (isResizeDialogOpen = false)}>Apply</Button>
+  </DialogActions>
+</Dialog>
+
+<Button class="mt-4" onclick={() => (isResizeDialogOpen = true)}>
   <ArrowsPointingOutIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
   Resize
 </Button>

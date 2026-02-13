@@ -1,6 +1,5 @@
 <script lang="ts">
   import { clsx } from 'clsx';
-  import type { Snippet } from 'svelte';
   import { styles } from '../button/buttonStyles';
   import type { SvelteHTMLElements } from 'svelte/elements';
 
@@ -8,13 +7,12 @@
   type DateType = (typeof dateTypes)[number];
 
   type InputProps = {
-    children?: Snippet;
     class?: string;
     type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | DateType | 'button';
     value?: string;
   } & Omit<SvelteHTMLElements['input'], 'class' | 'type' | 'value'>;
 
-  let { children, class: className = '', type = 'text', value = $bindable(), ...props }: InputProps = $props();
+  let { class: className = '', type = 'text', value = $bindable(), ...props }: InputProps = $props();
 </script>
 
 <span
@@ -67,7 +65,7 @@
           // Hide default focus styles
           'focus:outline-hidden',
           // Invalid state
-          'aria-[invalid=true]:border-red-500 aria-[invalid=true]:hover:border-red-500 dark:aria-[invalid=true]:border-red-600 dark:aria-[invalid=true]:hover:border-red-600',
+          'aria-invalid:border-red-500 aria-invalid:hover:border-red-500 dark:aria-invalid:border-red-600 dark:aria-invalid:hover:border-red-600',
           // Disabled state
           'disabled:border-zinc-950/20 dark:disabled:border-white/15 dark:disabled:bg-white/2.5 dark:hover:disabled:border-white/15',
           // System icons
