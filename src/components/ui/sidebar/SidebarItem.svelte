@@ -2,7 +2,7 @@
   import { clsx } from 'clsx';
   import type { Snippet } from 'svelte';
   import TouchTarget from '../button/TouchTarget.svelte';
-  import { NavigationMenu, type NavigationMenuLinkProps } from 'bits-ui';
+  import { NavigationMenu } from 'bits-ui';
 
   const classes = clsx(
     // Base
@@ -30,7 +30,7 @@
     current?: boolean;
     class?: string;
     children?: Snippet;
-  } & Omit<NavigationMenuLinkProps, 'class'>;
+  } & Omit<NavigationMenu.LinkProps, 'class'>;
 
   let { children, class: className = '', current = false, ...props }: Props = $props();
 </script>

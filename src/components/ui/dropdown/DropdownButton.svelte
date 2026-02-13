@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DropdownMenu, type DropdownMenuTriggerProps } from 'bits-ui';
+  import { DropdownMenu } from 'bits-ui';
   import TouchTarget from '../button/TouchTarget.svelte';
   import clsx from 'clsx';
   import { styles } from '../button/buttonStyles';
@@ -11,7 +11,7 @@
     outline?: boolean;
     plain?: boolean;
     class?: string;
-  } & Omit<DropdownMenuTriggerProps, 'class'>;
+  } & Omit<DropdownMenu.TriggerProps, 'class'>;
 
   let { children, color = 'dark/zinc', outline = false, plain = false, class: className = '', ...props }: ButtonProps = $props();
 </script>

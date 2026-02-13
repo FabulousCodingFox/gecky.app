@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, type SelectRootPropsWithoutHTML } from 'bits-ui';
+  import { Select } from 'bits-ui';
   import clsx from 'clsx';
   import type { Snippet, SvelteComponent } from 'svelte';
   import ListboxOption from './ListboxOption.svelte';
@@ -11,14 +11,14 @@
     value: string;
     class?: string;
     items: { value: string; label: string; icon?: SvelteComponent }[];
-  } & Omit<SelectRootPropsWithoutHTML, 'class'>;
+  } & Omit<Select.RootProps, 'class'>;
 
   let { children, items = [], class: className = '', value = $bindable(), ...props }: Props = $props();
 
   let item = $derived(items.find((o) => o.value === value)!);
 </script>
 
-<Select.Root {...props as SelectRootPropsWithoutHTML} bind:value={value as never}>
+<Select.Root {...props as Select.RootProps} bind:value={value as never}>
   <Select.Trigger
     data-slot="control"
     class={clsx([
@@ -91,7 +91,7 @@
     >
       {#each items as { value, label, icon: Icon } (value)}
         <ListboxOption {value} {label}>
-          <Icon width="20" height="20" data-slot="icon" />
+          <Icon width="20" height="20" data-slot="icon" aria-hidden="true" />
           <ListboxLabel>{label}</ListboxLabel>
         </ListboxOption>
       {/each}

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Select, type SelectItemProps } from 'bits-ui';
+  import { Select } from 'bits-ui';
   import { clsx } from 'clsx';
   import type { Snippet } from 'svelte';
   import { sharedClasses } from '.';
 
-  let { children, class: className = '', ...props }: { children?: Snippet; class?: string } & Omit<SelectItemProps, 'class'> = $props();
+  let { children, class: className = '', ...props }: { children?: Snippet; class?: string } & Omit<Select.ItemProps, 'class'> = $props();
 </script>
 
 <Select.Item

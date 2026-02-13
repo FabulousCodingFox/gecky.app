@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, type ButtonRootProps } from 'bits-ui';
+  import { Button } from 'bits-ui';
   import { clsx } from 'clsx';
   import type { Snippet } from 'svelte';
   import TouchTarget from './TouchTarget.svelte';
@@ -11,7 +11,7 @@
     outline?: boolean;
     plain?: boolean;
     class?: string;
-  } & Omit<ButtonRootProps, 'class'>;
+  } & Omit<Button.RootProps, 'class'>;
 
   let { children, color = 'dark/zinc', outline = false, plain = false, class: className = '', ...props }: ButtonProps = $props();
 </script>
