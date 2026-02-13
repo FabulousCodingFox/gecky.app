@@ -118,7 +118,27 @@
     value.Width = width;
     value.Height = height;
   }
+
+  let isAddItemDialogOpen = $state(false);
+  let addItemDialogX = 0;
+  let addItemDialogY = 0;
 </script>
+
+<Dialog bind:open={isAddItemDialogOpen}>
+  <DialogTitle>Add Item</DialogTitle>
+  <DialogDescription>Add an item to the inventory</DialogDescription>
+  <DialogBody>
+    <FieldGroup></FieldGroup>
+  </DialogBody>
+  <DialogActions>
+    <Button plain onclick={() => (isAddItemDialogOpen = false)}>Cancel</Button>
+    <Button
+      onclick={() => {
+        isAddItemDialogOpen = false;
+      }}>Create</Button
+    >
+  </DialogActions>
+</Dialog>
 
 <Dialog bind:open={isResizeDialogOpen}>
   <DialogTitle>Resize Inventory</DialogTitle>
@@ -200,6 +220,14 @@
           {#if item.Amount >= 0 && item.Amount < item.MaxAmount}
             <ContextmenuItem onclick={() => (item.Amount >= 0 ? (item.Amount = item.MaxAmount) : null)}>Refill Item</ContextmenuItem>
           {/if}
+        {:else}
+          <ContextmenuItem
+            onclick={() => {
+              isAddItemDialogOpen = true;
+              addItemDialogX = index % value.Width;
+              addItemDialogY = Math.floor(index / value.Width);
+            }}>Add Item</ContextmenuItem
+          >
         {/if}
         {#if isSlotEnabled}
           <ContextmenuItem onclick={() => (value.ValidSlotIndices = value.ValidSlotIndices.filter((slot: JSONSaveData) => !(slot.X === index % value.Width && slot.Y === Math.floor(index / value.Width))))}>Disable Slot</ContextmenuItem>
