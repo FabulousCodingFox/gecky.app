@@ -22,6 +22,8 @@
   import Label from '../../ui/fieldset/Label.svelte';
   import Input from '../../ui/input/Input.svelte';
   import FieldGroup from '../../ui/fieldset/FieldGroup.svelte';
+  import SimpleNumberInput from './SimpleNumberInput.svelte';
+  import toast, { toast_store } from '$lib/toast/index.svelte';
 
   type Props = {
     value: JSONSaveData;
@@ -101,8 +103,21 @@
   }
 
   let isResizeDialogOpen = $state(false);
-  let reiszeDialogWidth = $state(value.Width);
-  let reiszeDialogHeight = $state(value.Height);
+  let resizeDialogWidth = $state(value.Width);
+  let resizeDialogHeight = $state(value.Height);
+
+  function resize(width: number, height: number) {
+    // Check if even possible (Elements being outside the cropped area)
+    for (const item of value.Slots) {
+      if (item.Index.X >= width || item.Index.Y >= height) {
+        toast.error('Items out of bound', 'Inventory cannot be ressized, because items are outside the cropped area.');
+        return;
+      }
+    }
+
+    value.Width = width;
+    value.Height = height;
+  }
 </script>
 
 <Dialog bind:open={isResizeDialogOpen}>
@@ -112,17 +127,22 @@
     <FieldGroup>
       <Field>
         <Label>Width</Label>
-        <Input name="width" placeholder="10" min={1} max={10} bind:value={reiszeDialogWidth} />
+        <SimpleNumberInput placeholder="10" min={1} max={10} bind:value={resizeDialogWidth} />
       </Field>
       <Field>
         <Label>Height</Label>
-        <Input name="height" placeholder="10" min={1} max={10} bind:value={reiszeDialogHeight} />
+        <SimpleNumberInput placeholder="10" min={1} max={12} bind:value={resizeDialogHeight} />
       </Field>
     </FieldGroup>
   </DialogBody>
   <DialogActions>
     <Button plain onclick={() => (isResizeDialogOpen = false)}>Cancel</Button>
-    <Button onclick={() => (isResizeDialogOpen = false)}>Apply</Button>
+    <Button
+      onclick={() => {
+        isResizeDialogOpen = false;
+        resize(resizeDialogWidth, resizeDialogHeight);
+      }}>Apply</Button
+    >
   </DialogActions>
 </Dialog>
 
