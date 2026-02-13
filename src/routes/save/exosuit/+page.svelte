@@ -1,5 +1,4 @@
 <script lang="ts">
-  import InputInventory from '../../../components/editors/InputInventory.svelte';
   import Field from '../../../components/ui/fieldset/Field.svelte';
   import FieldGroup from '../../../components/ui/fieldset/FieldGroup.svelte';
   import Fieldset from '../../../components/ui/fieldset/Fieldset.svelte';

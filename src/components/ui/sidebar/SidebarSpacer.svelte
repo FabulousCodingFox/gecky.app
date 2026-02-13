@@ -1,6 +1,5 @@
 <script lang="ts">
   import clsx from 'clsx';
-  import type { Snippet } from 'svelte';
   import type { SvelteHTMLElements } from 'svelte/elements';
 
   let { class: className = '', ...props }: { class?: string } & Omit<SvelteHTMLElements['div'], 'class' | 'aria-hidden'> = $props();

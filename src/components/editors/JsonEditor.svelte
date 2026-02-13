@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import type { LocalSettingsStore } from '$lib';
   import type { JSONSaveData } from '$lib/json';
   import { JSONEditor, type Content, type OnChangeStatus } from 'svelte-jsoneditor';
 
   let { data = $bindable() }: { data: JSONSaveData } = $props();
-
-  const localSettings = getContext('localSettings') as LocalSettingsStore;
 
   let content = $derived({
     text: undefined,

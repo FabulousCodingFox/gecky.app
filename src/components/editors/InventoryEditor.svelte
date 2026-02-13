@@ -122,7 +122,6 @@
     {@const isSlotEnabled = value.ValidSlotIndices.some((slot: JSONSaveData) => slot.X + slot.Y * value.Width === index)}
     {@const isSlotSpecial = value.SpecialSlots.some((slot: JSONSaveData) => slot.Index.X + slot.Index.Y * value.Width === index && slot.Type.InventorySpecialSlotType === 'TechBonus')}
     <ContextMenu.Root>
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
       <ContextMenu.Trigger
         data-x={index % value.Width}
         data-y={Math.floor(index / value.Width)}
