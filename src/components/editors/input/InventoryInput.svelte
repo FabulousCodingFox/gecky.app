@@ -20,10 +20,10 @@
   import DialogActions from '../../ui/dialog/DialogActions.svelte';
   import Field from '../../ui/fieldset/Field.svelte';
   import Label from '../../ui/fieldset/Label.svelte';
-  import Input from '../../ui/input/Input.svelte';
   import FieldGroup from '../../ui/fieldset/FieldGroup.svelte';
   import SimpleNumberInput from './SimpleNumberInput.svelte';
   import toast, { toast_store } from '$lib/toast/index.svelte';
+  import { m } from '$lib/paraglide/messages';
 
   type Props = {
     value: JSONSaveData;
@@ -110,7 +110,7 @@
     // Check if even possible (Elements being outside the cropped area)
     for (const item of value.Slots) {
       if (item.Index.X >= width || item.Index.Y >= height) {
-        toast.error('Items out of bound', 'Inventory cannot be ressized, because items are outside the cropped area.');
+        toast.error(m.component_inventoryinput_error_resize_outofbounds_title(), m.component_inventoryinput_error_resize_outofbounds_descriptions());
         return;
       }
     }
@@ -125,64 +125,64 @@
 </script>
 
 <Dialog bind:open={isAddItemDialogOpen}>
-  <DialogTitle>Add Item</DialogTitle>
-  <DialogDescription>Add an item to the inventory</DialogDescription>
+  <DialogTitle>{m.component_inventoryinput_dialog_add_title()}</DialogTitle>
+  <DialogDescription>{m.component_inventoryinput_dialog_add_description()}</DialogDescription>
   <DialogBody>
     <FieldGroup></FieldGroup>
   </DialogBody>
   <DialogActions>
-    <Button plain onclick={() => (isAddItemDialogOpen = false)}>Cancel</Button>
+    <Button plain onclick={() => (isAddItemDialogOpen = false)}>{m.component_inventoryinput_dialog_add_cancel()}</Button>
     <Button
       onclick={() => {
         isAddItemDialogOpen = false;
-      }}>Create</Button
+      }}>{m.component_inventoryinput_dialog_add_apply()}</Button
     >
   </DialogActions>
 </Dialog>
 
 <Dialog bind:open={isResizeDialogOpen}>
-  <DialogTitle>Resize Inventory</DialogTitle>
-  <DialogDescription>Resize the Inventory. Max allowed size is 10x10.</DialogDescription>
+  <DialogTitle>{m.component_inventoryinput_dialog_resize_title()}</DialogTitle>
+  <DialogDescription>{m.component_inventoryinput_dialog_resize_description()}</DialogDescription>
   <DialogBody>
     <FieldGroup>
       <Field>
-        <Label>Width</Label>
+        <Label>{m.component_inventoryinput_dialog_resize_width()}</Label>
         <SimpleNumberInput placeholder="10" min={1} max={10} bind:value={resizeDialogWidth} />
       </Field>
       <Field>
-        <Label>Height</Label>
+        <Label>{m.component_inventoryinput_dialog_resize_height()}</Label>
         <SimpleNumberInput placeholder="10" min={1} max={12} bind:value={resizeDialogHeight} />
       </Field>
     </FieldGroup>
   </DialogBody>
   <DialogActions>
-    <Button plain onclick={() => (isResizeDialogOpen = false)}>Cancel</Button>
+    <Button plain onclick={() => (isResizeDialogOpen = false)}>{m.component_inventoryinput_dialog_resize_cancel()}</Button>
     <Button
       onclick={() => {
         isResizeDialogOpen = false;
         resize(resizeDialogWidth, resizeDialogHeight);
-      }}>Apply</Button
+      }}>{m.component_inventoryinput_dialog_resize_apply()}</Button
     >
   </DialogActions>
 </Dialog>
 
 <Button class="mt-4" onclick={() => (isResizeDialogOpen = true)}>
   <ArrowsPointingOutIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
-  Resize
+  {m.component_inventoryinput_button_resize()}
 </Button>
 <Dropdown>
   <DropdownButton>
     <PencilIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
-    Quick Actions
+    {m.component_inventoryinput_button_qa()}
     <ChevrotDownIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
   </DropdownButton>
   <DropdownMenu>
-    <DropdownItem onclick={refillAllSlots}>Refill All Slots</DropdownItem>
-    <DropdownItem onclick={enableAllSlots}>Enable All Slots</DropdownItem>
+    <DropdownItem onclick={refillAllSlots}>{m.component_inventoryinput_button_qa_refill()}</DropdownItem>
+    <DropdownItem onclick={enableAllSlots}>{m.component_inventoryinput_button_qa_enable()}</DropdownItem>
     {#if type === 'tech'}
-      <DropdownItem onclick={superchargeAllSlots}>Turbocharge All Slots</DropdownItem>
+      <DropdownItem onclick={superchargeAllSlots}>{m.component_inventoryinput_button_qa_turbocharge()}</DropdownItem>
     {/if}
-    <DropdownItem onclick={clearSlots}>Clear</DropdownItem>
+    <DropdownItem onclick={clearSlots}>{m.component_inventoryinput_button_qa_clear()}</DropdownItem>
   </DropdownMenu>
 </Dropdown>
 
@@ -216,9 +216,9 @@
       </ContextMenu.Trigger>
       <ContextmenuContent>
         {#if item}
-          <ContextmenuItem onclick={() => (value.Slots = value.Slots.filter((slot: JSONSaveData) => !(slot.Index.X === item.Index.X && slot.Index.Y === item.Index.Y)))}>Remove Item</ContextmenuItem>
+          <ContextmenuItem onclick={() => (value.Slots = value.Slots.filter((slot: JSONSaveData) => !(slot.Index.X === item.Index.X && slot.Index.Y === item.Index.Y)))}>{m.component_inventoryinput_button_context_remove()}</ContextmenuItem>
           {#if item.Amount >= 0 && item.Amount < item.MaxAmount}
-            <ContextmenuItem onclick={() => (item.Amount >= 0 ? (item.Amount = item.MaxAmount) : null)}>Refill Item</ContextmenuItem>
+            <ContextmenuItem onclick={() => (item.Amount >= 0 ? (item.Amount = item.MaxAmount) : null)}>{m.component_inventoryinput_button_context_refill()}</ContextmenuItem>
           {/if}
         {:else}
           <ContextmenuItem
@@ -226,22 +226,26 @@
               isAddItemDialogOpen = true;
               addItemDialogX = index % value.Width;
               addItemDialogY = Math.floor(index / value.Width);
-            }}>Add Item</ContextmenuItem
+            }}>{m.component_inventoryinput_button_context_add()}</ContextmenuItem
           >
         {/if}
         {#if isSlotEnabled}
-          <ContextmenuItem onclick={() => (value.ValidSlotIndices = value.ValidSlotIndices.filter((slot: JSONSaveData) => !(slot.X === index % value.Width && slot.Y === Math.floor(index / value.Width))))}>Disable Slot</ContextmenuItem>
+          <ContextmenuItem onclick={() => (value.ValidSlotIndices = value.ValidSlotIndices.filter((slot: JSONSaveData) => !(slot.X === index % value.Width && slot.Y === Math.floor(index / value.Width))))}
+            >{m.component_inventoryinput_button_context_disable()}</ContextmenuItem
+          >
         {:else}
-          <ContextmenuItem onclick={() => value.ValidSlotIndices.push({ X: index % value.Width, Y: Math.floor(index / value.Width) })}>Enable Slot</ContextmenuItem>
+          <ContextmenuItem onclick={() => value.ValidSlotIndices.push({ X: index % value.Width, Y: Math.floor(index / value.Width) })}>{m.component_inventoryinput_button_context_enable()}</ContextmenuItem>
         {/if}
         {#if type === 'tech'}
           {#if isSlotSpecial}
             <ContextmenuItem
               onclick={() => (value.SpecialSlots = value.SpecialSlots.filter((slot: JSONSaveData) => !(slot.Index.X === index % value.Width && slot.Index.Y === Math.floor(index / value.Width) && slot.Type.InventorySpecialSlotType === 'TechBonus')))}
-              >Unturbocharge Slot</ContextmenuItem
+              >{m.component_inventoryinput_button_context_unturbocharge()}</ContextmenuItem
             >
           {:else}
-            <ContextmenuItem onclick={() => value.SpecialSlots.push({ Index: { X: index % value.Width, Y: Math.floor(index / value.Width) }, Type: { InventorySpecialSlotType: 'TechBonus' } })}>Turbocharge Slot</ContextmenuItem>
+            <ContextmenuItem onclick={() => value.SpecialSlots.push({ Index: { X: index % value.Width, Y: Math.floor(index / value.Width) }, Type: { InventorySpecialSlotType: 'TechBonus' } })}
+              >{m.component_inventoryinput_button_context_turbocharge()}</ContextmenuItem
+            >
           {/if}
         {/if}
       </ContextmenuContent>

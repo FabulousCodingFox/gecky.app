@@ -20,24 +20,24 @@
 {#snippet sidebar()}
   <SidebarSection>
     <SidebarItem href="/account/" current={page.url.pathname === '/account/'}>
-      <HomeIcon width="20" height="20" />
+      <HomeIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
       <SidebarLabel>{m.page_account_tab_overview()}</SidebarLabel>
     </SidebarItem>
     {#if editorData.data}
       <SidebarItem href="/account/expeditions/" current={page.url.pathname.startsWith('/account/expeditions')}>
-        <GiftIcon width="20" height="20" />
+        <GiftIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
         <SidebarLabel>{m.page_account_tab_expeditions()}</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/account/twitch/" current={page.url.pathname.startsWith('/account/twitch')}>
-        <GiftIcon width="20" height="20" />
+        <GiftIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
         <SidebarLabel>{m.page_account_tab_twitch()}</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/account/platform/" current={page.url.pathname.startsWith('/account/platform')}>
-        <GiftIcon width="20" height="20" />
+        <GiftIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
         <SidebarLabel>{m.page_account_tab_platform()}</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/account/json/" current={page.url.pathname.startsWith('/account/json')}>
-        <CodeBracketIcon width="20" height="20" />
+        <CodeBracketIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
         <SidebarLabel>{m.page_account_tab_json()}</SidebarLabel>
       </SidebarItem>
     {/if}

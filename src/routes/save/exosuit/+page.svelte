@@ -10,58 +10,59 @@
   import { initContext } from '../shared.svelte';
   import InventoryEditor from '../../../components/editors/input/InventoryInput.svelte';
   import SimpleNumberInput from '../../../components/editors/input/SimpleNumberInput.svelte';
+  import { m } from '$lib/paraglide/messages';
 
   let editorData = initContext();
 </script>
 
 <PageLayout>
   <Fieldset>
-    <Legend>Stats</Legend>
-    <Text>Modify the exosuit's core stats.</Text>
+    <Legend>{m.page_save_exosuit_stats_title()}</Legend>
+    <Text>{m.page_save_exosuit_stats_description()}</Text>
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-3">
       <Field>
-        <Label>Health</Label>
+        <Label>{m.page_save_exosuit_stats_health()}</Label>
         <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Health} />
       </Field>
       <Field>
-        <Label>Shield</Label>
+        <Label>{m.page_save_exosuit_stats_shield()}</Label>
         <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Shield} />
       </Field>
       <Field>
-        <Label>Energy</Label>
+        <Label>{m.page_save_exosuit_stats_energy()}</Label>
         <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Energy} />
       </Field>
     </FieldGroup>
   </Fieldset>
   <Divider />
   <Fieldset>
-    <Legend>Currencies</Legend>
-    <Text>Modify the amounts of various in-game currencies.</Text>
+    <Legend>{m.page_save_exosuit_currencies_title()}</Legend>
+    <Text>{m.page_save_exosuit_currencies_description()}</Text>
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-3">
       <Field>
-        <Label>Units</Label>
+        <Label>{m.page_save_exosuit_currencies_units()}</Label>
         <SimpleNumberInput min={-1} bind:value={editorData.data.BaseContext.PlayerStateData.Units} />
       </Field>
       <Field>
-        <Label>Nanites</Label>
+        <Label>{m.page_save_exosuit_currencies_nanites()}</Label>
         <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Nanites} />
       </Field>
       <Field>
-        <Label>Quicksilver</Label>
+        <Label>{m.page_save_exosuit_currencies_quicksilver()}</Label>
         <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Specials} />
       </Field>
     </FieldGroup>
   </Fieldset>
   <Divider />
   <Fieldset>
-    <Legend>Inventory</Legend>
-    <Text>Modify the exosuit's inventory items.</Text>
+    <Legend>{m.page_save_exosuit_inventory_title()}</Legend>
+    <Text>{m.page_save_exosuit_inventory_description()}</Text>
     <InventoryEditor bind:value={editorData.data.BaseContext.PlayerStateData.Inventory} type="cargo" />
   </Fieldset>
   <Divider />
   <Fieldset>
-    <Legend>Technology</Legend>
-    <Text>Modify the exosuit's installed technology.</Text>
+    <Legend>{m.page_save_exosuit_technology_title()}</Legend>
+    <Text>{m.page_save_exosuit_technology_description()}</Text>
     <InventoryEditor bind:value={editorData.data.BaseContext.PlayerStateData.Inventory_TechOnly} type="tech" />
   </Fieldset>
 </PageLayout>

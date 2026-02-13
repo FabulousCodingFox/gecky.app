@@ -2,6 +2,7 @@
   import type { SvelteHTMLElements } from 'svelte/elements';
   import Input from '../../ui/input/Input.svelte';
   import ErrorMessage from '../../ui/fieldset/ErrorMessage.svelte';
+  import { m } from '$lib/paraglide/messages';
 
   type InputProps = {
     class?: string;
@@ -21,14 +22,14 @@
     // Try convert to a number
     let numValue: number = Number.parseInt(rawValue);
     if (isNaN(numValue)) {
-      error = 'The number is invalid';
+      error = m.component_simplenumberinput_error_invalid();
       return;
     }
 
     if (minValue != undefined && numValue < minValue) {
-      error = 'The number must be >= ' + minValue;
+      error = m.component_simplenumberinput_error_min({ min: minValue });
     } else if (maxValue != undefined && numValue > maxValue) {
-      error = 'The number must be <= ' + maxValue;
+      error = m.component_simplenumberinput_error_max({ max: maxValue });
     } else {
       error = null;
       value = numValue;
