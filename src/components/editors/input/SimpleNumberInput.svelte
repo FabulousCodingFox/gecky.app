@@ -7,21 +7,22 @@
   type InputProps = {
     class?: string;
     value?: number;
+    float?: boolean;
   } & Omit<SvelteHTMLElements['input'], 'class' | 'type' | 'value'>;
 
-  let { class: className = '', value = $bindable(), ...props }: InputProps = $props();
+  let { class: className = '', value = $bindable(), float = false, ...props }: InputProps = $props();
 
   let error: string | null = $state(null);
 
   let rawValue: string = $state(value!.toString());
 
-  let minValue = props.min != undefined ? Number.parseInt(props.min.toString()) : undefined;
-  let maxValue = props.max != undefined ? Number.parseInt(props.max.toString()) : undefined;
+  let minValue = props.min != undefined ? Number.parseFloat(props.min.toString()) : undefined;
+  let maxValue = props.max != undefined ? Number.parseFloat(props.max.toString()) : undefined;
 
   function recalc() {
     // Try convert to a number
-    let numValue: number = Number.parseInt(rawValue);
-    if (isNaN(numValue)) {
+    let numValue: number = Number.parseFloat(rawValue);
+    if (isNaN(numValue) || (!float && !Number.isInteger(numValue))) {
       error = m.component_simplenumberinput_error_invalid();
       return;
     }

@@ -25,6 +25,19 @@
       else value = { IntValue: v };
     };
   };
+
+  const getFloat = (id: string) => {
+    let value = globalStats.find((e) => e.Id === id).Value;
+    return () => (value.FloatValue ? value.FloatValue : 0);
+  };
+
+  const setFloat = (id: string) => {
+    let value = globalStats.find((e) => e.Id === id).Value;
+    return (v: number) => {
+      if (value.FloatValue) value.FloatValue = v;
+      else value = { FloatValue: v };
+    };
+  };
 </script>
 
 <PageLayout>
@@ -49,6 +62,7 @@
       </Field>
       <Field>
         <Label>Planetary Zoology</Label>
+        <SimpleNumberInput min={0} bind:value={getInt('^DISC_CREATURES'), setInt('^DISC_CREATURES')} />
       </Field>
     </FieldGroup>
   </Fieldset>
@@ -58,11 +72,11 @@
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-5">
       <Field>
         <Label>On-foot Exploration</Label>
-        <!--DIST_WALKED-->
+        <SimpleNumberInput float min={0} bind:value={getFloat('^DIST_WALKED'), setFloat('^DIST_WALKED')} />
       </Field>
       <Field>
         <Label>Extreme Survival</Label>
-        <!--LONGEST_LIFE_EX-->
+        <SimpleNumberInput float min={0} bind:value={getFloat('^LONGEST_LIFE_EX'), setFloat('^LONGEST_LIFE_EX')} />
       </Field>
       <Field>
         <Label>Sentinels Destroyed</Label>
