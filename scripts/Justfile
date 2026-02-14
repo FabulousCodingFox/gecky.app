@@ -6,7 +6,9 @@ MBIN_COMPILER_VERSION := "v6.20.0-pre1"
 # https://github.com/monkeyman192/HGPAKtool/releases
 HGPAK_TOOL_VERSION    := "1.1.2"
 
-default: clean setup extract-mappings extract-rewards extract-items
+default: clean extract-deps all
+
+all: extract-mappings extract-rewards extract-items extract-textures
 
 # ---------------------------------------------------------------------------
 # 🧹  CLEANUP
@@ -19,11 +21,30 @@ clean:
 # 💻  DEBUG
 # ---------------------------------------------------------------------------
 extract-all:
-    #@for f in ./PCBANKS/*.pak; do \
-    #    gum spin --spinner dot --title "Decoding $f" -- ./out/hgpaktool "$f" -O ./out/EXTRACTED > /dev/null; \
-    #done
+    @for f in ./PCBANKS/*.pak; do \
+        gum spin --spinner dot --title "Decoding $f" -- ./out/hgpaktool "$f" -O ./out/EXTRACTED > /dev/null; \
+    done
     @shopt -s globstar nullglob
     @for f in ./out/EXTRACTED/**/*.mbin; do \
+        dir="$(dirname "$f")"; \
+        base="$(basename "$f" .mbin)"; \
+        out="$dir/$base.MXML"; \
+        if [[ -f "$out" ]]; then \
+            continue; \
+        fi; \
+        if ! gum spin --spinner dot --title "Decoding $f" -- \
+            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
+            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
+            continue; \
+        fi; \
+    done;
+
+extract-deps:
+    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "⚙️ Extracting dependencies"
+    @gum spin --spinner dot --title "Extracting NMSARC.MetadataEtc.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.MetadataEtc.pak -O ./out/EXTRACTED > /dev/null;
+    @gum spin --spinner dot --title "Extracting NMSARC.Precache.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.Precache.pak -O ./out/EXTRACTED > /dev/null;
+    @gum spin --spinner dot --title "Extracting NMSARC.TexUI.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.TexUI.pak -O ./out/EXTRACTED > /dev/null;
+    @for f in ./out/EXTRACTED/metadata/reality/tables/*.mbin; do \
         dir="$(dirname "$f")"; \
         base="$(basename "$f" .mbin)"; \
         out="$dir/$base.MXML"; \
@@ -65,46 +86,28 @@ extract-mappings:
     @npx prettier --write ../src/data/mapping.json --config ../.prettierrc > /dev/null
     @gum style --foreground 10 "✅ mapping.json created."
 
-extract-metadata-hgpak:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📦 HGPAK MetadataEtc EXTRACTION"
-    @gum spin --spinner dot --title "Extracting..." -- ./out/hgpaktool ./PCBANKS/NMSARC.MetadataEtc.pak -O ./out/EXTRACTED
-    @gum style --foreground 10 "✅ NMSARC.MetadataEtc.pak extracted."
-
-extract-precache-hgpak:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📦 HGPAK Precache EXTRACTION"
-    @gum spin --spinner dot --title "Extracting..." -- ./out/hgpaktool ./PCBANKS/NMSARC.Precache.pak -O ./out/EXTRACTED
-    @gum style --foreground 10 "✅ NMSARC.Precache.pak extracted."
-
-extract-texui-hgpak:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📦 HGPAK TexUI EXTRACTION"
-    @gum spin --spinner dot --title "Extracting..." -- ./out/hgpaktool ./PCBANKS/NMSARC.TexUI.pak -O ./out/EXTRACTED
-    @gum style --foreground 10 "✅ NMSARC.TexUI.pak extracted."
-
-extract-locale: extract-metadata-hgpak
+extract-locale:
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 translations.json"
-    @for f in ./out/EXTRACTED/language/*_usenglish.mbin; do \
-        gum spin --spinner dot --title "Decoding $f" -- ./out/mbincompiler -y -d ./out/EXTRACTED/language/ "$f" > /dev/null; \
-    done
     @gum spin --spinner dot --title "Extracting translations" -- python ./src/extract_translations.py
     @gum style --foreground 10 "✅ translations.json ready."
 
-extract-item-name-mappings: extract-precache-hgpak extract-locale
+extract-item-name-mappings: extract-locale
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 item_to_name_mappings.json"
-    @gum spin --spinner dot --title "Decoding nms_reality_gcproducttable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_reality_gcproducttable.mbin" > /dev/null;
-    @gum spin --spinner dot --title "Decoding nms_basepartproducts.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_basepartproducts.mbin" > /dev/null;
     @gum spin --spinner dot --title "Extracting item names" -- python ./src/extract_item_names.py
     @gum style --foreground 10 "✅ item_to_name_mappings.json created."
 
-extract-items: extract-precache-hgpak extract-locale extract-texui-hgpak
+extract-items: extract-locale
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 items.json & item images"
-    @gum spin --spinner dot --title "Decoding nms_reality_gcsubstancetable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_reality_gcsubstancetable.mbin" > /dev/null;
-    @gum spin --spinner dot --title "Decoding nms_reality_gctechnologytable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_reality_gctechnologytable.mbin" > /dev/null;
-    @gum spin --spinner dot --title "Decoding nms_reality_gcproceduraltechnologytable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/nms_reality_gcproceduraltechnologytable.mbin" > /dev/null;
-    @gum spin --spinner dot --title "Decoding proceduralproducttable.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/proceduralproducttable.mbin" > /dev/null;
     @gum spin --spinner dot --title "Extracting items" -- python ./src/extract_items.py
     @cp ./out/items.json ../src/data/items.json
     @npx prettier --write ../src/data/items.json --config ../.prettierrc > /dev/null
     @gum style --foreground 10 "✅ items.json & item images created."
+
+extract-textures:
+    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🖼️ textures"
+    @gum spin --spinner dot --title "Extracting textures" -- python ./src/extract_textures.py
+    @gum style --foreground 10 "✅ textures created."
+
 # ---------------------------------------------------------------------------
 # 🎁  REWARDS
 # ---------------------------------------------------------------------------
@@ -112,7 +115,6 @@ extract-rewards: extract-season-rewards extract-twitch-rewards extract-platform-
 
 extract-season-rewards: extract-item-name-mappings
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/season.json"
-    @gum spin --spinner dot --title "Decoding unlockableseasonrewards.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/unlockableseasonrewards.mbin" > /dev/null
     @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_season_rewards.py
     @cp ./out/season_rewards.json ../src/data/rewards/season.json
     @npx prettier --write ../src/data/rewards/season.json --config ../.prettierrc > /dev/null
@@ -120,7 +122,6 @@ extract-season-rewards: extract-item-name-mappings
 
 extract-twitch-rewards: extract-item-name-mappings
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/twitch.json"
-    @gum spin --spinner dot --title "Decoding unlockabletwitchrewards.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/unlockabletwitchrewards.mbin" > /dev/null
     @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_twitch_rewards.py
     @cp ./out/twitch_rewards.json ../src/data/rewards/twitch.json
     @npx prettier --write ../src/data/rewards/twitch.json --config ../.prettierrc > /dev/null
@@ -128,7 +129,6 @@ extract-twitch-rewards: extract-item-name-mappings
 
 extract-platform-rewards: extract-item-name-mappings
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/platform.json"
-    @gum spin --spinner dot --title "Decoding unlockableplatformrewards.mbin" -- ./out/mbincompiler -y -d ./out/ "./out/EXTRACTED/metadata/reality/tables/unlockableplatformrewards.mbin" > /dev/null
     @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_platform_rewards.py
     @cp ./out/platform_rewards.json ../src/data/rewards/platform.json
     @npx prettier --write ../src/data/rewards/platform.json --config ../.prettierrc > /dev/null
