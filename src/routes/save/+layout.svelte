@@ -34,11 +34,11 @@
       </SidebarItem>
       <SidebarItem href="/save/squadron/" current={page.url.pathname.startsWith('/save/squadron')}>
         <SidebarLabel>{m.page_save_tab_squadron()}</SidebarLabel>
-      </SidebarItem>
+      </SidebarItem>-->
       <SidebarItem href="/save/freighter/" current={page.url.pathname.startsWith('/save/freighter')}>
         <SidebarLabel>{m.page_save_tab_freighter()}</SidebarLabel>
       </SidebarItem>
-      <SidebarItem href="/save/frigates/" current={page.url.pathname.startsWith('/save/frigates')}>
+      <!--<SidebarItem href="/save/frigates/" current={page.url.pathname.startsWith('/save/frigates')}>
         <SidebarLabel>{m.page_save_tab_frigates()}</SidebarLabel>
       </SidebarItem>
       <SidebarItem href="/save/exocraft/" current={page.url.pathname.startsWith('/save/exocraft')}>

@@ -77,15 +77,6 @@
   "component_filechooser_location_save_path_windows": "C:/Users/<username>/AppData/Roaming/HelloGames/NMS/",
   "component_filechooser_location_save_hint": "Dateien wie \"save1.hg\", \"save2.hg\" usw. entsprechen einzelnen Speicherplätzen und enthalten Spielfortschritt sowie Weltzustand.",
 
-  "component_savebutton_toast_info_processing_title": "Änderungen werden exportiert",
-  "component_savebutton_toast_info_processing_desc": "Modifikationen werden angewendet.",
-  "component_savebutton_toast_success_saved_title": "Export erfolgreich",
-  "component_savebutton_toast_success_saved_desc": "Die bearbeitete Datei ist bereit.",
-  "component_savebutton_toast_error_failed_title": "Export fehlgeschlagen",
-  "component_savebutton_toast_error_failed_desc": "Die Änderungen konnten nicht angewendet werden.",
-  "component_savebutton_form_button_label": "Änderungen exportieren",
-  "component_savebutton_form_button_processing": "Speichern...",
-
   "component_resetbutton_toast_success_title": "Editor zurückgesetzt",
   "component_resetbutton_toast_success_desc": "Alle Änderungen wurden verworfen.",
   "component_resetbutton_form_button_label": "Zurücksetzen",

@@ -1,13 +1,13 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages';
-  import FileChooser from '../../components/FileChooser.svelte';
+  import FileChooser from '../../components/filechooser/FileChooser.svelte';
   import { decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
-  import SaveButton from '../../components/SaveButton.svelte';
-  import { zipSync } from 'fflate';
+  import ExportButton from '../../components/ExportButton.svelte';
   import ResetButton from '../../components/ResetButton.svelte';
   import FileInfo from '../../components/FileInfo.svelte';
   import { initContext } from './shared.svelte';
   import HeaderLayout from '../../components/ui/layout/HeaderLayout.svelte';
+  import SaveButton from '../../components/SaveButton.svelte';
 
   let editorData = initContext();
 
@@ -29,20 +29,14 @@
 
     const encryptedData = encryptAccountFile(editorData.data);
 
-    const fileName = editorData.fileName || 'account.hg';
+    const fileName = editorData.fileName || 'accountdata.hg';
 
-    const files: Record<string, Uint8Array> = {
-      [fileName]: encryptedData.buffer
-    };
-
-    const zipped = zipSync(files, { level: 0 });
-
-    const blob = new Blob([zipped as never], { type: 'application/zip' });
+    const blob = new Blob([encryptedData.buffer as never], { type: 'application/txt' });
     const url = URL.createObjectURL(blob);
 
     const downloadLink = document.createElement('a');
     downloadLink.href = url;
-    downloadLink.download = `${fileName}_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.zip`;
+    downloadLink.download = `${fileName}_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.hg`;
     downloadLink.style.display = 'none';
 
     document.body.appendChild(downloadLink);
@@ -56,6 +50,16 @@
     editorData.data = null;
     editorData.fileName = null;
   }
+
+  async function onSave(): Promise<void> {
+    if (!editorData.data) return;
+
+    const encryptedData = encryptAccountFile(editorData.data);
+
+    const writable = await editorData.fileHandle.createWritable();
+    await writable.write(encryptedData.buffer as never);
+    await writable.close();
+  }
 </script>
 
 <HeaderLayout description={m.page_account_description()} title={m.page_account_title()} background="b">
@@ -65,7 +69,10 @@
     <div class="flex flex-col items-center space-y-6">
       <FileInfo fileName={editorData.fileName!} mode="account" bind:saveData={editorData.data} />
       <div class="inline-flex flex-row space-x-6">
-        <SaveButton callback={onExport} />
+        {#if editorData.fileHandle}
+          <SaveButton callback={onSave} />
+        {/if}
+        <ExportButton callback={onExport} />
         <ResetButton callback={onReset} />
       </div>
     </div>

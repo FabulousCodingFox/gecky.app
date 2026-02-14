@@ -5,6 +5,7 @@ import { getContext, hasContext, setContext } from 'svelte';
 export type SaveEditorContext = {
   data: JSONSaveData | null;
   fileName: string | null;
+  fileHandle?: FileSystemFileHandle | null;
 };
 
 export function initContext(): SaveEditorContext {

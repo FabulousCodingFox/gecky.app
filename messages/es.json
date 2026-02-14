@@ -66,15 +66,6 @@
   "component_filechooser_location_save_path_windows": "C:/Users/<username>/AppData/Roaming/HelloGames/NMS/",
   "component_filechooser_location_save_hint": "Archivos como \"save1.hg\", \"save2.hg\", etc. corresponden a ranuras de guardado individuales y contienen el progreso del jugador y el estado del mundo.",
 
-  "component_savebutton_toast_info_processing_title": "Exportando cambios",
-  "component_savebutton_toast_info_processing_desc": "Aplicando modificaciones al archivo.",
-  "component_savebutton_toast_success_saved_title": "Exportación completada",
-  "component_savebutton_toast_success_saved_desc": "El archivo modificado está listo.",
-  "component_savebutton_toast_error_failed_title": "Error en la exportación",
-  "component_savebutton_toast_error_failed_desc": "No se pudieron aplicar los cambios.",
-  "component_savebutton_form_button_label": "Exportar cambios",
-  "component_savebutton_form_button_processing": "Guardando...",
-
   "component_resetbutton_toast_success_title": "Editor restablecido",
   "component_resetbutton_toast_success_desc": "Se han descartado todos los cambios.",
   "component_resetbutton_form_button_label": "Restablecer",

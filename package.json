@@ -48,7 +48,6 @@
     "@iconify-svelte/heroicons": "^1.0.0",
     "@inlang/paraglide-js": "^2.11.0",
     "bits-ui": "^2.15.5",
-    "fflate": "^0.8.2",
     "svelte-jsoneditor": "^3.11.0"
   }
 }

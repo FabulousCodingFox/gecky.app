@@ -2,8 +2,8 @@ import { m } from './paraglide/messages';
 import flag_de from '@iconify-svelte/circle-flags/de';
 import flag_en from '@iconify-svelte/circle-flags/en';
 import flag_es from '@iconify-svelte/circle-flags/es';
-import MoonIcon from '@iconify-svelte/heroicons/moon';
-import SunIcon from '@iconify-svelte/heroicons/sun';
+import MoonIcon from '@iconify-svelte/heroicons/moon-20-solid';
+import SunIcon from '@iconify-svelte/heroicons/sun-20-solid';
 
 export type Theme = 'light' | 'dark';
 
