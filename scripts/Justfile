@@ -14,6 +14,29 @@ default: clean setup extract-mappings extract-rewards extract-items
 clean:
     @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🧹 CLEANUP"
     rm -rf ./out/*
+
+# ---------------------------------------------------------------------------
+# 💻  DEBUG
+# ---------------------------------------------------------------------------
+extract-all:
+    #@for f in ./PCBANKS/*.pak; do \
+    #    gum spin --spinner dot --title "Decoding $f" -- ./out/hgpaktool "$f" -O ./out/EXTRACTED > /dev/null; \
+    #done
+    @shopt -s globstar nullglob
+    @for f in ./out/EXTRACTED/**/*.mbin; do \
+        dir="$(dirname "$f")"; \
+        base="$(basename "$f" .mbin)"; \
+        out="$dir/$base.MXML"; \
+        if [[ -f "$out" ]]; then \
+            continue; \
+        fi; \
+        if ! gum spin --spinner dot --title "Decoding $f" -- \
+            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
+            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
+            continue; \
+        fi; \
+    done;
+
 # ---------------------------------------------------------------------------
 # ⚙️  SETUP & TOOL DOWNLOADS
 # ---------------------------------------------------------------------------
