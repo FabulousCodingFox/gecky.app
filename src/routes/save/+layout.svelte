@@ -55,10 +55,10 @@
       </SidebarItem>
       <SidebarItem href="/save/discoveries/" current={page.url.pathname.startsWith('/save/discoveries')}>
         <SidebarLabel>{m.page_save_tab_discoveries()}</SidebarLabel>
-      </SidebarItem>
+      </SidebarItem>-->
       <SidebarItem href="/save/milestones/" current={page.url.pathname.startsWith('/save/milestones')}>
         <SidebarLabel>{m.page_save_tab_milestones()}</SidebarLabel>
-      </SidebarItem>-->
+      </SidebarItem>
       <SidebarItem href="/save/json/" current={page.url.pathname.startsWith('/save/json')}>
         <CodeBracketIcon width="20" height="20" aria-hidden="true" data-slot="icon" />
         <SidebarLabel>{m.page_save_tab_json()}</SidebarLabel>
