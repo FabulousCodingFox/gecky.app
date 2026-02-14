@@ -11,6 +11,7 @@
   import InventoryEditor from '../../../components/editors/input/InventoryInput.svelte';
   import SimpleNumberInput from '../../../components/editors/input/SimpleNumberInput.svelte';
   import { m } from '$lib/paraglide/messages';
+  import InputGroup from '../../../components/ui/input/InputGroup.svelte';
 
   let editorData = initContext();
 </script>
@@ -22,15 +23,15 @@
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-3">
       <Field>
         <Label>{m.page_save_exosuit_stats_health()}</Label>
-        <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Health} />
+        <SimpleNumberInput min={0} max={100} bind:value={editorData.data.BaseContext.PlayerStateData.Health} />
       </Field>
       <Field>
         <Label>{m.page_save_exosuit_stats_shield()}</Label>
-        <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Shield} />
+        <SimpleNumberInput min={0} max={100} bind:value={editorData.data.BaseContext.PlayerStateData.Shield} />
       </Field>
       <Field>
         <Label>{m.page_save_exosuit_stats_energy()}</Label>
-        <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Energy} />
+        <SimpleNumberInput min={0} max={100} bind:value={editorData.data.BaseContext.PlayerStateData.Energy} />
       </Field>
     </FieldGroup>
   </Fieldset>
@@ -41,15 +42,24 @@
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-3">
       <Field>
         <Label>{m.page_save_exosuit_currencies_units()}</Label>
-        <SimpleNumberInput min={-1} bind:value={editorData.data.BaseContext.PlayerStateData.Units} />
+        <InputGroup>
+          <img src="/nms/textures/ui/frontend/icons/currency.units.png" aria-hidden="true" data-slot="icon" alt="" loading="lazy" decoding="async" />
+          <SimpleNumberInput min={-1} bind:value={editorData.data.BaseContext.PlayerStateData.Units} />
+        </InputGroup>
       </Field>
       <Field>
         <Label>{m.page_save_exosuit_currencies_nanites()}</Label>
-        <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Nanites} />
+        <InputGroup>
+          <img src="/nms/textures/ui/frontend/icons/currency.nanites.png" aria-hidden="true" data-slot="icon" alt="" loading="lazy" decoding="async" />
+          <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Nanites} />
+        </InputGroup>
       </Field>
       <Field>
         <Label>{m.page_save_exosuit_currencies_quicksilver()}</Label>
-        <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Specials} />
+        <InputGroup>
+          <img src="/nms/textures/ui/frontend/icons/currency.quicksilver.png" aria-hidden="true" data-slot="icon" alt="" loading="lazy" decoding="async" />
+          <SimpleNumberInput min={0} bind:value={editorData.data.BaseContext.PlayerStateData.Specials} />
+        </InputGroup>
       </Field>
     </FieldGroup>
   </Fieldset>
