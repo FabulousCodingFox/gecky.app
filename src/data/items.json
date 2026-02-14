@@ -364,7 +364,7 @@
     "texture": "/nms/textures/ui/frontend/icons/products/product.atlaspass.png"
   },
   "POLICE_TOKEN": {
-    "name": "Defense Chit",
+    "name": "Defence Chit",
     "texture": "/nms/textures/ui/frontend/icons/update3/policetoken.png"
   },
   "MIND_ARC": {
@@ -496,7 +496,7 @@
     "texture": "/nms/textures/ui/frontend/icons/update3/farmprod.4.png"
   },
   "FARMPROD5": {
-    "name": "Poly Fiber",
+    "name": "Poly Fibre",
     "texture": "/nms/textures/ui/frontend/icons/update3/farmprod.5.png"
   },
   "FARMPROD6": {
@@ -588,7 +588,7 @@
     "texture": "/nms/textures/ui/frontend/icons/update3/tradeprod.alloy4.png"
   },
   "TRA_ALLOY5": {
-    "name": "Superconducting Fiber",
+    "name": "Superconducting Fibre",
     "texture": "/nms/textures/ui/frontend/icons/update3/tradeprod.alloy5.png"
   },
   "TRA_COMMODITY1": {
@@ -4560,7 +4560,7 @@
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE4": {
-    "name": "Title: 'Traveler-Friend'",
+    "name": "Title: 'Traveller-Friend'",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE5": {
@@ -4572,7 +4572,7 @@
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE7": {
-    "name": "Title: 'Like-Traveler'",
+    "name": "Title: 'Like-Traveller'",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE8": {
@@ -4596,7 +4596,7 @@
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE13": {
-    "name": "Title: 'Solo Traveler'",
+    "name": "Title: 'Solo Traveller'",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special.title.png"
   },
   "SPEC_TITLE14": {
@@ -8500,7 +8500,7 @@
     "texture": "/nms/textures/ui/frontend/icons/buildable/buildable.npcfrigterm.png"
   },
   "GARAGE_FREIGHT": {
-    "name": "Orbital Exocraft Materializer",
+    "name": "Orbital Exocraft Materialiser",
     "texture": "/nms/textures/ui/frontend/icons/buildable/buildable.vehiclesummoner.freighter.png"
   },
   "FRE_CORR_A": {
@@ -15224,7 +15224,7 @@
     "texture": "/nms/textures/ui/frontend/icons/u4substances/substance.expurple.2.png"
   },
   "PLANT_TOXIC": {
-    "name": "Fungal Mold",
+    "name": "Fungal Mould",
     "texture": "/nms/textures/ui/frontend/icons/u4substances/substance.plant.toxic.png"
   },
   "PLANT_SNOW": {
@@ -15264,7 +15264,7 @@
     "texture": "/nms/textures/ui/frontend/icons/update3/spacegunk.1.png"
   },
   "SPACEGUNK2": {
-    "name": "Runaway Mold",
+    "name": "Runaway Mould",
     "texture": "/nms/textures/ui/frontend/icons/update3/spacegunk.2.png"
   },
   "SPACEGUNK3": {
@@ -17888,19 +17888,19 @@
     "texture": "/nms/textures/ui/frontend/icons/technology/technology.fleet.fuel.png"
   },
   "UP_FRCOM1": {
-    "name": "Expedition Defenses Control",
+    "name": "Expedition Defences Control",
     "texture": "/nms/textures/ui/frontend/icons/technology/technology.fleet.combat.png"
   },
   "UP_FRCOM2": {
-    "name": "Expedition Defenses Control",
+    "name": "Expedition Defences Control",
     "texture": "/nms/textures/ui/frontend/icons/technology/technology.fleet.combat.png"
   },
   "UP_FRCOM3": {
-    "name": "Expedition Defenses Control",
+    "name": "Expedition Defences Control",
     "texture": "/nms/textures/ui/frontend/icons/technology/technology.fleet.combat.png"
   },
   "UP_FRCOM4": {
-    "name": "Expedition Defenses Control",
+    "name": "Expedition Defences Control",
     "texture": "/nms/textures/ui/frontend/icons/technology/technology.fleet.combat.png"
   },
   "UP_FRTRA1": {
