@@ -118,6 +118,7 @@
       </Field>
       <Field>
         <Label>Smuggling Run</Label>
+        <SimpleNumberInput min={0} bind:value={getInt('^SMUGGLE_VALUE'), setInt('^SMUGGLE_VALUE')} />
       </Field>
     </FieldGroup>
   </Fieldset>
@@ -256,6 +257,7 @@
       </Field>
       <Field>
         <Label>Smuggling Run</Label>
+        <SimpleNumberInput min={0} bind:value={getInt('^SMUGGLE_VALUE'), setInt('^SMUGGLE_VALUE')} />
       </Field>
       <Field>
         <Label>Bounties Completed</Label>
