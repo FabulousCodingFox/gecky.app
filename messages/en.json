@@ -113,6 +113,9 @@
   "component_simplenumberinput_error_invalid": "Invalid number.",
   "component_simplenumberinput_error_min": "Value must be greater than or equal to {min}.",
   "component_simplenumberinput_error_max": "Value must be less than or equal to {max}.",
+  "component_simpletextinput_error_min": "Text length must be greater than or equal to {min}.",
+  "component_simpletextinput_error_max": "Text length must be less than or equal to {max}.",
+  "component_simpletextinput_error_pattern": "Text does not match the required pattern {pattern}.",
 
   "component_inventoryinput_error_resize_outofbounds_title": "Items Out of Bounds",
   "component_inventoryinput_error_resize_outofbounds_descriptions": "The inventory cannot be resized because items are outside the selected area.",

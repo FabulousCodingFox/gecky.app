@@ -9,6 +9,7 @@
   import Legend from '../../../components/ui/fieldset/Legend.svelte';
   import Text from '../../../components/ui/text/Text.svelte';
   import InventoryEditor from '../../../components/editors/input/InventoryInput.svelte';
+  import SimpleTextInput from '../../../components/editors/input/SimpleTextInput.svelte';
 
   let editorData = initContext();
 </script>
@@ -20,6 +21,7 @@
     <FieldGroup class="lg:grid-cols-2 xl:grid-cols-3">
       <Field>
         <Label>Name</Label>
+        <SimpleTextInput bind:value={editorData.data.BaseContext.PlayerStateData.PlayerFreighterName} minlength={1} maxlength={31} />
       </Field>
       <Field>
         <Label>Type</Label>
@@ -29,9 +31,11 @@
       </Field>
       <Field>
         <Label>Home Seed</Label>
+        <SimpleTextInput bind:value={editorData.data.BaseContext.PlayerStateData.CurrentFreighterHomeSystemSeed[1]} pattern="0x[0-9A-F]*" />
       </Field>
       <Field>
         <Label>Model Seed</Label>
+        <SimpleTextInput bind:value={editorData.data.BaseContext.PlayerStateData.CurrentFreighter.Seed[1]} pattern="0x[0-9A-F]*" />
       </Field>
     </FieldGroup>
   </Fieldset>
