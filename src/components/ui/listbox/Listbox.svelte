@@ -47,13 +47,13 @@
         // Typography
         'text-left text-base/6 text-zinc-950 placeholder:text-zinc-500 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]',
         // Border
-        'border border-zinc-950/10 group-data-active:border-zinc-950/20 group-data-hover:border-zinc-950/20 dark:border-white/10 dark:group-data-active:border-white/20 dark:group-data-hover:border-white/20',
+        'border border-zinc-950/10 group-hover:border-zinc-950/20 group-data-active:border-zinc-950/20 dark:border-white/10 dark:group-hover:border-white/20 dark:group-data-active:border-white/20',
         // Background color
         'bg-transparent dark:bg-white/5',
         // Invalid state
-        'group-data-invalid:border-red-500 group-data-hover:group-data-invalid:border-red-500 dark:group-data-invalid:border-red-600 dark:data-hover:group-data-invalid:border-red-600',
+        'group-data-invalid:border-red-500 group-hover:group-data-invalid:border-red-500 dark:group-data-invalid:border-red-600 dark:hover:group-data-invalid:border-red-600',
         // Disabled state
-        'group-data-disabled:border-zinc-950/20 group-data-disabled:opacity-100 dark:group-data-disabled:border-white/15 dark:group-data-disabled:bg-white/2.5 dark:group-data-disabled:data-hover:border-white/15'
+        'group-data-disabled:border-zinc-950/20 group-data-disabled:opacity-100 dark:group-data-disabled:border-white/15 dark:group-data-disabled:bg-white/2.5 dark:group-data-disabled:hover:border-white/15'
       ])}
     >
       <div class={clsx(sharedClasses, 'gap-2')}>
