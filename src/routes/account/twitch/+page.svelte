@@ -10,8 +10,6 @@
 
   const twitchData = dataRewardsTwitch as RewardItem[];
 
-  let twitchRewards = $state<string[]>([]);
-
   const twitchGroups = $derived<TableGroup[]>([
     {
       label: null,
@@ -22,16 +20,10 @@
     }
   ]);
 
-  $effect(() => {
-    twitchRewards = editorData.data.UserSettingsData.UnlockedTwitchRewards || [];
-  });
-
-  $effect(() => {
-    editorData.data.UserSettingsData.UnlockedTwitchRewards = twitchRewards;
-  });
+  if (!editorData.data.UserSettingsData.UnlockedTwitchRewards) editorData.data.UserSettingsData.UnlockedTwitchRewards = [];
 </script>
 
 <PageLayout>
-  <TableEditorHeader name={m.page_account_tab_twitch().toString()} selected={twitchRewards.length} total={twitchData.length} />
-  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={twitchGroups} bind:values={twitchRewards} />
+  <TableEditorHeader name={m.page_account_tab_twitch().toString()} selected={editorData.data.UserSettingsData.UnlockedTwitchRewards.length} total={twitchData.length} />
+  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={twitchGroups} bind:values={editorData.data.UserSettingsData.UnlockedTwitchRewards} />
 </PageLayout>

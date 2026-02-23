@@ -12,8 +12,6 @@
   const typedExpeditions = dataExpeditions as Record<string, string>;
   const seasonData = dataRewardsSeason as RewardItem[];
 
-  let seasonRewards = $state<string[]>([]);
-
   const seasonGroups = $derived<TableGroup[]>(
     Object.keys(typedExpeditions)
       .reverse()
@@ -29,16 +27,10 @@
       .filter((group) => group.items.length > 0)
   );
 
-  $effect(() => {
-    seasonRewards = editorData.data.UserSettingsData.UnlockedSeasonRewards || [];
-  });
-
-  $effect(() => {
-    editorData.data.UserSettingsData.UnlockedSeasonRewards = seasonRewards;
-  });
+  if (!editorData.data.UserSettingsData.UnlockedSeasonRewards) editorData.data.UserSettingsData.UnlockedSeasonRewards = [];
 </script>
 
 <PageLayout>
-  <TableEditorHeader name={m.page_account_tab_expeditions().toString()} selected={seasonRewards.length} total={seasonData.length} />
-  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={seasonGroups} bind:values={seasonRewards} />
+  <TableEditorHeader name={m.page_account_tab_expeditions().toString()} selected={editorData.data.UserSettingsData.UnlockedSeasonRewards.length} total={seasonData.length} />
+  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={seasonGroups} bind:values={editorData.data.UserSettingsData.UnlockedSeasonRewards} />
 </PageLayout>

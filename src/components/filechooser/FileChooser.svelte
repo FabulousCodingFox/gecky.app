@@ -11,7 +11,7 @@
   import Code from '../ui/text/Code.svelte';
   import Strong from '../ui/text/Strong.svelte';
   import clsx from 'clsx';
-  import { ACCEPTED_FILE_EXTENSION, createOrGetHandle, deleteHandle, loadHandle, readFileAsArrayBuffer, saveHandle, validateFile } from './common';
+  import { ACCEPTED_FILE_EXTENSION, createOrGetHandle, deleteHandle, readFileAsArrayBuffer, saveHandle, validateFile } from './common';
   import { decryptSaveFile } from '$lib/hellosave/save';
   import { languages, type LocalSettingsStore } from '$lib';
   import Button from '../ui/button/Button.svelte';
@@ -192,11 +192,11 @@
       }
     } else {
       saveFiles = [];
-      for (const [saveName, fileHandle] of Object.entries(extractedSaveFiles)) {
+      for (const [, fileHandle] of Object.entries(extractedSaveFiles)) {
         const file = await fileHandle.getFile();
 
-        let name: string = saveName;
-        let description: string = '';
+        let name: string;
+        let description: string;
 
         try {
           // Try to read save name & description
@@ -276,7 +276,7 @@
     </form>
   {:else}
     <div class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
-      {#each saveFiles as f}
+      {#each saveFiles as f (f.file.name)}
         <Button
           outline
           class="flex-col"
@@ -290,7 +290,7 @@
           <Text>{f.date.toLocaleString(browserLocale, { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
         </Button>
       {/each}
-      {#each accountFiles as f}
+      {#each accountFiles as f (f.file.name)}
         <Button
           outline
           class="col-span-3 flex-col"

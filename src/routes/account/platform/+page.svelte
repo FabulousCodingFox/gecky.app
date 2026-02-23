@@ -10,8 +10,6 @@
 
   const platformData = dataRewardsPlatform as RewardItem[];
 
-  let platformRewards = $state<string[]>([]);
-
   const platformGroups = $derived<TableGroup[]>(
     Array.from(new Set(platformData.map((reward) => reward.platform)))
       .filter(Boolean)
@@ -26,16 +24,10 @@
       }))
   );
 
-  $effect(() => {
-    platformRewards = editorData.data.UserSettingsData.UnlockedPlatformRewards || [];
-  });
-
-  $effect(() => {
-    editorData.data.UserSettingsData.UnlockedPlatformRewards = platformRewards;
-  });
+  if (!editorData.data.UserSettingsData.UnlockedPlatformRewards) editorData.data.UserSettingsData.UnlockedPlatformRewards = [];
 </script>
 
 <PageLayout>
-  <TableEditorHeader name={m.page_account_tab_platform().toString()} selected={platformRewards.length} total={platformData.length} />
-  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={platformGroups} bind:values={platformRewards} />
+  <TableEditorHeader name={m.page_account_tab_platform().toString()} selected={editorData.data.UserSettingsData.UnlockedPlatformRewards.length} total={platformData.length} />
+  <TableEditor header={[m.table_name(), m.table_id(), m.table_expedition()]} groups={platformGroups} bind:values={editorData.data.UserSettingsData.UnlockedPlatformRewards} />
 </PageLayout>

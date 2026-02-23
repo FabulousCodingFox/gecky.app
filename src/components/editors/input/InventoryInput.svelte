@@ -22,7 +22,7 @@
   import Label from '../../ui/fieldset/Label.svelte';
   import FieldGroup from '../../ui/fieldset/FieldGroup.svelte';
   import SimpleNumberInput from './SimpleNumberInput.svelte';
-  import toast, { toast_store } from '$lib/toast/index.svelte';
+  import toast from '$lib/toast/index.svelte';
   import { m } from '$lib/paraglide/messages';
 
   type Props = {

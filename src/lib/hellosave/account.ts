@@ -1,12 +1,9 @@
 import type { JSONSaveData } from '$lib/json';
-import { applyJsonMap, reverseJsonMap } from '.';
+import { applyJsonMap, reverseJsonMap, trimTrailingNuls } from '.';
 
 export function decryptAccountFile(data: ArrayBuffer): JSONSaveData {
-  const stringData = new TextDecoder()
-    .decode(data)
-    .replace(/\u0000+$/g, '') // Remove trailing nulls
-    .trim();
-  return applyJsonMap(JSON.parse(stringData));
+  const text = new TextDecoder().decode(trimTrailingNuls(new Uint8Array(data)));
+  return applyJsonMap(JSON.parse(text));
 }
 
 export function encryptAccountFile(data: JSONSaveData): { buffer: Uint8Array; sizeCompressed: number; sizeUncompressed: number } {

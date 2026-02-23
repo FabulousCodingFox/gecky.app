@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Select } from 'bits-ui';
   import clsx from 'clsx';
-  import type { Snippet, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
   import ListboxOption from './ListboxOption.svelte';
   import ListboxLabel from './ListboxLabel.svelte';
   import { sharedClasses } from '.';

@@ -1,4 +1,4 @@
-import { m } from "$lib/paraglide/messages";
+import { m } from '$lib/paraglide/messages';
 
 export const ACCEPTED_FILE_EXTENSION = '.hg';
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
@@ -65,18 +65,17 @@ export async function createOrGetHandle(): Promise<FileSystemDirectoryHandle | n
   }
   if (!handle) return null;
 
-  const perm = await handle.queryPermission({ mode: "readwrite" });
+  const perm = await handle.queryPermission({ mode: 'readwrite' });
 
-  if (perm === "granted") return handle;
+  if (perm === 'granted') return handle;
 
-  if (perm === "prompt") {
-    const req = await handle.requestPermission({ mode: "readwrite" });
-    if (req === "granted") return handle;
+  if (perm === 'prompt') {
+    const req = await handle.requestPermission({ mode: 'readwrite' });
+    if (req === 'granted') return handle;
   }
 
   return null;
 }
-
 
 export function readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
@@ -86,7 +85,6 @@ export function readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
     reader.readAsArrayBuffer(file);
   });
 }
-
 
 export function validateFile(file: File | null): { isValid: boolean; errorTitle?: string; errorDescription?: string } {
   if (!file) {

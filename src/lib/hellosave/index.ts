@@ -35,3 +35,9 @@ export function reverseJsonMap(json: JSONValue): JSONValue {
 
   return json;
 }
+
+export function trimTrailingNuls(bytes: Uint8Array): Uint8Array {
+  let end = bytes.length;
+  while (end > 0 && bytes[end - 1] === 0) end--;
+  return end === bytes.length ? bytes : bytes.subarray(0, end);
+}
