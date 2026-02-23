@@ -36,9 +36,6 @@
 </script>
 
 <NavigationMenu.Item class={clsx(className, 'relative')}>
-  {#if current}
-    <span class="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"></span>
-  {/if}
   <NavigationMenu.Link {...props} class={clsx('cursor-default', classes)} data-current={current ? 'true' : undefined}>
     <TouchTarget>{@render children?.()}</TouchTarget>
   </NavigationMenu.Link>
