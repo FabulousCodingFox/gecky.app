@@ -17,7 +17,7 @@ export type LocalSettingsStore = {
 export type LanguageMeta = {
   id: Language;
   name: string;
-  icon: typeof flag_de;
+  icon: ConstructorOfATypedSvelteComponent;
   browser_locale: Intl.LocalesArgument;
 };
 

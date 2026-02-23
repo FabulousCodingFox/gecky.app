@@ -15,8 +15,8 @@
 
   let rawValue: string = $state(value!);
 
-  let minLength = props.minlength != undefined ? Number.parseInt(props.minlength.toString()) : undefined;
-  let maxLength = props.maxlength != undefined ? Number.parseInt(props.maxlength.toString()) : undefined;
+  let minLength = $derived(props.minlength != undefined ? Number.parseInt(props.minlength.toString()) : undefined);
+  let maxLength = $derived(props.maxlength != undefined ? Number.parseInt(props.maxlength.toString()) : undefined);
 
   function recalc() {
     console.log(minLength);

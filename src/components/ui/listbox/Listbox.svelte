@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Select } from 'bits-ui';
   import clsx from 'clsx';
-  import type { SvelteComponent } from 'svelte';
   import ListboxOption from './ListboxOption.svelte';
   import ListboxLabel from './ListboxLabel.svelte';
   import { sharedClasses } from '.';
@@ -9,7 +8,7 @@
   type Props = {
     value: string;
     class?: string;
-    items: { value: string; label: string; icon?: SvelteComponent }[];
+    items: { value: string; label: string; icon?: ConstructorOfATypedSvelteComponent }[];
   } & Omit<Select.RootProps, 'class'>;
 
   let { items = [], class: className = '', value = $bindable(), ...props }: Props = $props();

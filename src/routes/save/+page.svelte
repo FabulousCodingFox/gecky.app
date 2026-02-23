@@ -56,6 +56,8 @@
 
     const encryptedData = encryptSaveFile(editorData.data);
 
+    if (!editorData.fileHandle) return;
+
     const writable = await editorData.fileHandle.createWritable();
     await writable.write(encryptedData.buffer as never);
     await writable.close();

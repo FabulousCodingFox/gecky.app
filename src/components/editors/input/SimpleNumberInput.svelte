@@ -16,8 +16,8 @@
 
   let rawValue: string = $state(value!.toString());
 
-  let minValue = props.min != undefined ? Number.parseFloat(props.min.toString()) : undefined;
-  let maxValue = props.max != undefined ? Number.parseFloat(props.max.toString()) : undefined;
+  let minValue = $derived(props.min != undefined ? Number.parseFloat(props.min.toString()) : undefined);
+  let maxValue = $derived(props.max != undefined ? Number.parseFloat(props.max.toString()) : undefined);
 
   function recalc() {
     // Try convert to a number

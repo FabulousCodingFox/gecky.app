@@ -78,6 +78,7 @@
 
   onMount(() => {
     setupDragAndDropListeners();
+    // @ts-expect-error - experimental api / not a universal standard
     supportsFileSystemApi = window.showDirectoryPicker !== undefined;
   });
 
@@ -143,6 +144,7 @@
 
     if (dirHandle.name === 'NMS') {
       // Move down one directory. Its named st_[0-9]
+      // @ts-expect-error - experimental api / not a universal standard
       const entries = dirHandle.entries();
       for await (const [name, handle] of entries) {
         if (handle.kind === 'directory' && (name as string).match(/^st_[0-9]+$/i)) {
@@ -157,6 +159,7 @@
     const extractedSaveFiles: Record<string, FileSystemFileHandle> = {};
     let accountDataFile: FileSystemFileHandle | null = null;
 
+    // @ts-expect-error - experimental api / not a universal standard
     for await (const [name, handle] of dirHandle.entries()) {
       if (handle.kind === 'file' && name.endsWith('.hg')) {
         if (name.match(/^save[0-9]+\.hg$/i)) {

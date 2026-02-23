@@ -11,15 +11,28 @@
 
   let editorData = initContext();
 
-  let globalStats = editorData.data.BaseContext.PlayerStateData.Stats.find((e) => e.GroupId === '^GLOBAL_STATS').Stats;
+  type Stat = {
+    Id: string;
+    Value: {
+      IntValue?: number;
+      FloatValue?: number;
+    };
+  };
+
+  type StatGroup = {
+    GroupId: string;
+    Stats: Stat[];
+  };
+
+  let globalStats = editorData.data.BaseContext.PlayerStateData.Stats.find((e: StatGroup) => e.GroupId === '^GLOBAL_STATS').Stats;
 
   const getInt = (id: string) => {
-    let value = globalStats.find((e) => e.Id === id).Value;
+    let value = globalStats.find((e: Stat) => e.Id === id).Value;
     return () => (value.IntValue ? value.IntValue : 0);
   };
 
   const setInt = (id: string) => {
-    let value = globalStats.find((e) => e.Id === id).Value;
+    let value = globalStats.find((e: Stat) => e.Id === id).Value;
     return (v: number) => {
       if (value.IntValue) value.IntValue = v;
       else value = { IntValue: v };
@@ -27,12 +40,12 @@
   };
 
   const getFloat = (id: string) => {
-    let value = globalStats.find((e) => e.Id === id).Value;
+    let value = globalStats.find((e: Stat) => e.Id === id).Value;
     return () => (value.FloatValue ? value.FloatValue : 0);
   };
 
   const setFloat = (id: string) => {
-    let value = globalStats.find((e) => e.Id === id).Value;
+    let value = globalStats.find((e: Stat) => e.Id === id).Value;
     return (v: number) => {
       if (value.FloatValue) value.FloatValue = v;
       else value = { FloatValue: v };

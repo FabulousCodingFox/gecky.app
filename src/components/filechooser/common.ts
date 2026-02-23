@@ -56,8 +56,9 @@ export async function deleteHandle(): Promise<void> {
 }
 
 export async function createOrGetHandle(): Promise<FileSystemDirectoryHandle | null> {
-  let handle = await loadHandle();
+  let handle: FileSystemDirectoryHandle = await loadHandle();
   if (!handle) {
+    // @ts-expect-error - experimental api / not a universal standard
     handle = await window.showDirectoryPicker({
       id: 'saves',
       mode: 'readwrite'
@@ -65,11 +66,13 @@ export async function createOrGetHandle(): Promise<FileSystemDirectoryHandle | n
   }
   if (!handle) return null;
 
+  // @ts-expect-error - experimental api / not a universal standard
   const perm = await handle.queryPermission({ mode: 'readwrite' });
 
   if (perm === 'granted') return handle;
 
   if (perm === 'prompt') {
+    // @ts-expect-error - experimental api / not a universal standard
     const req = await handle.requestPermission({ mode: 'readwrite' });
     if (req === 'granted') return handle;
   }
