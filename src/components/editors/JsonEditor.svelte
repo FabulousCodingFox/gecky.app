@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { JSONSaveData } from '$lib/json';
+  import { m } from '$lib/paraglide/messages';
   import Button from '../ui/button/Button.svelte';
   import ArrowDownCircleIcon from '@iconify-svelte/heroicons/arrow-down-circle-16-solid';
   import ArrowUpCircleIcon from '@iconify-svelte/heroicons/arrow-up-circle-16-solid';
@@ -25,7 +26,7 @@
   }}
 >
   <ArrowDownCircleIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
-  Download JSON
+  {m.component_jsoneditor_download()}
 </Button>
 
 <Button
@@ -44,5 +45,5 @@
   }}
 >
   <ArrowUpCircleIcon aria-hidden="true" data-slot="icon" width="16" height="16" />
-  Upload JSON
+  {m.component_jsoneditor_upload()}
 </Button>

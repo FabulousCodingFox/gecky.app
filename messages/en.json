@@ -143,6 +143,9 @@
   "component_inventoryinput_button_context_unturbocharge": "Remove Turbocharge",
   "component_inventoryinput_button_context_turbocharge": "Turbocharge Slot",
 
+  "component_jsoneditor_download": "Download JSON",
+  "component_jsoneditor_upload": "Upload JSON",
+
   "table_name": "Name",
   "table_id": "ID",
   "table_platform": "Platform",
@@ -162,5 +165,21 @@
   "page_save_exosuit_inventory_title": "Inventory",
   "page_save_exosuit_inventory_description": "Modify the exosuit inventory.",
   "page_save_exosuit_technology_title": "Technology",
-  "page_save_exosuit_technology_description": "Modify installed exosuit technology."
+  "page_save_exosuit_technology_description": "Modify installed exosuit technology.",
+
+  "page_save_freighter_general_title": "General",
+  "page_save_freighter_general_descriptions": "General settings",
+  "page_save_freighter_general_name": "Name",
+  "page_save_freighter_general_type": "Type",
+  "page_save_freighter_general_class": "Class",
+  "page_save_freighter_general_homeseed": "Home Seed",
+  "page_save_freighter_general_modelseed": "Model Seed",
+  "page_save_freighter_stats_title": "Stats",
+  "page_save_freighter_stats_description": "Modify the freighter's core stats.",
+  "page_save_freighter_stats_hyperdrive": "Hyperdrive",
+  "page_save_freighter_stats_fleet": "Fleet Coordination",
+  "page_save_freighter_inventory_title": "Inventory",
+  "page_save_freighter_inventory_description": "Modify the freighter inventory.",
+  "page_save_freighter_technology_title": "Technology",
+  "page_save_freighter_technology_description": "Modify installed freighter technology."
 }
