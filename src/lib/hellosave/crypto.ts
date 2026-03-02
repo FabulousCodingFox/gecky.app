@@ -6,47 +6,80 @@
  * @returns Number of bytes written to `output`.
  */
 export function decodeBlock(input: Uint8Array, output: Uint8Array): number {
-  let ip = 0; // input pointer
-  let op = 0; // output pointer
+  let inputPointer = 0; // input pointer
+  let outputPointer = 0; // output pointer
 
-  while (ip < input.length) {
-    const token = input[ip++];
+  const inputLength = input.length;
+
+  while (inputPointer < inputLength) {
+    const token = input[inputPointer++];
 
     // ----- Literals -----
-    let literalLength = token >> 4;
-    if (literalLength === 0x0f) {
-      let len: number;
-      while ((len = input[ip++]) === 0xff) {
-        literalLength += 0xff;
+    let literalLength = token >>> 4;
+
+    // Extended literal length
+    if (literalLength === 15) {
+      let lengthByte = 255;
+      while (lengthByte === 255) {
+        lengthByte = input[inputPointer++];
+        literalLength += lengthByte;
       }
-      literalLength += len;
     }
 
-    // Copy literals
-    for (let i = 0; i < literalLength; i++) {
-      output[op++] = input[ip++];
+    // Copy literals (bulk copy)
+    if (literalLength !== 0) {
+      const literalEnd = inputPointer + literalLength;
+      output.set(input.subarray(inputPointer, literalEnd), outputPointer);
+      outputPointer += literalLength;
+      inputPointer = literalEnd;
     }
 
-    if (ip >= input.length) break; // reached end: no more matches
+    if (inputPointer >= inputLength) break; // reached end: no more matches
 
     // ----- Match -----
-    const offset = input[ip++] | (input[ip++] << 8);
+    const offset = input[inputPointer++] | (input[inputPointer++] << 8);
 
     let matchLength = token & 0x0f;
-    if (matchLength === 0x0f) {
-      let len: number;
-      while ((len = input[ip++]) === 0xff) {
-        matchLength += 0xff;
+
+    // Extended match length
+    if (matchLength === 15) {
+      let lengthByte = 255;
+      while (lengthByte === 255) {
+        lengthByte = input[inputPointer++];
+        matchLength += lengthByte;
       }
-      matchLength += len;
     }
+
     matchLength += 4; // minimum match length
 
-    const matchPos = op - offset;
-    for (let i = 0; i < matchLength; i++) {
-      output[op++] = output[matchPos + i];
+    const matchPosition = outputPointer - offset;
+
+    // Fast path (No overlap)
+    if (offset >= matchLength) {
+      output.set(output.subarray(matchPosition, matchPosition + matchLength), outputPointer);
+      outputPointer += matchLength;
+      continue;
+    }
+
+    // Seed copy (no overlap yet)
+    output.set(output.subarray(matchPosition, matchPosition + offset), outputPointer);
+    outputPointer += offset;
+
+    let producedLength = offset;
+    let remainingLength = matchLength - offset;
+
+    // Exponential growth copy
+    while (remainingLength > 0) {
+      const copyLength = producedLength < remainingLength ? producedLength : remainingLength;
+
+      const copySource = outputPointer - producedLength;
+      output.set(output.subarray(copySource, copySource + copyLength), outputPointer);
+
+      outputPointer += copyLength;
+      producedLength += copyLength;
+      remainingLength -= copyLength;
     }
   }
 
-  return op; // number of decompressed bytes
+  return outputPointer; // number of decompressed bytes
 }
