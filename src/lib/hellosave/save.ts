@@ -5,6 +5,7 @@ import { decodeBlock } from './crypto';
 export function validateSaveData(data: JSONSaveData): boolean {
   if (!data) return false;
   if (typeof data !== 'object') return false;
+  if (!data.CommonStateData || typeof data.CommonStateData !== 'object') return false;
   return true;
 }
 
