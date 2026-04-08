@@ -315,6 +315,18 @@
     "name": "Autophage Settlement Chart",
     "texture": "/nms/textures/ui/frontend/icons/u4products/product.starchart.settlementbuilders.png"
   },
+  "CHART_PB_CHALL": {
+    "name": "Challenger's Invitation",
+    "texture": "/nms/textures/ui/frontend/icons/u4products/product.starchart.pbchallenger.png"
+  },
+  "CHART_PB_CHALNX": {
+    "name": "Challenger's Invitation",
+    "texture": "/nms/textures/ui/frontend/icons/u4products/product.starchart.pbchallenger.png"
+  },
+  "CHART_PB_CHAMP": {
+    "name": "Champion's Invitation",
+    "texture": "/nms/textures/ui/frontend/icons/u4products/product.starchart.pbchampion.png"
+  },
   "ARTIFACT_KEY": {
     "name": "Ancient Key",
     "texture": "/nms/textures/ui/frontend/icons/update3/product.ancientkey.png"
@@ -815,6 +827,10 @@
     "name": "Magpulse Lure",
     "texture": "/nms/textures/ui/frontend/icons/products/product.fishbait.storm.png"
   },
+  "TREAT_FREELEVEL": {
+    "name": "Retroviral Pellet",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.petbattle.retropellet.png"
+  },
   "BONE_TEMP": {
     "name": "%NAME% Exhibit",
     "texture": "/nms/textures/ui/frontend/icons/fossilbones/fossil.head.an.png"
@@ -1118,6 +1134,14 @@
   "TITLE_UNLOCK": {
     "name": "Title",
     "texture": "/nms/textures/ui/frontend/icons/rank/titleunlocked.png"
+  },
+  "PET_XP": {
+    "name": "Mutated!",
+    "texture": "/nms/textures/ui/frontend/icons/pets/levelup.dna1.png"
+  },
+  "PET_LEVEL": {
+    "name": "Gene Edit",
+    "texture": "/nms/textures/ui/frontend/icons/pets/levelup.dna2.png"
   },
   "EGG1": {
     "name": "Companion Egg",
@@ -1838,6 +1862,26 @@
   "SPEC_HOOD01": {
     "name": "Shroud of Freedom",
     "texture": "/nms/textures/ui/frontend/icons/specialshop/special1.hood01.png"
+  },
+  "SPEC_PB_EGG01": {
+    "name": "Aeron Crab Egg",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.creatureegg.png"
+  },
+  "SPEC_PB_EGG02": {
+    "name": "Wandering Shrimp Tank Egg",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.creaturerobotegg.png"
+  },
+  "SPEC_PB_EGG03": {
+    "name": "Boundary Horror Egg",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.creatureegg.png"
+  },
+  "SPEC_PB_EGG04": {
+    "name": "Corrupted Quad Egg",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.creaturerobotegg.png"
+  },
+  "SPEC_PB_EGG05": {
+    "name": "Geno-Prawn Egg",
+    "texture": "/nms/textures/ui/frontend/icons/products/product.creatureegg.png"
   },
   "TGA_SHIP01": {
     "name": "Starborn Phoenix",
@@ -13498,6 +13542,10 @@
   "B_WALL_SUPPORTS": {
     "name": "BLD_B_WALL_SUPPORTS_NAME_L",
     "texture": "/nms/textures/ui/frontend/icons/buildable/builders.basic_wall_support.png"
+  },
+  "GAMETABLE": {
+    "name": "BLD_GAMETABLE_NAME_L",
+    "texture": "/nms/textures/ui/frontend/icons/buildable/builders.sail_0.png"
   },
   "S_S_WALL": {
     "name": "Stone Wall",
