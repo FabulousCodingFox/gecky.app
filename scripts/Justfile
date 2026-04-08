@@ -1,135 +1,50 @@
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
-# https://github.com/monkeyman192/MBINCompiler/releases
-MBIN_COMPILER_VERSION := "v6.20.0-pre1"
+import './src/setup.just'
+import './src/install_dependencies.just'
+import './src/extraction.just'
 
-# https://github.com/monkeyman192/HGPAKtool/releases
-HGPAK_TOOL_VERSION    := "1.1.2"
-
-default: clean extract-deps all
-
-all: extract-mappings extract-rewards extract-items extract-textures
-
-# ---------------------------------------------------------------------------
-# 🧹  CLEANUP
-# ---------------------------------------------------------------------------
-clean:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🧹 CLEANUP"
-    rm -rf ./out/*
+default: clean install-dependencies extract-all
 
 # ---------------------------------------------------------------------------
 # 💻  DEBUG
 # ---------------------------------------------------------------------------
-extract-all:
-    @for f in ./PCBANKS/*.pak; do \
-        gum spin --spinner dot --title "Decoding $f" -- ./out/hgpaktool "$f" -O ./out/EXTRACTED > /dev/null; \
-    done
-    @shopt -s globstar nullglob
-    @for f in ./out/EXTRACTED/**/*.mbin; do \
-        dir="$(dirname "$f")"; \
-        base="$(basename "$f" .mbin)"; \
-        out="$dir/$base.MXML"; \
-        if [[ -f "$out" ]]; then \
-            continue; \
-        fi; \
-        if ! gum spin --spinner dot --title "Decoding $f" -- \
-            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
-            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
-            continue; \
-        fi; \
-    done;
-
-extract-deps:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "⚙️ Extracting dependencies"
-    @gum spin --spinner dot --title "Extracting NMSARC.MetadataEtc.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.MetadataEtc.pak -O ./out/EXTRACTED > /dev/null;
-    @gum spin --spinner dot --title "Extracting NMSARC.Precache.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.Precache.pak -O ./out/EXTRACTED > /dev/null;
-    @gum spin --spinner dot --title "Extracting NMSARC.TexUI.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.TexUI.pak -O ./out/EXTRACTED > /dev/null;
-    @for f in ./out/EXTRACTED/metadata/reality/tables/*.mbin; do \
-        dir="$(dirname "$f")"; \
-        base="$(basename "$f" .mbin)"; \
-        out="$dir/$base.MXML"; \
-        if [[ -f "$out" ]]; then \
-            continue; \
-        fi; \
-        if ! gum spin --spinner dot --title "Decoding $f" -- \
-            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
-            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
-            continue; \
-        fi; \
-    done;
-
-# ---------------------------------------------------------------------------
-# ⚙️  SETUP & TOOL DOWNLOADS
-# ---------------------------------------------------------------------------
-setup: download-tools
-
-download-tools:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "⚙️ TOOL DOWNLOADS"
-
-    @gum spin --spinner dot --title "Downloading MBINCompiler ({{MBIN_COMPILER_VERSION}})..." -- curl -sSL https://github.com/monkeyman192/MBINCompiler/releases/download/{{MBIN_COMPILER_VERSION}}/MBINCompiler-linux -o ./out/mbincompiler
-    @gum style --foreground 10 "✅ Downloaded MBINCompiler ({{MBIN_COMPILER_VERSION}})."
-    @chmod +x ./out/mbincompiler
-
-    @gum spin --spinner dot --title "Downloading HGPAKtool ({{HGPAK_TOOL_VERSION}})..." -- curl -sSL https://github.com/monkeyman192/HGPAKtool/releases/download/{{HGPAK_TOOL_VERSION}}/hgpaktool-x86_64-unknown-linux.gz -o ./out/hgpaktool.gz
-    @gum style --foreground 10 "✅ Downloaded HGPAKtool ({{HGPAK_TOOL_VERSION}})."
-    @gunzip -c ./out/hgpaktool.gz > ./out/hgpaktool
-    @rm ./out/hgpaktool.gz
-    @chmod +x ./out/hgpaktool
-
-# ---------------------------------------------------------------------------
-# 🗺️  DATA EXTRACTION
-# ---------------------------------------------------------------------------
-extract-mappings:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 mapping.json"
-    @gum spin --spinner dot --title "Downloading mapping.json..." -- curl -sSL "https://github.com/monkeyman192/MBINCompiler/releases/download/{{MBIN_COMPILER_VERSION}}/mapping.json" -o ./out/mapping.json
-    @jq '.Mapping | map({(.Key): .Value}) | add' ./out/mapping.json > ../src/data/mapping.json
-    @npx prettier --write ../src/data/mapping.json --config ../.prettierrc > /dev/null
-    @gum style --foreground 10 "✅ mapping.json created."
-
-extract-locale:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 translations.json"
-    @gum spin --spinner dot --title "Extracting translations" -- python ./src/extract_translations.py
-    @gum style --foreground 10 "✅ translations.json ready."
-
-extract-item-name-mappings: extract-locale
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 item_to_name_mappings.json"
-    @gum spin --spinner dot --title "Extracting item names" -- python ./src/extract_item_names.py
-    @gum style --foreground 10 "✅ item_to_name_mappings.json created."
-
-extract-items: extract-locale
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "📜 items.json & item images"
-    @gum spin --spinner dot --title "Extracting items" -- python ./src/extract_items.py
-    @cp ./out/items.json ../src/data/items.json
-    @npx prettier --write ../src/data/items.json --config ../.prettierrc > /dev/null
-    @gum style --foreground 10 "✅ items.json & item images created."
-
-extract-textures:
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🖼️ textures"
-    @gum spin --spinner dot --title "Extracting textures" -- python ./src/extract_textures.py
-    @gum style --foreground 10 "✅ textures created."
-
-# ---------------------------------------------------------------------------
-# 🎁  REWARDS
-# ---------------------------------------------------------------------------
-extract-rewards: extract-season-rewards extract-twitch-rewards extract-platform-rewards
-
-extract-season-rewards: extract-item-name-mappings
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/season.json"
-    @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_season_rewards.py
-    @cp ./out/season_rewards.json ../src/data/rewards/season.json
-    @npx prettier --write ../src/data/rewards/season.json --config ../.prettierrc > /dev/null
-    @gum style --foreground 10 "✅ rewards/season.json created."
-
-extract-twitch-rewards: extract-item-name-mappings
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/twitch.json"
-    @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_twitch_rewards.py
-    @cp ./out/twitch_rewards.json ../src/data/rewards/twitch.json
-    @npx prettier --write ../src/data/rewards/twitch.json --config ../.prettierrc > /dev/null
-    @gum style --foreground 10 "✅ rewards/twitch.json created."
-
-extract-platform-rewards: extract-item-name-mappings
-    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "🎁 rewards/platform.json"
-    @gum spin --spinner dot --title "Extracting rewards" -- python ./src/extract_platform_rewards.py
-    @cp ./out/platform_rewards.json ../src/data/rewards/platform.json
-    @npx prettier --write ../src/data/rewards/platform.json --config ../.prettierrc > /dev/null
-    @gum style --foreground 10 "✅ rewards/platform.json created."
+#extract-alldata:
+#    @for f in ./PCBANKS/*.pak; do \
+#        gum spin --spinner dot --title "Decoding $f" -- ./out/hgpaktool "$f" -O ./out/EXTRACTED > /dev/null; \
+#    done
+#    @shopt -s globstar nullglob
+#    @for f in ./out/EXTRACTED/**/*.mbin; do \
+#        dir="$(dirname "$f")"; \
+#        base="$(basename "$f" .mbin)"; \
+#        out="$dir/$base.MXML"; \
+#        if [[ -f "$out" ]]; then \
+#            continue; \
+#        fi; \
+#        if ! gum spin --spinner dot --title "Decoding $f" -- \
+#            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
+#            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
+#            continue; \
+#        fi; \
+#    done;
+#
+#extract-deps:
+#    @gum style --border rounded --border-foreground 45 --margin "1 0 0 0" --padding "0 3" --width 80 --align left "⚙️ Extracting dependencies"
+#    @gum spin --spinner dot --title "Extracting NMSARC.MetadataEtc.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.MetadataEtc.pak -O ./out/EXTRACTED > /dev/null;
+#    @gum spin --spinner dot --title "Extracting NMSARC.Precache.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.Precache.pak -O ./out/EXTRACTED > /dev/null;
+#    @gum spin --spinner dot --title "Extracting NMSARC.TexUI.pak" -- ./out/hgpaktool ./PCBANKS/NMSARC.TexUI.pak -O ./out/EXTRACTED > /dev/null;
+#    @for f in ./out/EXTRACTED/metadata/reality/tables/*.mbin; do \
+#        dir="$(dirname "$f")"; \
+#        base="$(basename "$f" .mbin)"; \
+#        out="$dir/$base.MXML"; \
+#        if [[ -f "$out" ]]; then \
+#            continue; \
+#        fi; \
+#        if ! gum spin --spinner dot --title "Decoding $f" -- \
+#            ./out/mbincompiler -y -d "$dir" "$f" > /dev/null; then \
+#            echo "⚠️  Failed to decode $f (invalid MBIN?)"; \
+#            continue; \
+#        fi; \
+#    done;
+#
+#
