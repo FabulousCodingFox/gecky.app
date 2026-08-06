@@ -1,2 +1,4 @@
 allowBuilds:
   sharp: true
+minimumReleaseAgeExclude:
+  - '@titania/ui@0.0.1'
