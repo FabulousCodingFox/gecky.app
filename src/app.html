@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="%paraglide.lang%" class="dark text-zinc-950 antialiased lg:bg-zinc-100 dark:bg-zinc-900 dark:text-white dark:lg:bg-zinc-950">
+<html lang="%paraglide.lang%" dir="%paraglide.dir%">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="text-scale" content="scale" />
     %sveltekit.head%
     <script>
       document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
