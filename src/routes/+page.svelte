@@ -2,9 +2,9 @@
   import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket-20-solid';
   import ComputerDesktopIcon from '@iconify-svelte/heroicons/computer-desktop-20-solid';
   import LockClosedIcon from '@iconify-svelte/heroicons/lock-closed-20-solid';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import { afterNavigate } from '$app/navigation';
-  import { clearSidebar } from '$lib/sidebar.svelte';
+  import { clearSidebar } from '#lib/sidebar.svelte.js';
 
   const features = [
     {
@@ -47,7 +47,7 @@
           </dl>
         </div>
       </div>
-      <enhanced:img src="$lib/assets/app_screenshot.png?enhanced" sizes="min(5760px, 50vw)" fetchpriority="high" class="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 md:-ml-4 lg:-ml-0" />
+      <enhanced:img src="#lib/assets/app_screenshot.png?enhanced" sizes="min(5760px, 50vw)" fetchpriority="high" class="w-3xl max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-228 md:-ml-4 lg:-ml-0" />
     </div>
   </div>
 </div>

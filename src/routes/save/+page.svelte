@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import FileChooser from '../../components/filechooser/FileChooser.svelte';
   import ExportButton from '../../components/ExportButton.svelte';
-  import { decryptSaveFile, encryptSaveFile, validateSaveData } from '$lib/hellosave/save';
+  import { decryptSaveFile, encryptSaveFile, validateSaveData } from '#lib/hellosave/save.js';
   import ResetButton from '../../components/ResetButton.svelte';
   import FileInfo from '../../components/FileInfo.svelte';
   import { initContext } from './shared.svelte';

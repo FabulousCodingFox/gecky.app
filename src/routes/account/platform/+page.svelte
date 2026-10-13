@@ -1,8 +1,8 @@
 <script lang="ts">
-  import dataRewardsPlatform from '$lib/../data/rewards/platform.json';
+  import dataRewardsPlatform from '#lib/../data/rewards/platform.json';
   import { initContext, type RewardItem, type TableGroup } from '../shared.svelte';
   import TableEditor from '../../../components/editors/table/TableEditor.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import TableEditorHeader from '../../../components/editors/table/TableEditorHeader.svelte';
   import PageLayout from '../../../components/ui/layout/PageLayout.svelte';
 

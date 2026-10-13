@@ -1,11 +1,11 @@
 <script lang="ts">
   import { initContext } from './shared.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import SidebarSection from '../../components/ui/sidebar/SidebarSection.svelte';
   import SidebarItem from '../../components/ui/sidebar/SidebarItem.svelte';
   import SidebarLabel from '../../components/ui/sidebar/SidebarLabel.svelte';
   import { page } from '$app/state';
-  import { setSidebar } from '$lib/sidebar.svelte';
+  import { setSidebar } from '#lib/sidebar.svelte.js';
   import HomeIcon from '@iconify-svelte/heroicons/home-20-solid';
   import GiftIcon from '@iconify-svelte/heroicons/gift-20-solid';
   import CodeBracketIcon from '@iconify-svelte/heroicons/code-bracket-20-solid';

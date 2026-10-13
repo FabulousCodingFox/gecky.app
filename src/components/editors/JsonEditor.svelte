@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { JSONSaveData } from '$lib/json';
-  import { m } from '$lib/paraglide/messages';
+  import type { JSONSaveData } from '#lib/json.js';
+  import { m } from '#lib/paraglide/messages.js';
   import Button from '../ui/button/Button.svelte';
   import ArrowDownCircleIcon from '@iconify-svelte/heroicons/arrow-down-circle-16-solid';
   import ArrowUpCircleIcon from '@iconify-svelte/heroicons/arrow-up-circle-16-solid';

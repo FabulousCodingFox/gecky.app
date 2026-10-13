@@ -1,5 +1,5 @@
 import { page } from '$app/state';
-import type { JSONSaveData } from '$lib/json';
+import type { JSONSaveData } from '#lib/json.js';
 import { getContext, hasContext, setContext } from 'svelte';
 
 export type SaveEditorContext = {

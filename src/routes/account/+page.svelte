@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import FileChooser from '../../components/filechooser/FileChooser.svelte';
-  import { decryptAccountFile, encryptAccountFile, validateAccountData } from '$lib/hellosave/account';
+  import { decryptAccountFile, encryptAccountFile, validateAccountData } from '#lib/hellosave/account.js';
   import ExportButton from '../../components/ExportButton.svelte';
   import ResetButton from '../../components/ResetButton.svelte';
   import FileInfo from '../../components/FileInfo.svelte';

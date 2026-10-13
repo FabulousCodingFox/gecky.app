@@ -1,4 +1,4 @@
-import type { JSONSaveData } from '$lib/json';
+import type { JSONSaveData } from '#lib/json.js';
 import { applyJsonMap, reverseJsonMap, trimTrailingNuls } from '.';
 
 export function decryptAccountFile(data: ArrayBuffer): JSONSaveData {

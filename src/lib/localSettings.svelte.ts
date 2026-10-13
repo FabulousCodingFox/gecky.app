@@ -1,5 +1,5 @@
-import { browser } from '$app/environment';
-import type { Language, LocalSettingsStore, Theme } from '$lib';
+import { browser } from '$app/env';
+import type { Language, LocalSettingsStore, Theme } from '#lib';
 import { getContext, setContext } from 'svelte';
 import { setLocale } from './paraglide/runtime';
 

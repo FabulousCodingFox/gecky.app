@@ -1,7 +1,7 @@
 <script lang="ts">
   import { initContext } from './shared.svelte';
-  import { m } from '$lib/paraglide/messages';
-  import { setSidebar } from '$lib/sidebar.svelte';
+  import { m } from '#lib/paraglide/messages.js';
+  import { setSidebar } from '#lib/sidebar.svelte.js';
   import SidebarSection from '../../components/ui/sidebar/SidebarSection.svelte';
   import SidebarItem from '../../components/ui/sidebar/SidebarItem.svelte';
   import SidebarLabel from '../../components/ui/sidebar/SidebarLabel.svelte';

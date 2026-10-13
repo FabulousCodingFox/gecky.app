@@ -1,9 +1,9 @@
 <script lang="ts">
   import { initContext, type RewardItem, type TableGroup } from '../shared.svelte';
-  import dataExpeditions from '$lib/../data/expeditions.json';
-  import dataRewardsSeason from '$lib/../data/rewards/season.json';
+  import dataExpeditions from '#lib/../data/expeditions.json';
+  import dataRewardsSeason from '#lib/../data/rewards/season.json';
   import TableEditor from '../../../components/editors/table/TableEditor.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
   import TableEditorHeader from '../../../components/editors/table/TableEditorHeader.svelte';
   import PageLayout from '../../../components/ui/layout/PageLayout.svelte';
 

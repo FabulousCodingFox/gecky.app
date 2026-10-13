@@ -2,7 +2,7 @@
   import type { SvelteHTMLElements } from 'svelte/elements';
   import Input from '../../ui/input/Input.svelte';
   import ErrorMessage from '../../ui/fieldset/ErrorMessage.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
 
   type InputProps = {
     class?: string;

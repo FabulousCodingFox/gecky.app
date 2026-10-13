@@ -1,5 +1,5 @@
-import mappings from '$lib/../data/mapping.json';
-import type { JSONObject, JSONValue } from '$lib/json';
+import mappings from '#lib/../data/mapping.json';
+import type { JSONObject, JSONValue } from '#lib/json.js';
 
 export function applyJsonMap(json: JSONValue): JSONValue {
   if (typeof json === 'string' || typeof json === 'number' || typeof json === 'boolean' || json === null) return json;

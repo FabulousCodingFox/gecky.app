@@ -10,7 +10,7 @@
   import Text from '../../../components/ui/text/Text.svelte';
   import InventoryEditor from '../../../components/editors/input/InventoryInput.svelte';
   import SimpleTextInput from '../../../components/editors/input/SimpleTextInput.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import { m } from '#lib/paraglide/messages.js';
 
   let editorData = initContext();
 </script>

@@ -1,4 +1,4 @@
-import type { JSONSaveData } from '$lib/json';
+import type { JSONSaveData } from '#lib/json.js';
 import { applyJsonMap, reverseJsonMap, trimTrailingNuls } from '.';
 import { decodeBlock } from './crypto';
 

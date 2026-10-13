@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { JSONSaveData } from '$lib/json';
+  import type { JSONSaveData } from '#lib/json.js';
   import clsx from 'clsx';
   import ChevrotDownIcon from '@iconify-svelte/heroicons/chevron-down-16-solid';
   import Button from '../../ui/button/Button.svelte';
@@ -21,8 +21,8 @@
   import Label from '../../ui/fieldset/Label.svelte';
   import FieldGroup from '../../ui/fieldset/FieldGroup.svelte';
   import SimpleNumberInput from './SimpleNumberInput.svelte';
-  import toast from '$lib/toast/index.svelte';
-  import { m } from '$lib/paraglide/messages';
+  import toast from '#lib/toast/index.svelte.js';
+  import { m } from '#lib/paraglide/messages.js';
   import { onMount } from 'svelte';
 
   type ItemMeta = { name: string; texture: string };

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { m } from '$lib/paraglide/messages';
-  import toast from '$lib/toast/index.svelte';
+  import { m } from '#lib/paraglide/messages.js';
+  import toast from '#lib/toast/index.svelte.js';
   import ArrowPathIcon from '@iconify-svelte/heroicons/arrow-path-16-solid';
   import DocumentIcon from '@iconify-svelte/heroicons/document-16-solid';
   import Button from './ui/button/Button.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { languages, type LocalSettingsStore } from '$lib';
-  import type { JSONSaveData } from '$lib/json';
-  import { m } from '$lib/paraglide/messages';
+  import { languages, type LocalSettingsStore } from '#lib';
+  import type { JSONSaveData } from '#lib/json.js';
+  import { m } from '#lib/paraglide/messages.js';
   import { getContext } from 'svelte';
   import DescriptionList from './ui/description-list/DescriptionList.svelte';
   import DescriptionDetails from './ui/description-list/DescriptionDetails.svelte';

@@ -1,20 +1,20 @@
 <script lang="ts">
   import '../app.css';
-  import favicon from '$lib/assets/favicon.svg';
-  import { apply, createLocalSettingsStore } from '$lib/localSettings.svelte';
+  import favicon from '#lib/assets/favicon.svg';
+  import { apply, createLocalSettingsStore } from '#lib/localSettings.svelte.js';
   import { getContext, onMount } from 'svelte';
-  import { m } from '$lib/paraglide/messages';
-  import ToastContainer from '$lib/toast/ToastContainer.svelte';
+  import { m } from '#lib/paraglide/messages.js';
+  import ToastContainer from '#lib/toast/ToastContainer.svelte';
   import StackedLayout from '../components/ui/layout/RootLayout.svelte';
   import { page } from '$app/state';
   import Listbox from '../components/ui/listbox/Listbox.svelte';
-  import { languages, themes, type LocalSettingsStore } from '$lib';
+  import { languages, themes, type LocalSettingsStore } from '#lib';
   import SidebarHeader from '../components/ui/sidebar/SidebarHeader.svelte';
   import SidebarSection from '../components/ui/sidebar/SidebarSection.svelte';
   import SidebarItem from '../components/ui/sidebar/SidebarItem.svelte';
   import SidebarLabel from '../components/ui/sidebar/SidebarLabel.svelte';
   import SidebarBody from '../components/ui/sidebar/SidebarBody.svelte';
-  import { sidebar as sidebarData } from '$lib/sidebar.svelte';
+  import { sidebar as sidebarData } from '#lib/sidebar.svelte.js';
   import SidebarSpacer from '../components/ui/sidebar/SidebarSpacer.svelte';
   import SidebarFooter from '../components/ui/sidebar/SidebarFooter.svelte';
 

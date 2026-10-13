@@ -1,4 +1,4 @@
-import { m } from '$lib/paraglide/messages';
+import { m } from '#lib/paraglide/messages.js';
 
 export const ACCEPTED_FILE_EXTENSION = '.hg';
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB

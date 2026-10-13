@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { m } from '$lib/paraglide/messages';
-  import toast from '$lib/toast/index.svelte';
+  import { m } from '#lib/paraglide/messages.js';
+  import toast from '#lib/toast/index.svelte.js';
   import ArrowPathIcon from '@iconify-svelte/heroicons/arrow-path';
   import DocumentArrowUpIcon from '@iconify-svelte/heroicons/document-arrow-up-20-solid';
   import FolderIcon from '@iconify-svelte/heroicons/folder-20-solid';
@@ -12,8 +12,8 @@
   import Strong from '../ui/text/Strong.svelte';
   import clsx from 'clsx';
   import { ACCEPTED_FILE_EXTENSION, createOrGetHandle, deleteHandle, readFileAsArrayBuffer, saveHandle, validateFile } from './common';
-  import { decryptSaveFile } from '$lib/hellosave/save';
-  import { languages, type LocalSettingsStore } from '$lib';
+  import { decryptSaveFile } from '#lib/hellosave/save.js';
+  import { languages, type LocalSettingsStore } from '#lib';
   import Button from '../ui/button/Button.svelte';
   import Subheading from '../ui/heading/Subheading.svelte';
   import { type SaveEditorContext } from '../../routes/account/shared.svelte';
